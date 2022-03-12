@@ -23,12 +23,12 @@
 <meta property="og:site_name" content="Felixの博客屋">
 <meta property="og:description" content="一、Mysql逻辑架构1、整体架构 连接层最上层是一些客服端和连接服务，包括socket通信和大多数基于客服端&#x2F;服务端工具实现的类似于tcp&#x2F;ip的通信，主要完成一些类似于连接处理、授权认证及相关安全的方案，在该层上引入了线程池的概念，为通过认证安全接入的客服端提供线程，同样在该层上可以实现基于SSL的安全的连接，服务器也会为安全接入的每个客户端验证它所具有的操作权限 服务层第">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/post/mysql.jsp">
+<meta property="og:image" content="http://example.com/img/post/mysql.jpg">
 <meta property="article:published_time" content="2022-03-12T17:40:59.000Z">
-<meta property="article:modified_time" content="2022-03-12T17:45:30.123Z">
+<meta property="article:modified_time" content="2022-03-12T18:09:57.964Z">
 <meta property="article:author" content="Felix">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/post/mysql.jsp">
+<meta name="twitter:image" content="http://example.com/img/post/mysql.jpg">
   
   
   <title>Mysql高级 - Felixの博客屋</title>
@@ -450,7 +450,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="4、MySQL的索引"><a href="#4、MySQL的索引" class="headerlink" title="4、MySQL的索引"></a>4、MySQL的索引</h2><h3 id="B树与B-树"><a href="#B树与B-树" class="headerlink" title="B树与B+树"></a>B树与B+树</h3><p>树的内容参照<a target="_blank" rel="noopener" href="https://nyimac.gitee.io/2020/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/#B%E6%A0%91%E3%80%81B-%E5%92%8CB-%E6%A0%91">JAVA数据结构 B树、B+树和B*树</a></p>
+<h2 id="4、MySQL的索引"><a href="#4、MySQL的索引" class="headerlink" title="4、MySQL的索引"></a>4、MySQL的索引</h2><h3 id="B树与B-树"><a href="#B树与B-树" class="headerlink" title="B树与B+树"></a>B树与B+树</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ace3cd6526c4">树的内容参照</a></p>
 <p><a target="_blank" rel="noopener" href="https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200815153029.png"><img src="/mysql2.assets/20200815153029.png" srcset="/img/loading.gif" lazyload alt="img"></a></p>
 <p><a target="_blank" rel="noopener" href="https://nyimapicture.oss-cn-beijing.aliyuncs.com/img/20200815153043.png"><img src="/mysql2.assets/20200815153043.png" srcset="/img/loading.gif" lazyload alt="img"></a></p>
 <h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><ul>
@@ -617,14 +617,12 @@
 </tbody></table>
 <ul>
 <li><p>SUBQUERY 和 DEPEDENT SUBQUERY</p>
-<ul>
-<li>都是 WHERE 后面的条件，SUBQUERY 是单个值（&#x3D;），DEPEDENT SUBQUERY 是一组值（IN）</li>
-</ul>
+</li>
+<li><p>都是 WHERE 后面的条件，SUBQUERY 是单个值（&#x3D;），DEPEDENT SUBQUERY 是一组值（IN）</p>
 </li>
 <li><p>UNCACHEABLE SUBQUERY</p>
-<ul>
-<li>当使用了**@@来引用系统变量**的时候，不会使用缓存</li>
-</ul>
+</li>
+<li><p>当使用了**@@来引用系统变量**的时候，不会使用缓存</p>
 </li>
 <li><p>UNION 和 UNION RESULT</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">EXPLAIN</span> <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> t_emp a <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span>  t_dept b <span class="hljs-keyword">ON</span> a.deptId = b.id <span class="hljs-keyword">WHERE</span> b.id <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span><br><span class="hljs-keyword">UNION</span><br><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> t_emp a <span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">JOIN</span>  t_dept b <span class="hljs-keyword">ON</span> a.deptId = b.id <span class="hljs-keyword">WHERE</span> a.deptId <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>;Copy<br></code></pre></td></tr></table></figure>
@@ -1253,8 +1251,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/11/javac_oncurrency/">
-                        <span class="hidden-mobile">Java并发</span>
+                      <a href="/2022/03/11/mysql1/">
+                        <span class="hidden-mobile">Mysql基础</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
