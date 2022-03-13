@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Felix">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://example.com/2022/03/13/design-patterns/index.html">
+<meta property="og:site_name" content="Felixの博客屋">
+<meta property="og:description" content="设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/post/design.jpg">
+<meta property="article:published_time" content="2022-03-13T08:05:50.000Z">
+<meta property="article:modified_time" content="2022-03-13T15:46:29.717Z">
+<meta property="article:author" content="Felix">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/post/design.jpg">
+  
+  
+  <title>设计模式 - Felixの博客屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"RyY2xh8pRlOd0h8PK7HgQYJF-gzGzoHsz","app_key":"87cGpcqYtCgxSbDaonwBEjdC","server_url":"https://ryy2xh8p.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Felix</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/banner/banner_post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="设计模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-13 16:05" pubdate>
+        2022年3月13日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      19k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      160 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">设计模式</h1>
+            
+            <div class="markdown-body">
+              <h1 id="一、设计模式简介"><a href="#一、设计模式简介" class="headerlink" title="一、设计模式简介"></a>一、设计模式简介</h1><h2 id="1、设计模式的类型"><a href="#1、设计模式的类型" class="headerlink" title="1、设计模式的类型"></a>1、设计模式的类型</h2><p>根据设计模式的参考书 <strong>设计模式</strong> 中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：</p>
+<p><strong>创建型模式：</strong> 这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。</p>
+<ul>
+<li>工厂方法模式（Factory Pattern）</li>
+<li>抽象工厂模式（Abstract Factory Pattern）</li>
+<li>单例模式（Singleton Pattern）</li>
+<li>建造者模式（Builder Pattern）</li>
+<li>原型模式（Prototype Pattern）</li>
+</ul>
+<p><strong>结构型模式</strong>： 这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。</p>
+<ul>
+<li>适配器模式（Adapter Pattern）</li>
+<li>桥接模式（Bridge Pattern）</li>
+<li>过滤器模式（Filter、Criteria Pattern）</li>
+<li>组合模式（Composite Pattern）</li>
+<li>装饰器模式（Decorator Pattern）</li>
+<li>外观模式（Facade Pattern）</li>
+<li>享元模式（Flyweight Pattern）</li>
+<li>代理模式（Proxy Pattern）</li>
+</ul>
+<p><strong>行为型模式：</strong> 这些设计模式特别关注对象之间的通信。</p>
+<ul>
+<li>责任链模式（Chain of Responsibility Pattern）</li>
+<li>命令模式（Command Pattern）</li>
+<li>解释器模式（Interpreter Pattern）</li>
+<li>迭代器模式（Iterator Pattern）</li>
+<li>中介者模式（Mediator Pattern）</li>
+<li>备忘录模式（Memento Pattern）</li>
+<li>观察者模式（Observer Pattern）</li>
+<li>状态模式（State Pattern）</li>
+<li>空对象模式（Null Object Pattern）</li>
+<li>策略模式（Strategy Pattern）</li>
+<li>模板模式（Template Pattern）</li>
+<li>访问者模式（Visitor Pattern）</li>
+</ul>
+<h2 id="2、设计模式的六大原则"><a href="#2、设计模式的六大原则" class="headerlink" title="2、设计模式的六大原则"></a>2、设计模式的六大原则</h2><h3 id="1、开闭原则"><a href="#1、开闭原则" class="headerlink" title="1、开闭原则"></a>1、开闭原则</h3><p>开闭原则的意思是：对扩展开放，对修改关闭。</p>
+<h3 id="2、里氏代换原则"><a href="#2、里氏代换原则" class="headerlink" title="2、里氏代换原则"></a>2、里氏代换原则</h3><p>里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。</p>
+<h3 id="3、依赖倒转原则"><a href="#3、依赖倒转原则" class="headerlink" title="3、依赖倒转原则"></a>3、依赖倒转原则</h3><p>具体内容：针对接口编程，依赖于抽象而不依赖于具体。</p>
+<h3 id="4、接口隔离原则"><a href="#4、接口隔离原则" class="headerlink" title="4、接口隔离原则"></a>4、接口隔离原则</h3><p>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，其实设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。</p>
+<h3 id="5、迪米特法则"><a href="#5、迪米特法则" class="headerlink" title="5、迪米特法则"></a>5、迪米特法则</h3><p>最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。</p>
+<h3 id="6、合成复用原则"><a href="#6、合成复用原则" class="headerlink" title="6、合成复用原则"></a>6、合成复用原则</h3><p>合成复用原则是指：尽量使用组合的方式，而不是使用继承。</p>
+<h3 id="7、单一职责原则"><a href="#7、单一职责原则" class="headerlink" title="7、单一职责原则"></a>7、单一职责原则</h3><h1 id="二、创造型模式"><a href="#二、创造型模式" class="headerlink" title="二、创造型模式"></a>二、创造型模式</h1><figure class="highlight 1c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;Talking is cheap,show me your code&quot;</span><br>本文尽量以代码的形式来展示说明各种设计模式的设计理念<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="1、简单工厂模式"><a href="#1、简单工厂模式" class="headerlink" title="1、简单工厂模式"></a>1、简单工厂模式</h2><p>工厂模式的定义：定义一个创建产品对象的工厂接口，将产品对象的实际创建工作推迟到具体子工厂类当中。这满足创建型模式中所要求的“创建与使用相分离”的特点。</p>
+<p>简单工厂模式不是 23 种里的一种，简而言之，就是有一个专门生产某个产品的类。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a><strong>优点</strong></h4><ul>
+<li><p>工厂类包含必要的逻辑判断，可以决定在什么时候创建哪一个产品的实例。客户端可以免除直接创建产品对象的职责，很方便的创建出相应的产品。工厂和产品的职责区分明确。</p>
+</li>
+<li><p>客户端无需知道所创建具体产品的类名，只需知道参数即可。</p>
+</li>
+<li><p>也可以引入配置文件，在不修改客户端代码的情况下更换和添加新的具体产品类。</p>
+</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li><p>简单工厂模式的工厂类单一，负责所有产品的创建，职责过重，一旦异常，整个系统将受影响。且工厂类代码会非常臃肿，违背高聚合原则。</p>
+</li>
+<li><p>使用简单工厂模式会增加系统中类的个数（引入新的工厂类），增加系统的复杂度和理解难度</p>
+</li>
+<li><p>系统扩展困难，一旦增加新产品不得不修改工厂逻辑，在产品类型较多时，可能造成逻辑过于复杂</p>
+</li>
+<li><p>简单工厂模式使用了 static 工厂方法，造成工厂角色无法形成基于继承的等级结构。</p>
+</li>
+</ul>
+<h4 id="模式的结构"><a href="#模式的结构" class="headerlink" title="模式的结构"></a>模式的结构</h4><p>简单工厂模式的主要角色如下：</p>
+<ul>
+<li>简单工厂（SimpleFactory）：是简单工厂模式的核心，负责实现创建所有实例的内部逻辑。工厂类的创建产品类的方法可以被外界直接调用，创建所需的产品对象。</li>
+<li>抽象产品（Product）：是简单工厂创建的所有对象的父类，负责描述所有实例共有的公共接口。</li>
+<li>具体产品（ConcreteProduct）：是简单工厂模式的创建目标。</li>
+</ul>
+<p>其结构图如下图所示。</p>
+<p><img src="/design-patterns.assets/image-20220313161735197.png" srcset="/img/loading.gif" lazyload alt="image-20220313161735197"></p>
+<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><p>根据上图写出该模式的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Client</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    &#125;<br>    <span class="hljs-comment">//抽象产品</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Product</span> &#123;<br>        <span class="hljs-keyword">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span>;<br>    &#125;<br>    <span class="hljs-comment">//具体产品：ProductA</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteProduct1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Product</span> &#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;具体产品1显示...&quot;</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//具体产品：ProductB</span><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteProduct2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Product</span> &#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;具体产品2显示...&quot;</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Const</span> &#123;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">PRODUCT_A</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">PRODUCT_B</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">PRODUCT_C</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;<br>    &#125;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleFactory</span> &#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Product <span class="hljs-title function_">makeProduct</span><span class="hljs-params">(<span class="hljs-type">int</span> kind)</span> &#123;<br>            <span class="hljs-keyword">switch</span> (kind) &#123;<br>                <span class="hljs-keyword">case</span> Const.PRODUCT_A:<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcreteProduct1</span>();<br>                <span class="hljs-keyword">case</span> Const.PRODUCT_B:<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcreteProduct2</span>();<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>再举一个例子</p>
+<p>比如下图中的鼠标工厂，专业生产鼠标，给参数 0，生产戴尔鼠标，给参数 1，生产惠普鼠标。</p>
+<p><img src="/design-patterns.assets/image-20220313213356304.png" srcset="/img/loading.gif" lazyload alt="image-20220313213356304"></p>
+<h2 id="2、工厂方法模式"><a href="#2、工厂方法模式" class="headerlink" title="2、工厂方法模式"></a>2、工厂方法模式</h2><p>工厂方法模式(Factory Method Pattern)，也叫虚拟构造器(Virtual Constructor)模式或者多态工厂(Polymorphic Factory)模式，它属于类创建型模式。在工厂方法模式中，工厂父类负责定义创建产品对象的公共接口，而工厂子类则负责生成具体的产品对象，这样做的目的是将产品类的实例化操作延迟到工厂子类中完成，即通过工厂子类来确定究竟应该实例化哪一个具体产品类。</p>
+<h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>用户只需要知道具体工厂的名称就可得到所要的产品，无须知道产品的具体创建过程。</li>
+<li>灵活性增强，对于新产品的创建，只需多写一个相应的工厂类。</li>
+<li>典型的解耦框架。高层模块只需要知道产品的抽象类，无须关心其他实现类，满足迪米特法则、依赖倒置原则和里氏替换原则。</li>
+</ul>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>类的个数容易过多，增加复杂度</li>
+<li>增加了系统的抽象性和理解难度</li>
+<li>抽象产品只能生产一种产品，此弊端可使用抽象工厂模式解决</li>
+</ul>
+<p>工厂方法模式由抽象工厂、具体工厂、抽象产品和具体产品等4个要素构成。本节来分析其基本结构和实现方法。</p>
+<h4 id="模式的结构-1"><a href="#模式的结构-1" class="headerlink" title="模式的结构"></a>模式的结构</h4><p>工厂方法模式的主要角色如下。</p>
+<ol>
+<li>抽象工厂（Abstract Factory）：提供了创建产品的接口，调用者通过它访问具体工厂的工厂方法 newProduct() 来创建产品。</li>
+<li>具体工厂（ConcreteFactory）：主要是实现抽象工厂中的抽象方法，完成具体产品的创建。</li>
+<li>抽象产品（Product）：定义了产品的规范，描述了产品的主要特性和功能。</li>
+<li>具体产品（ConcreteProduct）：实现了抽象产品角色所定义的接口，由具体工厂来创建，它同具体工厂之间一一对应。</li>
+</ol>
+<p><img src="/design-patterns.assets/image-20220313164530117.png" srcset="/img/loading.gif" lazyload alt="image-20220313164530117"></p>
+<h4 id="举例-1"><a href="#举例-1" class="headerlink" title="举例"></a>举例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//苹果手机</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Iphone</span> &#123;<br>    <span class="hljs-comment">//获取尺寸</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">getSize</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-comment">// iphoneX</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneX</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Iphone</span> &#123;<br>   	Private String size;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Iphone</span><span class="hljs-params">(String size)</span>&#123;<br>		<span class="hljs-built_in">this</span>.size = size;<br>    &#125;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSize</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.size;<br>    &#125;;<br>&#125;<br><br><span class="hljs-comment">// iphoneXs</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneX</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Iphone</span> &#123;<br>   	Private String size;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Iphone</span><span class="hljs-params">(String size)</span>&#123;<br>		<span class="hljs-built_in">this</span>.size = size;<br>    &#125;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSize</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.size;<br>    &#125;;<br>&#125;<br><br><span class="hljs-comment">// iphoneXR</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneX</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Iphone</span> &#123;<br>   	Private String size;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Iphone</span><span class="hljs-params">(String size)</span>&#123;<br>		<span class="hljs-built_in">this</span>.size = size;<br>    &#125;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSize</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.size;<br>    &#125;;<br>&#125;<br><span class="hljs-comment">// 注意：这些iphone具体机型对用户来说是透明的，用户需要从具体的工厂方法中获取Iphone</span><br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//苹果手机工厂</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">IphoneFactory</span> &#123;<br>    <span class="hljs-comment">//制造手机</span><br>     Iphone <span class="hljs-title function_">createIphone</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-comment">// 生产iphoneX</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneXFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">IPhoneFactory</span>&#123;<br>    <span class="hljs-keyword">public</span> Iphone <span class="hljs-title function_">createIphone</span><span class="hljs-params">()</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IphoneX</span>(<span class="hljs-string">&quot;iPhoneX屏幕:3.5英寸&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 生产iphoneXs</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneXsFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">IPhoneFactory</span>&#123;<br>    <span class="hljs-keyword">public</span> Iphone <span class="hljs-title function_">createIphone</span><span class="hljs-params">()</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IphoneX</span>(<span class="hljs-string">&quot;iPhoneXs屏幕:4.5英寸&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 生产iphoneXR</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneXRFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">IPhoneFactory</span>&#123;<br>    <span class="hljs-keyword">public</span> Iphone <span class="hljs-title function_">createIphone</span><span class="hljs-params">()</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IphoneX</span>(<span class="hljs-string">&quot;iPhoneXR屏幕:5.5英寸&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 客户需要IPhoneX</span><br><span class="hljs-type">IphoneFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IphoneXFactory</span>();<br><span class="hljs-type">Iphone</span> <span class="hljs-variable">iphonex</span> <span class="hljs-operator">=</span> factory.createIphone();<br></code></pre></td></tr></table></figure>
+
+<p>再举一个例子</p>
+<p>工厂模式也就是鼠标工厂是个父类，有生产鼠标这个接口。戴尔鼠标工厂，惠普鼠标工厂继承它，可以分别生产戴尔鼠标，惠普鼠标。生产哪种鼠标不再由参数决定，而是创建鼠标工厂时，由戴尔鼠标工厂创建。</p>
+<p><img src="/design-patterns.assets/image-20220313213632790.png" srcset="/img/loading.gif" lazyload alt="image-20220313213632790"></p>
+<h2 id="3、抽象工厂模式"><a href="#3、抽象工厂模式" class="headerlink" title="3、抽象工厂模式"></a>3、抽象工厂模式</h2><p>抽象工厂（AbstractFactory）模式的定义：是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构。</p>
+<p>抽象工厂模式是工厂方法模式的升级版本，工厂方法模式只生产一个等级的产品，而抽象工厂模式可生产多个等级的产品。</p>
+<p>使用抽象工厂模式一般要满足以下条件。</p>
+<ul>
+<li>系统中有多个产品族，每个具体工厂创建同一族但属于不同等级结构的产品。</li>
+<li>系统一次只可能消费其中某一族产品，即同族的产品一起使用。</li>
+</ul>
+<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ul>
+<li>可以在类的内部对产品族中相关联的多等级产品共同管理，而不必专门引入多个新的类来进行管理。</li>
+<li>当需要产品族时，抽象工厂可以保证客户端始终只使用同一个产品的产品组。</li>
+<li>抽象工厂增强了程序的可扩展性，当增加一个新的产品族时，不需要修改原代码，满足开闭原则。</li>
+</ul>
+<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><p>当产品族中需要增加一个新的产品时，所有的工厂类都需要进行修改。增加了系统的抽象性和理解难度。</p>
+<h4 id="模式的结构-2"><a href="#模式的结构-2" class="headerlink" title="模式的结构"></a>模式的结构</h4><p>抽象工厂模式的主要角色如下。</p>
+<ol>
+<li>抽象工厂（Abstract Factory）：提供了创建产品的接口，它包含多个创建产品的方法 newProduct()，可以创建多个不同等级的产品。</li>
+<li>具体工厂（Concrete Factory）：主要是实现抽象工厂中的多个抽象方法，完成具体产品的创建。</li>
+<li>抽象产品（Product）：定义了产品的规范，描述了产品的主要特性和功能，抽象工厂模式有多个抽象产品。</li>
+<li>具体产品（ConcreteProduct）：实现了抽象产品角色所定义的接口，由具体工厂来创建，它同具体工厂之间是多对一的关系。</li>
+</ol>
+<p><img src="/design-patterns.assets/image-20220313171441806.png" srcset="/img/loading.gif" lazyload alt="image-20220313171441806"></p>
+<h4 id="举例-2"><a href="#举例-2" class="headerlink" title="举例"></a>举例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 水果</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Fruit</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 苹果</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">apple</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Fruit</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 香蕉</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">banana</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Fruit</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 动物</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animal</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 牛</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">cow</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 马</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">horse</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 农厂</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Factory</span> &#123;<br>    <span class="hljs-comment">// 生产牛</span><br>    Animal createAnimal;<br>    <span class="hljs-comment">// 生产苹果</span><br>    Fruit <span class="hljs-title function_">createFruit</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-comment">// 北京农厂</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BeijingFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Factory</span>&#123;<br>    <span class="hljs-comment">// 生产牛</span><br>    Animal <span class="hljs-title function_">createAnimal</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cow</span>();<br>    &#125;;<br>    <span class="hljs-comment">// 生产苹果</span><br>    Fruit <span class="hljs-title function_">createFruit</span><span class="hljs-params">()</span>&#123;<br>    	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Apple</span>();<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 西安农厂</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">XianFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Factory</span>&#123;<br>    <span class="hljs-comment">// 生产马</span><br>    Animal <span class="hljs-title function_">createAnimal</span><span class="hljs-params">()</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Horse</span>();<br>    &#125;;<br>    <span class="hljs-comment">// 生产香蕉</span><br>    Fruit <span class="hljs-title function_">createFruit</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Banana</span>();<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 北京农村生产动物 只能生产牛</span><br><span class="hljs-comment">// 北京农村生产水果 只能生产苹果</span><br><br><span class="hljs-type">Factory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BeijingFactory</span>();<br><span class="hljs-type">Animal</span> <span class="hljs-variable">cow</span> <span class="hljs-operator">=</span> factory.createAnimal(); <span class="hljs-comment">// 获得牛</span><br><span class="hljs-type">Fruit</span> <span class="hljs-variable">apple</span> <span class="hljs-operator">=</span> factory.createFruit(); <span class="hljs-comment">// 获得苹果</span><br></code></pre></td></tr></table></figure>
+
+<p>再举一个例子</p>
+<p>抽象工厂模式也就是不仅生产鼠标，同时生产键盘。也就是 PC 厂商是个父类，有生产鼠标，生产键盘两个接口。戴尔工厂，惠普工厂继承它，可以分别生产戴尔鼠标+戴尔键盘，和惠普鼠标+惠普键盘。创建工厂时，由戴尔工厂创建。后续**工厂.生产鼠标()<strong>则生产戴尔鼠标，</strong>工厂.生产键盘()**则生产戴尔键盘。</p>
+<p><img src="/design-patterns.assets/image-20220313213817736.png" srcset="/img/loading.gif" lazyload alt="image-20220313213817736"></p>
+<p>假设我们增加华硕工厂，则我们需要增加华硕工厂，和戴尔工厂一样，继承 PC 厂商。之后创建华硕鼠标，继承鼠标类。创建华硕键盘，继承键盘类即可。</p>
+<p><img src="/design-patterns.assets/image-20220313213849618.png" srcset="/img/loading.gif" lazyload alt="image-20220313213849618"></p>
+<p>假设我们增加耳麦这个产品，则首先我们需要增加耳麦这个父类，再加上戴尔耳麦，惠普耳麦这两个子类。之后在PC厂商这个父类中，增加生产耳麦的接口。最后在戴尔工厂，惠普工厂这两个类中，分别实现生产戴尔耳麦，惠普耳麦的功能。</p>
+<p><img src="/design-patterns.assets/image-20220313214024631.png" srcset="/img/loading.gif" lazyload alt="image-20220313214024631"></p>
+<p><strong>由此可见，抽象工厂模式对于增加一个产品，则需要改动工厂的源代码，违背了开闭原则，这是不可避免地，这是抽象工厂模式的缺点。</strong></p>
+<h2 id="4、单例模式"><a href="#4、单例模式" class="headerlink" title="4、单例模式"></a>4、单例模式</h2><p>单例模式（Singleton Pattern）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。</p>
+<p>这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。</p>
+<h4 id="优点：-1"><a href="#优点：-1" class="headerlink" title="优点："></a>优点：</h4><ul>
+<li>单例模式可以保证内存里只有一个实例，减少了内存的开销。</li>
+<li>可以避免对资源的多重占用。</li>
+<li>单例模式设置全局访问点，可以优化和共享资源的访问。</li>
+</ul>
+<h4 id="缺点：-1"><a href="#缺点：-1" class="headerlink" title="缺点："></a>缺点：</h4><ul>
+<li>单例模式一般没有接口，扩展困难。如果要扩展，则除了修改原来的代码，没有第二种途径，违背开闭原则。</li>
+<li>在并发测试中，单例模式不利于代码调试。在调试过程中，如果单例中的代码没有执行完，也不能模拟生成一个新的对象。</li>
+<li>单例模式的功能代码通常写在一个类中，如果功能设计不合理，则很容易违背单一职责原则。</li>
+</ul>
+<h4 id="模式的结构-3"><a href="#模式的结构-3" class="headerlink" title="模式的结构"></a>模式的结构</h4><p><img src="/design-patterns.assets/image-20220313222001326.png" srcset="/img/loading.gif" lazyload alt="image-20220313222001326"></p>
+<h4 id="举例-3"><a href="#举例-3" class="headerlink" title="举例"></a>举例</h4><p><strong>懒汉式加载：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LazySingleton</span> &#123;<br>    <span class="hljs-comment">//保证 instance 在所有线程中同步</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">LazySingleton</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;    <br>    <span class="hljs-comment">//private 避免类在外部被实例化</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">LazySingleton</span><span class="hljs-params">()</span> &#123;&#125;    <br>    <span class="hljs-comment">//getInstance 方法前加同步</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> LazySingleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>) &#123;<br>            instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LazySingleton</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>一种更好的写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LazySingleton</span> &#123;<br>    <span class="hljs-comment">//保证 instance 在所有线程中同步</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">LazySingleton</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;    <br>    <span class="hljs-comment">//private 避免类在外部被实例化</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">LazySingleton</span><span class="hljs-params">()</span> &#123;&#125;    <br>    <span class="hljs-comment">//getInstance 方法前加同步</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> LazySingleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">synchronized</span>(LazySington.class) &#123;<br>                <span class="hljs-keyword">if</span>(instance == <span class="hljs-literal">null</span>)&#123;<br>					instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LazySingleton</span>();<br>                &#125;<br>            &#125; <br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>饿汉式加载</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">Singleton</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Singleton</span>();    <br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">LazySingleton</span><span class="hljs-params">()</span> &#123;&#125;    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> LazySingleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="5、原型模式"><a href="#5、原型模式" class="headerlink" title="5、原型模式"></a>5、原型模式</h2><p>原型（Prototype）模式的定义如下：用一个已经创建的实例作为原型，通过复制该原型对象来创建一个和原型相同或相似的新对象。在这里，原型实例指定了要创建的对象的种类。用这种方式创建对象非常高效，根本无须知道对象创建的细节。</p>
+<h4 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>Java自带的原型模式基于内存二进制流的复制，在性能上比直接 new 一个对象更加优良。</li>
+<li>可以使用深克隆方式保存对象的状态，使用原型模式将对象复制一份，并将其状态保存起来，简化了创建对象的过程，以便在需要的时候使用（例如恢复到历史某一状态），可辅助实现撤销操作。</li>
+</ul>
+<h4 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>需要为每一个类都配置一个 clone 方法</li>
+<li>clone 方法位于类的内部，当对已有类进行改造的时候，需要修改代码，违背了开闭原则。</li>
+<li>当实现深克隆时，需要编写较为复杂的代码，而且当对象之间存在多重嵌套引用时，为了实现深克隆，每一层对象对应的类都必须支持深克隆，实现起来会比较麻烦。因此，深克隆、浅克隆需要运用得当。</li>
+</ul>
+<h4 id="模式的结构-4"><a href="#模式的结构-4" class="headerlink" title="模式的结构"></a>模式的结构</h4><p>由于 Java 提供了对象的 clone() 方法，所以用 Java 实现原型模式很简单。</p>
+<p>原型模式包含以下主要角色。</p>
+<ol>
+<li>抽象原型类：规定了具体原型对象必须实现的接口。</li>
+<li>具体原型类：实现抽象原型类的 clone() 方法，它是可被复制的对象。</li>
+<li>访问类：使用具体原型类中的 clone() 方法来复制新的对象。</li>
+</ol>
+<p><img src="/design-patterns.assets/image-20220313223550332.png" srcset="/img/loading.gif" lazyload alt="image-20220313223550332"></p>
+<p>原型模式的克隆分为浅克隆和深克隆。</p>
+<ul>
+<li>浅克隆：创建一个新对象，新对象的属性和原来对象完全相同，对于非基本类型属性，仍指向原有属性所指向的对象的内存地址。</li>
+<li>深克隆：创建一个新对象，属性中引用的其他对象也会被克隆，不再指向原有对象地址。</li>
+</ul>
+<p>Java 中的 Object 类提供了浅克隆的 clone() 方法，具体原型类只要实现 Cloneable 接口就可实现对象的浅克隆，这里的 Cloneable 接口就是抽象原型类。其代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//具体原型类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Realizetype</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Cloneable</span> &#123;<br>    Realizetype() &#123;<br>        System.out.println(<span class="hljs-string">&quot;具体原型创建成功！&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException &#123;<br>        System.out.println(<span class="hljs-string">&quot;具体原型复制成功！&quot;</span>);<br>        <span class="hljs-keyword">return</span> (Realizetype) <span class="hljs-built_in">super</span>.clone();<br>    &#125;<br>&#125;<br><span class="hljs-comment">//原型模式的测试类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PrototypeTest</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException &#123;<br>        <span class="hljs-type">Realizetype</span> <span class="hljs-variable">obj1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Realizetype</span>();<br>        <span class="hljs-type">Realizetype</span> <span class="hljs-variable">obj2</span> <span class="hljs-operator">=</span> (Realizetype) obj1.clone();<br>        System.out.println(<span class="hljs-string">&quot;obj1==obj2?&quot;</span> + (obj1 == obj2));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="6、生成器模式-建造者模式"><a href="#6、生成器模式-建造者模式" class="headerlink" title="6、生成器模式(建造者模式)"></a>6、生成器模式(建造者模式)</h2><p>由于生成器模式属于创建型模式里面较难的，所以这里使用一个例子来进行引入。</p>
+<h4 id="😃意图"><a href="#😃意图" class="headerlink" title="😃意图"></a>😃意图</h4><p><strong>生成器模式</strong>是一种创建型设计模式， 使你能够分步骤创建复杂对象。 该模式允许你使用相同的创建代码生成不同类型和形式的对象。</p>
+<p><img src="/design-patterns.assets/builder-zh.png" srcset="/img/loading.gif" lazyload alt="生成器设计模式"></p>
+<h4 id="😕问题"><a href="#😕问题" class="headerlink" title="😕问题"></a>😕问题</h4><p>假设有这样一个复杂对象， 在对其进行构造时需要对诸多成员变量和嵌套对象进行繁复的初始化工作。 这些初始化代码通常深藏于一个包含众多参数且让人基本看不懂的构造函数中； 甚至还有更糟糕的情况， 那就是这些代码散落在客户端代码的多个位置。</p>
+<p><img src="/design-patterns.assets/problem1.png" srcset="/img/loading.gif" lazyload alt="大量子类会带来新的问题"></p>
+<p>如果为每种可能的对象都创建一个子类， 这可能会导致程序变得过于复杂。</p>
+<p>例如， 我们来思考如何创建一个 <code>房屋</code>House对象。 建造一栋简单的房屋， 首先你需要建造四面墙和地板， 安装房门和一套窗户， 然后再建造一个屋顶。 但是如果你想要一栋更宽敞更明亮的房屋， 还要有院子和其他设施 （例如暖气、 排水和供电设备）， 那又该怎么办呢？</p>
+<p>最简单的方法是扩展 <code>房屋</code>基类， 然后创建一系列涵盖所有参数组合的子类。 但最终你将面对相当数量的子类。 任何新增的参数 （例如门廊类型） 都会让这个层次结构更加复杂。</p>
+<p>另一种方法则无需生成子类。 你可以在 <code>房屋</code>基类中创建一个包括所有可能参数的超级构造函数， 并用它来控制房屋对象。 这种方法确实可以避免生成子类， 但它却会造成另外一个问题。</p>
+<p><img src="/design-patterns.assets/problem2.png" srcset="/img/loading.gif" lazyload alt="可伸缩的构造函数"></p>
+<p>拥有大量输入参数的构造函数也有缺陷： 这些参数也不是每次都要全部用上的。</p>
+<p>通常情况下， 绝大部分的参数都没有使用， 这使得<a target="_blank" rel="noopener" href="https://refactoringguru.cn/smells/long-parameter-list">对于构造函数的调用十分不简洁</a>。 例如， 只有很少的房子有游泳池， 因此与游泳池相关的参数十之八九是毫无用处的。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>生成器模式建议将对象构造代码从产品类中抽取出来， 并将其放在一个名为<em>生成器</em>的独立对象中。</p>
+<p><img src="/design-patterns.assets/solution1.png" srcset="/img/loading.gif" lazyload alt="应用生成器模式"></p>
+<p>生成器模式让你能够分步骤创建复杂对象。 生成器不允许其他对象访问正在创建中的产品。</p>
+<p>该模式会将对象构造过程划分为一组步骤， 比如 <code>build­Walls</code>创建墙壁和 <code>build­Door</code>创建房门创建房门等。 每次创建对象时， 你都需要通过生成器对象执行一系列步骤。 重点在于你无需调用所有步骤， 而只需调用创建特定对象配置所需的那些步骤即可。</p>
+<p>当你需要创建不同形式的产品时， 其中的一些构造步骤可能需要不同的实现。 例如， 木屋的房门可能需要使用木头制造， 而城堡的房门则必须使用石头制造。</p>
+<p>在这种情况下， 你可以创建多个不同的生成器， 用不同方式实现一组相同的创建步骤。 然后你就可以在创建过程中使用这些生成器 （例如按顺序调用多个构造步骤） 来生成不同类型的对象。</p>
+<p><img src="/design-patterns.assets/builder-comic-1-zh.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>不同生成器以不同方式执行相同的任务。</p>
+<p>例如， 假设第一个建造者使用木头和玻璃制造房屋， 第二个建造者使用石头和钢铁， 而第三个建造者使用黄金和钻石。 在调用同一组步骤后， 第一个建造者会给你一栋普通房屋， 第二个会给你一座小城堡， 而第三个则会给你一座宫殿。 但是， 只有在调用构造步骤的客户端代码可以通过通用接口与建造者进行交互时， 这样的调用才能返回需要的房屋。</p>
+<h4 id="主管"><a href="#主管" class="headerlink" title="主管"></a>主管</h4><p>你可以进一步将用于创建产品的一系列生成器步骤调用抽取成为单独的<em>主管</em>类。 主管类可定义创建步骤的执行顺序， 而生成器则提供这些步骤的实现。</p>
+<p><img src="/design-patterns.assets/builder-comic-2-zh.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>主管知道需要哪些创建步骤才能获得可正常使用的产品。</p>
+<p>严格来说， 你的程序中并不一定需要主管类。 客户端代码可直接以特定顺序调用创建步骤。 不过， 主管类中非常适合放入各种例行构造流程， 以便在程序中反复使用。</p>
+<p>此外， 对于客户端代码来说， 主管类完全隐藏了产品构造细节。 客户端只需要将一个生成器与主管类关联， 然后使用主管类来构造产品， 就能从生成器处获得构造结果了。</p>
+<h4 id="生成器模式结构"><a href="#生成器模式结构" class="headerlink" title="生成器模式结构"></a>生成器模式结构</h4><p><img src="/design-patterns.assets/structure.png" srcset="/img/loading.gif" lazyload alt="生成器设计模式结构"></p>
+<ol>
+<li><strong>生成器</strong> （Builder） 接口声明在所有类型生成器中通用的产品构造步骤。</li>
+<li><strong>具体生成器</strong> （Concrete Builders） 提供构造过程的不同实现。 具体生成器也可以构造不遵循通用接口的产品。</li>
+<li><strong>产品</strong> （Products） 是最终生成的对象。 由不同生成器构造的产品无需属于同一类层次结构或接口。</li>
+<li><strong>主管</strong> （Director） 类定义调用构造步骤的顺序， 这样你就可以创建和复用特定的产品配置。</li>
+<li><strong>客户端</strong> （Client） 必须将某个生成器对象与主管类关联。 一般情况下， 你只需通过主管类构造函数的参数进行一次性关联即可。 此后主管类就能使用生成器对象完成后续所有的构造任务。 但在客户端将生成器对象传递给主管类制造方法时还有另一种方式。 在这种情况下， 你在使用主管类生产产品时每次都可以使用不同的生成器。</li>
+</ol>
+<h4 id="举例-4"><a href="#举例-4" class="headerlink" title="举例"></a>举例</h4><p>下面关于<strong>生成器</strong>模式的例子演示了你可以如何复用相同的对象构造代码来生成不同类型的产品——例如汽车 （Car）——及其相应的使用手册 （Manual）。</p>
+<p><img src="/design-patterns.assets/example-zh.png" srcset="/img/loading.gif" lazyload alt="生成器模式结构示例"></p>
+<p>分步骤制造汽车并制作对应型号用户使用手册的示例</p>
+<p>汽车是一个复杂对象， 有数百种不同的制造方法。 我们没有在 <code>汽车</code>类中塞入一个巨型构造函数， 而是将汽车组装代码抽取到单独的汽车生成器类中。 该类中有一组方法可用来配置汽车的各种部件。</p>
+<p>如果客户端代码需要组装一辆与众不同、 精心调教的汽车， 它可以直接调用生成器。 或者， 客户端可以将组装工作委托给主管类， 因为主管类知道如何使用生成器制造最受欢迎的几种型号汽车。</p>
+<p>你或许会感到吃惊， 但确实每辆汽车都需要一本使用手册 （说真的， 谁会去读它们呢？）。 使用手册会介绍汽车的每一项功能， 因此不同型号的汽车， 其使用手册内容也不一样。 因此， 你可以复用现有流程来制造实际的汽车及其对应的手册。 当然， 编写手册和制造汽车不是一回事， 所以我们需要另外一个生成器对象来专门编写使用手册。 该类与其制造汽车的兄弟类都实现了相同的制造方法， 但是其功能不是制造汽车部件， 而是描述每个部件。 将这些生成器传递给相同的主管对象， 我们就能够生成一辆汽车或是一本使用手册了。</p>
+<p>最后一个部分是获取结果对象。 尽管金属汽车和纸质手册存在关联， 但它们却是完全不同的东西。 我们无法在主管类和具体产品类不发生耦合的情况下， 在主管类中提供获取结果对象的方法。 因此， 我们只能通过负责制造过程的生成器来获取结果对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 通用生成器接口 Builders</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Builder</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">setCarType</span><span class="hljs-params">(CarType type)</span>;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSeats</span><span class="hljs-params">(<span class="hljs-type">int</span> seats)</span>;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">setEngine</span><span class="hljs-params">(Engine engine)</span>;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTransmission</span><span class="hljs-params">(Transmission transmission)</span>;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTripComputer</span><span class="hljs-params">(TripComputer tripComputer)</span>;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">setGPSNavigator</span><span class="hljs-params">(GPSNavigator gpsNavigator)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 汽车生成器 CarBuilders</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CarBuilder</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Builder</span> &#123;<br>    <span class="hljs-keyword">private</span> CarType type;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> seats;<br>    <span class="hljs-keyword">private</span> Engine engine;<br>    <span class="hljs-keyword">private</span> Transmission transmission;<br>    <span class="hljs-keyword">private</span> TripComputer tripComputer;<br>    <span class="hljs-keyword">private</span> GPSNavigator gpsNavigator;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setCarType</span><span class="hljs-params">(CarType type)</span> &#123;<br>        <span class="hljs-built_in">this</span>.type = type;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSeats</span><span class="hljs-params">(<span class="hljs-type">int</span> seats)</span> &#123;<br>        <span class="hljs-built_in">this</span>.seats = seats;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setEngine</span><span class="hljs-params">(Engine engine)</span> &#123;<br>        <span class="hljs-built_in">this</span>.engine = engine;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTransmission</span><span class="hljs-params">(Transmission transmission)</span> &#123;<br>        <span class="hljs-built_in">this</span>.transmission = transmission;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTripComputer</span><span class="hljs-params">(TripComputer tripComputer)</span> &#123;<br>        <span class="hljs-built_in">this</span>.tripComputer = tripComputer;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setGPSNavigator</span><span class="hljs-params">(GPSNavigator gpsNavigator)</span> &#123;<br>        <span class="hljs-built_in">this</span>.gpsNavigator = gpsNavigator;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Car <span class="hljs-title function_">getResult</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Car</span>(type, seats, engine, transmission, tripComputer, gpsNavigator);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 手册生成器 CarManualBuilder</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CarManualBuilder</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Builder</span>&#123;<br>    <span class="hljs-keyword">private</span> CarType type;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> seats;<br>    <span class="hljs-keyword">private</span> Engine engine;<br>    <span class="hljs-keyword">private</span> Transmission transmission;<br>    <span class="hljs-keyword">private</span> TripComputer tripComputer;<br>    <span class="hljs-keyword">private</span> GPSNavigator gpsNavigator;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setCarType</span><span class="hljs-params">(CarType type)</span> &#123;<br>        <span class="hljs-built_in">this</span>.type = type;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSeats</span><span class="hljs-params">(<span class="hljs-type">int</span> seats)</span> &#123;<br>        <span class="hljs-built_in">this</span>.seats = seats;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setEngine</span><span class="hljs-params">(Engine engine)</span> &#123;<br>        <span class="hljs-built_in">this</span>.engine = engine;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTransmission</span><span class="hljs-params">(Transmission transmission)</span> &#123;<br>        <span class="hljs-built_in">this</span>.transmission = transmission;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setTripComputer</span><span class="hljs-params">(TripComputer tripComputer)</span> &#123;<br>        <span class="hljs-built_in">this</span>.tripComputer = tripComputer;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setGPSNavigator</span><span class="hljs-params">(GPSNavigator gpsNavigator)</span> &#123;<br>        <span class="hljs-built_in">this</span>.gpsNavigator = gpsNavigator;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Manual <span class="hljs-title function_">getResult</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Manual</span>(type, seats, engine, transmission, tripComputer, gpsNavigator);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 汽车</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> CarType carType;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> seats;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Engine engine;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Transmission transmission;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> TripComputer tripComputer;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> GPSNavigator gpsNavigator;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">double</span> <span class="hljs-variable">fuel</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Car</span><span class="hljs-params">(CarType carType, <span class="hljs-type">int</span> seats, Engine engine, Transmission transmission,</span><br><span class="hljs-params">               TripComputer tripComputer, GPSNavigator gpsNavigator)</span> &#123;<br>        <span class="hljs-built_in">this</span>.carType = carType;<br>        <span class="hljs-built_in">this</span>.seats = seats;<br>        <span class="hljs-built_in">this</span>.engine = engine;<br>        <span class="hljs-built_in">this</span>.transmission = transmission;<br>        <span class="hljs-built_in">this</span>.tripComputer = tripComputer;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.tripComputer != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-built_in">this</span>.tripComputer.setCar(<span class="hljs-built_in">this</span>);<br>        &#125;<br>        <span class="hljs-built_in">this</span>.gpsNavigator = gpsNavigator;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> CarType <span class="hljs-title function_">getCarType</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> carType;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">getFuel</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> fuel;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setFuel</span><span class="hljs-params">(<span class="hljs-type">double</span> fuel)</span> &#123;<br>        <span class="hljs-built_in">this</span>.fuel = fuel;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getSeats</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> seats;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Engine <span class="hljs-title function_">getEngine</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> engine;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Transmission <span class="hljs-title function_">getTransmission</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> transmission;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> TripComputer <span class="hljs-title function_">getTripComputer</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> tripComputer;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> GPSNavigator <span class="hljs-title function_">getGpsNavigator</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> gpsNavigator;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 手册</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Manual</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> CarType carType;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> seats;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Engine engine;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Transmission transmission;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> TripComputer tripComputer;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> GPSNavigator gpsNavigator;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Manual</span><span class="hljs-params">(CarType carType, <span class="hljs-type">int</span> seats, Engine engine, Transmission transmission,</span><br><span class="hljs-params">                  TripComputer tripComputer, GPSNavigator gpsNavigator)</span> &#123;<br>        <span class="hljs-built_in">this</span>.carType = carType;<br>        <span class="hljs-built_in">this</span>.seats = seats;<br>        <span class="hljs-built_in">this</span>.engine = engine;<br>        <span class="hljs-built_in">this</span>.transmission = transmission;<br>        <span class="hljs-built_in">this</span>.tripComputer = tripComputer;<br>        <span class="hljs-built_in">this</span>.gpsNavigator = gpsNavigator;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">print</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">info</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br>        info += <span class="hljs-string">&quot;Type of car: &quot;</span> + carType + <span class="hljs-string">&quot;\n&quot;</span>;<br>        info += <span class="hljs-string">&quot;Count of seats: &quot;</span> + seats + <span class="hljs-string">&quot;\n&quot;</span>;<br>        info += <span class="hljs-string">&quot;Engine: volume - &quot;</span> + engine.getVolume() + <span class="hljs-string">&quot;; mileage - &quot;</span> + engine.getMileage() + <span class="hljs-string">&quot;\n&quot;</span>;<br>        info += <span class="hljs-string">&quot;Transmission: &quot;</span> + transmission + <span class="hljs-string">&quot;\n&quot;</span>;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.tripComputer != <span class="hljs-literal">null</span>) &#123;<br>            info += <span class="hljs-string">&quot;Trip Computer: Functional&quot;</span> + <span class="hljs-string">&quot;\n&quot;</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            info += <span class="hljs-string">&quot;Trip Computer: N/A&quot;</span> + <span class="hljs-string">&quot;\n&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.gpsNavigator != <span class="hljs-literal">null</span>) &#123;<br>            info += <span class="hljs-string">&quot;GPS Navigator: Functional&quot;</span> + <span class="hljs-string">&quot;\n&quot;</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            info += <span class="hljs-string">&quot;GPS Navigator: N/A&quot;</span> + <span class="hljs-string">&quot;\n&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> info;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 汽车类型</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">CarType</span> &#123;<br>    CITY_CAR, SPORTS_CAR, SUV<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 产品特征 发动机</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Engine</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">double</span> volume;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">double</span> mileage;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> started;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Engine</span><span class="hljs-params">(<span class="hljs-type">double</span> volume, <span class="hljs-type">double</span> mileage)</span> &#123;<br>        <span class="hljs-built_in">this</span>.volume = volume;<br>        <span class="hljs-built_in">this</span>.mileage = mileage;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">on</span><span class="hljs-params">()</span> &#123;<br>        started = <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">off</span><span class="hljs-params">()</span> &#123;<br>        started = <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isStarted</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> started;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">go</span><span class="hljs-params">(<span class="hljs-type">double</span> mileage)</span> &#123;<br>        <span class="hljs-keyword">if</span> (started) &#123;<br>            <span class="hljs-built_in">this</span>.mileage += mileage;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.err.println(<span class="hljs-string">&quot;Cannot go(), you must start engine first!&quot;</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">getVolume</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> volume;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">double</span> <span class="hljs-title function_">getMileage</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> mileage;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// GPS</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GPSNavigator</span> &#123;<br>    <span class="hljs-keyword">private</span> String route;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">GPSNavigator</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-built_in">this</span>.route = <span class="hljs-string">&quot;221b, Baker Street, London  to Scotland Yard, 8-10 Broadway, London&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">GPSNavigator</span><span class="hljs-params">(String manualRoute)</span> &#123;<br>        <span class="hljs-built_in">this</span>.route = manualRoute;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getRoute</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> route;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 变速器</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Transmission</span> &#123;<br>    SINGLE_SPEED, MANUAL, AUTOMATIC, SEMI_AUTOMATIC<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 仪表盘</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TripComputer</span> &#123;<br><br>    <span class="hljs-keyword">private</span> Car car;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setCar</span><span class="hljs-params">(Car car)</span> &#123;<br>        <span class="hljs-built_in">this</span>.car = car;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">showFuelLevel</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Fuel level: &quot;</span> + car.getFuel());<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">showStatus</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.car.getEngine().isStarted()) &#123;<br>            System.out.println(<span class="hljs-string">&quot;Car is started&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;Car isn&#x27;t started&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 主管控制生成器 要生产什么产品，怎么生产由主管控制</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Director</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">constructSportsCar</span><span class="hljs-params">(Builder builder)</span> &#123;<br>        builder.setCarType(CarType.SPORTS_CAR);<br>        builder.setSeats(<span class="hljs-number">2</span>);<br>        builder.setEngine(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Engine</span>(<span class="hljs-number">3.0</span>, <span class="hljs-number">0</span>));<br>        builder.setTransmission(Transmission.SEMI_AUTOMATIC);<br>        builder.setTripComputer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TripComputer</span>());<br>        builder.setGPSNavigator(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GPSNavigator</span>());<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">constructCityCar</span><span class="hljs-params">(Builder builder)</span> &#123;<br>        builder.setCarType(CarType.CITY_CAR);<br>        builder.setSeats(<span class="hljs-number">2</span>);<br>        builder.setEngine(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Engine</span>(<span class="hljs-number">1.2</span>, <span class="hljs-number">0</span>));<br>        builder.setTransmission(Transmission.AUTOMATIC);<br>        builder.setTripComputer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TripComputer</span>());<br>        builder.setGPSNavigator(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GPSNavigator</span>());<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">constructSUV</span><span class="hljs-params">(Builder builder)</span> &#123;<br>        builder.setCarType(CarType.SUV);<br>        builder.setSeats(<span class="hljs-number">4</span>);<br>        builder.setEngine(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Engine</span>(<span class="hljs-number">2.5</span>, <span class="hljs-number">0</span>));<br>        builder.setTransmission(Transmission.MANUAL);<br>        builder.setGPSNavigator(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GPSNavigator</span>());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Demo运行类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 找主管</span><br>        <span class="hljs-type">Director</span> <span class="hljs-variable">director</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Director</span>();<br>        <br>        <span class="hljs-comment">// 主管与汽车生成器配对</span><br>        <span class="hljs-type">CarBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CarBuilder</span>();<br>        <span class="hljs-comment">// 主管只负责指挥，给定参数，不参与打螺丝</span><br>        director.constructSportsCar(builder);<br>	    <span class="hljs-comment">// 打螺丝的苦活交给汽车生成器</span><br>        <span class="hljs-type">Car</span> <span class="hljs-variable">car</span> <span class="hljs-operator">=</span> builder.getResult();<br>        System.out.println(<span class="hljs-string">&quot;Car built:\n&quot;</span> + car.getCarType());<br><br>	   <span class="hljs-comment">// 原理同上，只不过是指挥生产汽车手册</span><br>        <span class="hljs-type">CarManualBuilder</span> <span class="hljs-variable">manualBuilder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CarManualBuilder</span>();<br>        director.constructSportsCar(manualBuilder);<br>        <span class="hljs-type">Manual</span> <span class="hljs-variable">carManual</span> <span class="hljs-operator">=</span> manualBuilder.getResult();<br>        System.out.println(<span class="hljs-string">&quot;\nCar manual built:\n&quot;</span> + carManual.print());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/13/java-log/">
+                        <span class="hidden-mobile">Java日志系统</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
