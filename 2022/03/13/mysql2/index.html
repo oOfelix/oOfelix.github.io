@@ -16,17 +16,18 @@
   <meta name="author" content="Felix">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、Mysql逻辑架构1、整体架构 连接层最上层是一些客服端和连接服务，包括socket通信和大多数基于客服端&#x2F;服务端工具实现的类似于tcp&#x2F;ip的通信，主要完成一些类似于连接处理、授权认证及相关安全的方案，在该层上引入了线程池的概念，为通过认证安全接入的客服端提供线程，同样在该层上可以实现基于SSL的安全的连接，服务器也会为安全接入的每个客户端验证它所具有的操作权限 服务层第">
+    <meta name="description" content="mysql索引机制，查询优化等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql高级">
 <meta property="og:url" content="http://example.com/2022/03/13/mysql2/index.html">
 <meta property="og:site_name" content="Felixの博客屋">
-<meta property="og:description" content="一、Mysql逻辑架构1、整体架构 连接层最上层是一些客服端和连接服务，包括socket通信和大多数基于客服端&#x2F;服务端工具实现的类似于tcp&#x2F;ip的通信，主要完成一些类似于连接处理、授权认证及相关安全的方案，在该层上引入了线程池的概念，为通过认证安全接入的客服端提供线程，同样在该层上可以实现基于SSL的安全的连接，服务器也会为安全接入的每个客户端验证它所具有的操作权限 服务层第">
+<meta property="og:description" content="mysql索引机制，查询优化等">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/post/mysql.jpg">
 <meta property="article:published_time" content="2022-03-12T17:40:59.000Z">
-<meta property="article:modified_time" content="2022-03-12T18:09:57.964Z">
+<meta property="article:modified_time" content="2022-03-13T05:46:37.767Z">
 <meta property="article:author" content="Felix">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/post/mysql.jpg">
   
@@ -1234,6 +1235,13 @@
               <div class="post-metas mb-3">
                 
                 
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/mysql/">mysql</a>
+                    
+                  </div>
+                
               </div>
               
                 <p class="note note-warning">
@@ -1247,12 +1255,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2022/03/13/java-log/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java日志系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/11/mysql1/">
-                        <span class="hidden-mobile">Mysql基础</span>
+                      <a href="/2022/03/11/javac_oncurrency/">
+                        <span class="hidden-mobile">Java并发</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

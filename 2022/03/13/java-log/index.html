@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Felix">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="梳理了java中的常见的日志框架，一定能看懂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java日志系统">
+<meta property="og:url" content="http://example.com/2022/03/13/java-log/index.html">
+<meta property="og:site_name" content="Felixの博客屋">
+<meta property="og:description" content="梳理了java中的常见的日志框架，一定能看懂">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/post/log.jpg">
+<meta property="article:published_time" content="2022-03-13T02:49:45.000Z">
+<meta property="article:modified_time" content="2022-03-13T05:52:32.374Z">
+<meta property="article:author" content="Felix">
+<meta property="article:tag" content="log">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/post/log.jpg">
+  
+  
+  <title>Java日志系统 - Felixの博客屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Felix</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/banner/banner_post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Java日志系统">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-13 10:49" pubdate>
+        2022年3月13日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      106 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java日志系统</h1>
+            
+            <div class="markdown-body">
+              <h1 id="slf4j与jcl、juc、log4j1、log4j2、logback的集成"><a href="#slf4j与jcl、juc、log4j1、log4j2、logback的集成" class="headerlink" title="slf4j与jcl、juc、log4j1、log4j2、logback的集成"></a>slf4j与jcl、juc、log4j1、log4j2、logback的集成</h1><figure class="highlight markdown"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><pre><code class="hljs markdown">&#123;% note success %&#125;<br>如果需要，可先了解java日志的发展历史，这可能有助于你对日志框架的理解<br>可先了解设计模式的相关知识，java日志系统涉及到了设计模式的知识，如门面模式，桥接模式<br>不过，不了解也无妨！ Let’s go！🎉🎉🎉<br>&#123;% endnote %&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="一、使用SLF4J做日志门面"><a href="#一、使用SLF4J做日志门面" class="headerlink" title="一、使用SLF4J做日志门面"></a>一、使用SLF4J做日志门面</h1><h2 id="1、slf4j与jul的集成"><a href="#1、slf4j与jul的集成" class="headerlink" title="1、slf4j与jul的集成"></a>1、slf4j与jul的集成</h2><p>jar包依赖关系图：</p>
+<p><img src="/java-log.assets/image-20220313111051835.png" srcset="/img/loading.gif" lazyload alt="image-20220313111051835"></p>
+<!-- java.util.logging -->
+
+<p><strong>依赖：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs maven">&lt;!--需要的jar包：slf4j-api.jar、slf4j-jdk14.jar--&gt;<br>&lt;dependency&gt;<br>    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;<br>    &lt;artifactId&gt;slf4j-jdk14&lt;/artifactId&gt;<br>    &lt;version&gt;1.7.24&lt;/version&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<p>[^tips：可以不引入slf4j-api.jar，因为引入slf4j-jdk14时，会自动导入。下同理]: </p>
+<p><strong>测试：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.jeiker.demo.slf4j;<br><br><span class="hljs-keyword">import</span> org.slf4j.Logger;<br><span class="hljs-keyword">import</span> org.slf4j.LoggerFactory;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Slf4jJdkTest</span> &#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(Slf4jJdkTest.class);<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>       <span class="hljs-keyword">if</span>(logger.isDebugEnabled())&#123;<br>           logger.debug(<span class="hljs-string">&quot;slf4j-jdk debug message&quot;</span>);<br>       &#125;<br>       <span class="hljs-keyword">if</span>(logger.isInfoEnabled())&#123;<br>           logger.debug(<span class="hljs-string">&quot;slf4j-jdk info message&quot;</span>);<br>       &#125;<br>       <span class="hljs-keyword">if</span>(logger.isTraceEnabled())&#123;<br>           logger.debug(<span class="hljs-string">&quot;slf4j-jdk trace message&quot;</span>);<br>       &#125;<br>   	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、slf4j与log4j1的集成"><a href="#2、slf4j与log4j1的集成" class="headerlink" title="2、slf4j与log4j1的集成"></a>2、slf4j与log4j1的集成</h2><p>jar包依赖关系图：</p>
+<p><img src="/java-log.assets/image-20220313111029132.png" srcset="/img/loading.gif" lazyload alt="image-20220313111029132"></p>
+<!-- log4j1 -->
+
+<p><strong>依赖：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs maven">&lt;!--需要的jar包：slf4j-api.jar、slf4j-jdk14.jar--&gt;<br>&lt;dependency&gt;<br>    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;<br>    &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;<br>    &lt;version&gt;1.7.24&lt;/version&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.slf4j.Logger;<br><span class="hljs-keyword">import</span> org.slf4j.LoggerFactory;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Slf4jLog4j1Test</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(Slf4jLog4j1Test.class);<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-keyword">if</span>(logger.isDebugEnabled())&#123;<br>            logger.debug(<span class="hljs-string">&quot;slf4j-log4j1 debug message&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(logger.isInfoEnabled())&#123;<br>            logger.debug(<span class="hljs-string">&quot;slf4j-log4j1 info message&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(logger.isTraceEnabled())&#123;<br>            logger.debug(<span class="hljs-string">&quot;slf4j-log4j1 trace message&quot;</span>);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="3、slf4j与log4j2的集成"><a href="#3、slf4j与log4j2的集成" class="headerlink" title="3、slf4j与log4j2的集成"></a>3、slf4j与log4j2的集成</h2><p>jar包依赖关系图</p>
+<p><img src="/java-log.assets/image-20220313111447132.png" srcset="/img/loading.gif" lazyload alt="image-20220313111447132"></p>
+<p><strong>依赖：</strong></p>
+<!-- log4j2 -->
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.8.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.8.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>测试</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.slf4j.Logger;<br><span class="hljs-keyword">import</span> org.slf4j.LoggerFactory;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Slf4jLog4j2Test</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(Slf4jLog4j2Test.class);<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-keyword">if</span>(logger.isDebugEnabled())&#123;<br>            logger.debug(<span class="hljs-string">&quot;slf4j-log4j2 debug message&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(logger.isInfoEnabled())&#123;<br>            logger.debug(<span class="hljs-string">&quot;slf4j-log4j2 info message&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(logger.isTraceEnabled())&#123;<br>            logger.debug(<span class="hljs-string">&quot;slf4j-log4j2 trace message&quot;</span>);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="4、slf4j与logback的集成"><a href="#4、slf4j与logback的集成" class="headerlink" title="4、slf4j与logback的集成"></a>4、slf4j与logback的集成</h2><p>jar包依赖关系图</p>
+<p><img src="/java-log.assets/image-20220313111808087.png" srcset="/img/loading.gif" lazyload alt="image-20220313111808087"></p>
+<p><strong>依赖：</strong></p>
+<!-- logback -->
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>ch.qos.logback<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>logback-classic<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>测试：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.slf4j.Logger;<br><span class="hljs-keyword">import</span> org.slf4j.LoggerFactory;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Slf4jLogbackTest</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(Slf4jLogbackTest.class);<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-keyword">if</span>(logger.isDebugEnabled())&#123;<br>            logger.debug(<span class="hljs-string">&quot;slf4j-logback debug message&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(logger.isInfoEnabled())&#123;<br>            logger.debug(<span class="hljs-string">&quot;slf4j-logback info message&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(logger.isTraceEnabled())&#123;<br>            logger.debug(<span class="hljs-string">&quot;slf4j-logback trace message&quot;</span>);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、使用JCL做日志门面"><a href="#二、使用JCL做日志门面" class="headerlink" title="二、使用JCL做日志门面"></a>二、使用JCL做日志门面</h1><p>全称为Jakarta Commons Logging,是Apache提供的一个通用日志API。它是为”所有的Java日志实现”，提供一个统一的接口，它自身也提供一个日志的实现，但是功能非常弱（SimpleLog），故而一般不单独使用它（作为统一接口调用，换日志框架，比如换成log4j，切换依赖即可）。</p>
+<p><strong>通过LogFactory动态加载Log实现类顺序</strong></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">Log4JLogger &gt; <span class="hljs-keyword">JDK14Logger </span>&gt; <span class="hljs-keyword">Jdk13LumberjackLogger </span>&gt;  SimpleLog<br></code></pre></td></tr></table></figure>
+
+<p>如果同时引入了多个实现类，可以在类路径下编写commoms-logging.properties来指定实现类，若不指定，则按照上述加载顺序加载实现类</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment">#实现为指定Log4JLogger日志</span><br><span class="hljs-attr">org.apache.commons.logging.Log</span>=<span class="hljs-string">org.apache.commons.logging.impl.JDK14Logger</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="1、jcl与jul集成"><a href="#1、jcl与jul集成" class="headerlink" title="1、jcl与jul集成"></a>1、jcl与jul集成</h2><p>因为JDK自带JDK14Logger，所以只引入JCL也可以使用日志，默认使用java.util.logging</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-logging<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-logging<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>jul的配置文件在JDK_HOME&#x2F;jre&#x2F;lib&#x2F;logging.properties，JDK自带的所以不需要配置</p>
+<h2 id="2、jcl与log4j集成"><a href="#2、jcl与log4j集成" class="headerlink" title="2、jcl与log4j集成"></a>2、jcl与log4j集成</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>commons-logging<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-logging<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.17<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>对于具体的log4j配置在类目录下编写 log4j.properties 即可：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">log4j.rootLogger</span>=<span class="hljs-string">INFO, stdout</span><br><br><span class="hljs-attr">log4j.appender.stdout</span>=<span class="hljs-string">org.apache.log4j.ConsoleAppender</span><br><br><span class="hljs-attr">log4j.appender.stdout.Target</span>=<span class="hljs-string">System.out</span><br><br><span class="hljs-attr">log4j.appender.stdout.layout</span>=<span class="hljs-string">org.apache.log4j.PatternLayout</span><br><br><span class="hljs-attr">log4j.appender.stdout.layout.ConversionPattern</span>=<span class="hljs-string">%d&#123;yyyy-MM-dd HH:mm:ss&#125; %-5p %c&#123;1&#125;:%L - %m%n</span><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="3、jcl与log4j2集成"><a href="#3、jcl与log4j2集成" class="headerlink" title="3、jcl与log4j2集成"></a>3、jcl与log4j2集成</h2><p>log4j2是对log4j的重写，性能更好。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.9.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>对于具体的log4j2配置在类目录下编写 log4j2.xml即可：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-comment">&lt;!--status表示log4j2自身的日志打印级别，如trace会打印出log4j2加载、运行等信息, monitorinterval监控间隔，单位为秒--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Configuration</span> <span class="hljs-attr">status</span>=<span class="hljs-string">&quot;trace&quot;</span> <span class="hljs-attr">monitorinterval</span>=<span class="hljs-string">&quot;6&quot;</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--定义变量--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">Properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;nowDate&quot;</span>&gt;</span>%date&#123;yyyy-MM-dd&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">Property</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;logDir&quot;</span>&gt;</span>$&#123;sys:catalina.home&#125;/logs/<span class="hljs-tag">&lt;/<span class="hljs-name">Property</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">Properties</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">appenders</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--日志输出到控制台--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Console</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;consoleAppender&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;SYSTEM_OUT&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">PatternLayout</span> <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;%date %logger %processId %threadId %method %class %file %highlight&#123;%level&#125; : %green&#123;%msg&#125; %n&quot;</span> /&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">Console</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!--日志写入文件中--&gt;</span><br>        <span class="hljs-comment">&lt;!--&lt;File name=&quot;fileAppender&quot; fileName=&quot;log4j2Study_$&#123;date:yyyy-MM-dd&#125;.log&quot;&gt;--&gt;</span><br>            <span class="hljs-comment">&lt;!--&lt;PatternLayout pattern=&quot;%date %logger %level : %msg%n&quot; /&gt;--&gt;</span><br>        <span class="hljs-comment">&lt;!--&lt;/File&gt;--&gt;</span><br><br>        <span class="hljs-comment">&lt;!--日志写入文件，根据自定义的滚动策略归档文件，filePattern定义日志文件归档格式--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">RollingFile</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;rollingFileAppender&quot;</span> <span class="hljs-attr">fileName</span>=<span class="hljs-string">&quot;log4j2_rollingFileAppender.log&quot;</span></span><br><span class="hljs-tag">                <span class="hljs-attr">filePattern</span>=<span class="hljs-string">&quot;$$&#123;date:yyyy-MM&#125;/%d&#123;MM-dd-yyyy&#125;-%i.log.gz&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">PatternLayout</span> <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;%date %logger %level : %msg%n&quot;</span> /&gt;</span><br>            <span class="hljs-comment">&lt;!--定义滚动策略--&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">Policies</span>&gt;</span><br>                <span class="hljs-comment">&lt;!--基于cron表达式触发归档--&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">CronTriggeringPolicy</span> <span class="hljs-attr">schedule</span>=<span class="hljs-string">&quot;0 0 * * * ?&quot;</span>/&gt;</span><br>                <span class="hljs-comment">&lt;!--基于时间触发归档,与上文filePattern配合使用，当filePattern不符合时，就归档--&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">TimeBasedTriggeringPolicy</span> /&gt;</span><br>                <span class="hljs-comment">&lt;!--基于文件大小触发归档--&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">SizeBasedTriggeringPolicy</span> <span class="hljs-attr">size</span>=<span class="hljs-string">&quot;100 MB&quot;</span> /&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">Policies</span>&gt;</span><br><br>            <span class="hljs-comment">&lt;!--默认日志保留7天--&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">DefaultRolloverStrategy</span> <span class="hljs-attr">max</span>=<span class="hljs-string">&quot;7&quot;</span> /&gt;</span><br><br>            <span class="hljs-comment">&lt;!--log4j 2.5引入，可更精细地控制删除日志策略--&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">DefaultRolloverStrategy</span>&gt;</span><br>                <span class="hljs-comment">&lt;!--同时满足下述条件，进行删除--&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">Delete</span>&gt;</span><br>                    <span class="hljs-comment">&lt;!--文件名符合.log.gz后缀--&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">IfFileName</span> <span class="hljs-attr">glob</span>=<span class="hljs-string">&quot;*.log.gz&quot;</span> /&gt;</span><br>                    <span class="hljs-comment">&lt;!--超过60天--&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">IfLastModified</span> <span class="hljs-attr">age</span>=<span class="hljs-string">&quot;60d&quot;</span> /&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">Delete</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">DefaultRolloverStrategy</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">RollingFile</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">appenders</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!--定义日志输出配置--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">Loggers</span>&gt;</span><br>        <span class="hljs-comment">&lt;!--控制指定包或类的日志输出（包括等级和目的地）, additivity表示日志信息是否向上传递，false为不传递（即不重复打印）--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Logger</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;com.dragon.study.log.test&quot;</span>  <span class="hljs-attr">level</span>=<span class="hljs-string">&quot;false&quot;</span> <span class="hljs-attr">additivity</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">AppenderRef</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;consoleAppender&quot;</span> /&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">Logger</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!--全局日志级别为info--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Root</span> <span class="hljs-attr">level</span>=<span class="hljs-string">&quot;info&quot;</span>&gt;</span><br>            <span class="hljs-comment">&lt;!--日志输出到控制台和文件中--&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">AppenderRef</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;consoleAppender&quot;</span> /&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">AppenderRef</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;fileAppender&quot;</span> /&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">Root</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">Loggers</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Configuration</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="4、spring-jcl与log4j2集成"><a href="#4、spring-jcl与log4j2集成" class="headerlink" title="4、spring-jcl与log4j2集成"></a>4、spring-jcl与log4j2集成</h2><p>由于apache不再维护jcl，因此spring将jcl重写并引入框架中，为spring-jcl。</p>
+<p>值得注意的是spring-jcl不支持log4j1。</p>
+<p>spring-jcl的加载顺序为**<code>Log4j 2.x</code>**， <strong><code>Try SLF4J 1.7 SPI</code><strong>，</strong><code>SLF4J 1.7 API</code><strong>，</strong>jul</strong></p>
+<p><img src="/java-log.assets/image-20220313124441148.png" srcset="/img/loading.gif" lazyload alt="image-20220313124441148"></p>
+<p><strong>依赖：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.17.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.17.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>如果你想在spring中使用log4j，那么需要将spring-jcl排除，然后使用apache的jcl</p>
+<p><img src="/java-log.assets/image-20220313125217953.png" srcset="/img/loading.gif" lazyload alt="image-20220313125217953"></p>
+<p>如果你想使用slf4j，那么根据第一部分所说的方法引入依赖就可以了，spring-jcl已经做好了到slf4j的桥接</p>
+<h1 id="三、使用slf4j统一各种日志"><a href="#三、使用slf4j统一各种日志" class="headerlink" title="三、使用slf4j统一各种日志"></a>三、使用slf4j统一各种日志</h1><p>当项目是使用多种日志API时，可以统一适配到slf4j，然后通过slf4j适配底层实现。</p>
+<p>中间使用slf4j进行统一项目中使用的多种日志框架的API，然后转发到slf4j,slf4j再底层用开发者想用的一个日志框架来进行日志系统的实现。从而达到了多种日志的统一实现。</p>
+<p>slf4j在这中间充当了中间人，充当翻译的感觉。</p>
+<p>slf4j官网桥接说明：<a target="_blank" rel="noopener" href="https://www.slf4j.org/legacy.html">https://www.slf4j.org/legacy.html</a></p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p><img src="/java-log.assets/image-20220313115305496.png" srcset="/img/loading.gif" lazyload alt="image-20220313115305496"></p>
+<p>例子：目前的应用程序（application）中已经使用了以下的几种API来进行日志的编程：</p>
+<p>commons-logging + log4j<br>现在想统一将日志的输出交给jdk-logging。</p>
+<p>解决方案：</p>
+<p>将上面的日志系统全部转换到slf4j</p>
+<p>使用jcl-over-slf4j(桥接)将commons-logging的底层日志输出切换到sl4j，或者移除log4j1(必须移除)，使用log4j-over-slf4j(桥接)，将log4j1的日志输出切换到slf4j，让slf4j选择jdk-logging作为底层日志输出</p>
+<p>问题：目前的应用程序（application）中已经使用了以下的几种API来进行日志的编程：</p>
+<p>commons-logging<br>jdk-loging<br>现在想统一将日志的输出交给log4j1。</p>
+<p>解决方法：</p>
+<p>将上面的日志系统全部转换到slf4j</p>
+<p>移除commons-logging(可以不移除)，使用jcl-over-slf4j(桥接)将commons-logging的底层日志输出切换到sl4j，使用jul-to-slf4j(桥接)，将jul的日志输出切换到slf4j，让slf4j选择log4j1作为底层日志输出</p>
+<p>问题：目前的应用程序（application）中已经使用了以下的几种API来进行日志的编程：</p>
+<p>commons-logging<br>log4j1<br>jdk-loging<br>现在想统一将日志的底层处理交给logback，也就是说，用多种API编程，用logback实现日志输出。</p>
+<p>解决方法：</p>
+<p>将上面的日志系统全部转换到slf4j</p>
+<p>移除commons-logging(可以不移除)，使用jcl-over-slf4j(桥接)将commons-logging的底层日志输出切换到sl4j，移除log4j1实现（必须移除），使用log4j-over-slf4j(桥接)将log4j1的日志输出切换到sl4j，使用jul-to-slf4j(桥接)，将jul的日志输出切换到slf4j，让slf4j选择logback作为底层日志输出</p>
+<h2 id="旧日志API到slf4j的适配器"><a href="#旧日志API到slf4j的适配器" class="headerlink" title="旧日志API到slf4j的适配器"></a>旧日志API到slf4j的适配器</h2><p>介绍之前先说明下日志简称：</p>
+<p>jdk自带的logging，简称 jul (java-util-logging)<br>apache commons-logging，简称 jcl (java-commons-logging)<br>日志适配器：<br>jcl-over-slf4j    java-commons-logging API到slf4j的适配<br>jul-to-slf4j    java-util-logging API到slf4j的适配<br>log4j-over-slf4j    log4j 1 API到slf4j的适配<br>log4j-to-slf4j    log4j 2 API到slf4j的适配</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- JCL 1.2 implemented over SLF4J --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jcl-over-slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.24<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- JUL to SLF4J bridge --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jul-to-slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.24<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- Log4j implemented over SLF4J --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-over-slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.24<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- Log4j 2 to SLF4J Adapter --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-to-slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.8.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="slf4j到新日志实现的适配器"><a href="#slf4j到新日志实现的适配器" class="headerlink" title="slf4j到新日志实现的适配器"></a>slf4j到新日志实现的适配器</h2><p>日志适配器：<br>slf4j-jcl    slf4j到java-commons-logging的适配<br>slf4j-jdk14    slf4j到java-util-logging实现的适配<br>slf4j-log4j12    slf4j到log4j 1实现的适配<br>log4j-slf4j-impl    slf4j到log4j 2实现的适配</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- SLF4J JCL Binding --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-jcl<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.24<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- SLF4J JDK14 Binding --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-jdk14<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.24<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- SLF4J LOG4J-12 Binding --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-log4j12<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.24<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- SLF4J Log4j 2 Binding --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-slf4j-impl<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.8.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="slf4j冲突说明"><a href="#slf4j冲突说明" class="headerlink" title="slf4j冲突说明"></a>slf4j冲突说明</h2><p>其实明白上面介绍的各jar包的作用，就很容易理解为什么会出现冲突了。</p>
+<p>冲突的出现主要是形成了日志的事件闭环。就相当于两个人在互相推卸责任。</p>
+<ol>
+<li>jcl-over-slf4j 与 slf4j-jcl 冲突<br>jcl-over-slf4j : commons-logging切换到slf4j<br>slf4j-jcl : slf4j切换到commons-logging<br>jcl把日志输出事件交给slf4j，slf4j又还给了jcl。</li>
+</ol>
+<p>如果这两者共存的话，必然造成相互委托，造成内存溢出。</p>
+<ol start="2">
+<li>log4j-over-slf4j 与 slf4j-log4j12 冲突<br>log4j-over-slf4j ： log4j1切换到slf4j<br>slf4j-log4j12 : slf4j切换到log4j1<br>log4j1把日志输出事件交给slf4j，slf4j又还给了log4j1。</li>
+</ol>
+<p>如果这两者共存的话，必然造成相互委托，造成内存溢出。</p>
+<ol start="3">
+<li>jul-to-slf4j 与 slf4j-jdk14 冲突<br>jul-to-slf4j : jdk-logging切换到slf4j<br>slf4j-jdk14 : slf4j切换到jdk-logging<br>jul把日志输出事件交给slf4j，slf4j又还给了jul。</li>
+</ol>
+<p>如果这两者共存的话，必然造成相互委托，造成内存溢出。</p>
+<h1 id="四、配置问题"><a href="#四、配置问题" class="headerlink" title="四、配置问题"></a>四、配置问题</h1><p>不管使用那种日志实现类，都可以自定义配置的，根据项目所使用的日志系统，编写日志配置即可，形式为xxx.xml或者xxx.properties。</p>
+<p>编写的配置文件放在类路径下，如果使用的是spring则放在resources文件夹下。</p>
+<p>commoms-logging.properties：在引入多个日志实现类时，可以手动选择加载哪一个</p>
+<p>log4j.properties：具体配置参见<a target="_blank" rel="noopener" href="https://logging.apache.org/log4j/2.x/">https://logging.apache.org/log4j/2.x/</a></p>
+<p>log4j2.xml：具体配置参见<a target="_blank" rel="noopener" href="https://logging.apache.org/log4j/2.x/">https://logging.apache.org/log4j/2.x/</a></p>
+<p>logback.xml：具体配置参见<a target="_blank" rel="noopener" href="https://logback.qos.ch/">Logback Home (qos.ch)</a></p>
+<p>由于本篇文章，只做各种日志关系的梳理以及简单使用，所以具体各种日志的具体配置，暂不作讲解，若需要请自行到相应官网了解，或者查看其他博客对配置文件的讲解。</p>
+<p>🤭🤭🤭若精力有限，定会补上</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/log/">log</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/13/mysql2/">
+                        <span class="hidden-mobile">Mysql高级</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
