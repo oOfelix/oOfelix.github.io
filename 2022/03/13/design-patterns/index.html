@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/post/design.jpg">
 <meta property="article:published_time" content="2022-03-13T08:05:50.000Z">
-<meta property="article:modified_time" content="2022-03-13T15:46:29.717Z">
+<meta property="article:modified_time" content="2022-03-27T09:15:42.927Z">
 <meta property="article:author" content="Felix">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      19k 字
+      20k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      160 分钟
+      168 分钟
     </span>
   
 
@@ -240,7 +240,43 @@
             <h1 style="display: none">设计模式</h1>
             
             <div class="markdown-body">
-              <h1 id="一、设计模式简介"><a href="#一、设计模式简介" class="headerlink" title="一、设计模式简介"></a>一、设计模式简介</h1><h2 id="1、设计模式的类型"><a href="#1、设计模式的类型" class="headerlink" title="1、设计模式的类型"></a>1、设计模式的类型</h2><p>根据设计模式的参考书 <strong>设计模式</strong> 中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：</p>
+              <h1 id="一、设计模式概述"><a href="#一、设计模式概述" class="headerlink" title="一、设计模式概述"></a>一、设计模式概述</h1><h2 id="1、设计模式的六大原则"><a href="#1、设计模式的六大原则" class="headerlink" title="1、设计模式的六大原则"></a>1、设计模式的六大原则</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.uml.org.cn/sjms/201211023.asp">设计模式六大原则 (uml.org.cn)</a></p>
+</blockquote>
+<h3 id="1、单一职责原则"><a href="#1、单一职责原则" class="headerlink" title="1、单一职责原则"></a>1、单一职责原则</h3><blockquote>
+<p>定义：不要存在多于一个导致类变更的原因。通俗的说，即一个类只负责一项职责。<br>问题由来：类T负责两个不同的职责：职责P1，职责P2。当由于职责P1需求发生改变而需要修改类T时，有可能会导致原本运行正常的职责P2功能发生故障。</p>
+<p>解决方案：遵循单一职责原则。分别建立两个类T1、T2，使T1完成职责P1功能，T2完成职责P2功能。这样，当修改类T1时，不会使职责P2发生故障风险；同理，当修改T2时，也不会使职责P1发生故障风险。</p>
+</blockquote>
+<h3 id="2、里氏代换原则"><a href="#2、里氏代换原则" class="headerlink" title="2、里氏代换原则"></a>2、里氏代换原则</h3><blockquote>
+<p>里氏替换原则通俗的来讲就是：子类可以扩展父类的功能，但不能改变父类原有的功能。它包含以下4层含义：</p>
+<ul>
+<li>子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。</li>
+<li>子类中可以增加自己特有的方法。</li>
+<li>当子类的方法重载父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。</li>
+<li>当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。</li>
+</ul>
+</blockquote>
+<h3 id="3、依赖倒转原则"><a href="#3、依赖倒转原则" class="headerlink" title="3、依赖倒转原则"></a>3、依赖倒转原则</h3><blockquote>
+<p>定义：高层模块不应该依赖低层模块，二者都应该依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。</p>
+<p>问题由来：类A直接依赖类B，假如要将类A改为依赖类C，则必须通过修改类A的代码来达成。这种场景下，类A一般是高层模块，负责复杂的业务逻辑；类B和类C是低层模块，负责基本的原子操作；假如修改类A，会给程序带来不必要的风险。</p>
+<p>解决方案：将类A修改为依赖接口I，类B和类C各自实现接口I，类A通过接口I间接与类B或者类C发生联系，则会大大降低修改类A的几率。</p>
+</blockquote>
+<h3 id="4、接口隔离原则"><a href="#4、接口隔离原则" class="headerlink" title="4、接口隔离原则"></a>4、接口隔离原则</h3><blockquote>
+<p>定义：客户端不应该依赖它不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。<br>问题由来：类A通过接口I依赖类B，类C通过接口I依赖类D，如果接口I对于类A和类B来说不是最小接口，则类B和类D必须去实现他们不需要的方法。</p>
+<p>解决方案：将臃肿的接口I拆分为独立的几个接口，类A和类C分别与他们需要的接口建立依赖关系。也就是采用接口隔离原则。</p>
+</blockquote>
+<h3 id="5、迪米特法则"><a href="#5、迪米特法则" class="headerlink" title="5、迪米特法则"></a>5、迪米特法则</h3><blockquote>
+<p>定义：一个对象应该对其他对象保持最少的了解。</p>
+<p>问题由来：类与类之间的关系越密切，耦合度越大，当一个类发生改变时，对另一个类的影响也越大。</p>
+<p>解决方案：尽量降低类与类之间的耦合。</p>
+</blockquote>
+<h3 id="6、开闭原则"><a href="#6、开闭原则" class="headerlink" title="6、开闭原则"></a>6、开闭原则</h3><blockquote>
+<p>定义：一个软件实体如类、模块和函数应该对扩展开放，对修改关闭。</p>
+<p>问题由来：在软件的生命周期内，因为变化、升级和维护等原因需要对软件原有代码进行修改时，可能会给旧代码中引入错误，也可能会使我们不得不对整个功能进行重构，并且需要原有代码经过重新测试。</p>
+<p>解决方案：当软件需要变化时，尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来实现变化。</p>
+</blockquote>
+<h2 id="2、设计模式的类型"><a href="#2、设计模式的类型" class="headerlink" title="2、设计模式的类型"></a>2、设计模式的类型</h2><p>根据设计模式的参考书 <strong>设计模式</strong> 中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：</p>
+<p><img src="/design-patterns.assets/image-20220327164139250.png" srcset="/img/loading.gif" lazyload alt="image-20220327164139250"></p>
 <p><strong>创建型模式：</strong> 这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。</p>
 <ul>
 <li>工厂方法模式（Factory Pattern）</li>
@@ -275,13 +311,7 @@
 <li>模板模式（Template Pattern）</li>
 <li>访问者模式（Visitor Pattern）</li>
 </ul>
-<h2 id="2、设计模式的六大原则"><a href="#2、设计模式的六大原则" class="headerlink" title="2、设计模式的六大原则"></a>2、设计模式的六大原则</h2><h3 id="1、开闭原则"><a href="#1、开闭原则" class="headerlink" title="1、开闭原则"></a>1、开闭原则</h3><p>开闭原则的意思是：对扩展开放，对修改关闭。</p>
-<h3 id="2、里氏代换原则"><a href="#2、里氏代换原则" class="headerlink" title="2、里氏代换原则"></a>2、里氏代换原则</h3><p>里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。</p>
-<h3 id="3、依赖倒转原则"><a href="#3、依赖倒转原则" class="headerlink" title="3、依赖倒转原则"></a>3、依赖倒转原则</h3><p>具体内容：针对接口编程，依赖于抽象而不依赖于具体。</p>
-<h3 id="4、接口隔离原则"><a href="#4、接口隔离原则" class="headerlink" title="4、接口隔离原则"></a>4、接口隔离原则</h3><p>这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，其实设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。</p>
-<h3 id="5、迪米特法则"><a href="#5、迪米特法则" class="headerlink" title="5、迪米特法则"></a>5、迪米特法则</h3><p>最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。</p>
-<h3 id="6、合成复用原则"><a href="#6、合成复用原则" class="headerlink" title="6、合成复用原则"></a>6、合成复用原则</h3><p>合成复用原则是指：尽量使用组合的方式，而不是使用继承。</p>
-<h3 id="7、单一职责原则"><a href="#7、单一职责原则" class="headerlink" title="7、单一职责原则"></a>7、单一职责原则</h3><h1 id="二、创造型模式"><a href="#二、创造型模式" class="headerlink" title="二、创造型模式"></a>二、创造型模式</h1><figure class="highlight 1c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;Talking is cheap,show me your code&quot;</span><br>本文尽量以代码的形式来展示说明各种设计模式的设计理念<br></code></pre></td></tr></table></figure>
+<h1 id="二、创造型模式"><a href="#二、创造型模式" class="headerlink" title="二、创造型模式"></a>二、创造型模式</h1><figure class="highlight 1c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;Talking is cheap,show me your code&quot;</span><br>本文尽量以代码的形式来展示说明各种设计模式的设计理念<br></code></pre></td></tr></table></figure>
 
 
 
@@ -498,6 +528,11 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Demo运行类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 找主管</span><br>        <span class="hljs-type">Director</span> <span class="hljs-variable">director</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Director</span>();<br>        <br>        <span class="hljs-comment">// 主管与汽车生成器配对</span><br>        <span class="hljs-type">CarBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CarBuilder</span>();<br>        <span class="hljs-comment">// 主管只负责指挥，给定参数，不参与打螺丝</span><br>        director.constructSportsCar(builder);<br>	    <span class="hljs-comment">// 打螺丝的苦活交给汽车生成器</span><br>        <span class="hljs-type">Car</span> <span class="hljs-variable">car</span> <span class="hljs-operator">=</span> builder.getResult();<br>        System.out.println(<span class="hljs-string">&quot;Car built:\n&quot;</span> + car.getCarType());<br><br>	   <span class="hljs-comment">// 原理同上，只不过是指挥生产汽车手册</span><br>        <span class="hljs-type">CarManualBuilder</span> <span class="hljs-variable">manualBuilder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CarManualBuilder</span>();<br>        director.constructSportsCar(manualBuilder);<br>        <span class="hljs-type">Manual</span> <span class="hljs-variable">carManual</span> <span class="hljs-operator">=</span> manualBuilder.getResult();<br>        System.out.println(<span class="hljs-string">&quot;\nCar manual built:\n&quot;</span> + carManual.print());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h1 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h1><h2 id="1、适配器模式"><a href="#1、适配器模式" class="headerlink" title="1、适配器模式"></a>1、适配器模式</h2><h4 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h4><p>实现时使用了构成原则： 适配器实现了其中一个对象的接口， 并对另一个对象进行封装。 所有流行的编程语言都可以实现适配器。</p>
+<p><img src="/design-patterns.assets/image-20220327171355202.png" srcset="/img/loading.gif" lazyload alt="image-20220327171355202"></p>
+<h4 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h4><p>这一实现使用了继承机制： 适配器同时继承两个对象的接口。 请注意， 这种方式仅能在支持多重继承的编程语言中实现， 例如 C++。    </p>
+<p><img src="/design-patterns.assets/image-20220327171534256.png" srcset="/img/loading.gif" lazyload alt="image-20220327171534256"></p>
+<p><img src="/design-patterns.assets/image-20220327171453208.png" srcset="/img/loading.gif" lazyload alt="image-20220327171453208"></p>
 
             </div>
             <hr>
@@ -524,6 +559,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/03/22/interview/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">面经</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

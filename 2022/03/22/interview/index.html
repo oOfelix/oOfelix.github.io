@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Felix">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="面试复盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面经">
+<meta property="og:url" content="http://example.com/2022/03/22/interview/index.html">
+<meta property="og:site_name" content="Felixの博客屋">
+<meta property="og:description" content="面试复盘">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/post/interview.jpg">
+<meta property="article:published_time" content="2022-03-22T12:43:54.323Z">
+<meta property="article:modified_time" content="2022-03-27T18:20:16.139Z">
+<meta property="article:author" content="Felix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/post/interview.jpg">
+  
+  
+  <title>面经 - Felixの博客屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"RyY2xh8pRlOd0h8PK7HgQYJF-gzGzoHsz","app_key":"87cGpcqYtCgxSbDaonwBEjdC","server_url":"https://ryy2xh8p.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Felix</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/banner/banner_post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="面经">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-22 20:43" pubdate>
+        2022年3月22日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      10 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">面经</h1>
+            
+            <div class="markdown-body">
+              <h2 id="2022-3-22阿里巴巴一面"><a href="#2022-3-22阿里巴巴一面" class="headerlink" title="2022.3.22阿里巴巴一面"></a>2022.3.22阿里巴巴一面</h2><h3 id="一面-电话面"><a href="#一面-电话面" class="headerlink" title="一面(电话面)"></a>一面(电话面)</h3><h4 id="1-自我介绍"><a href="#1-自我介绍" class="headerlink" title="1.自我介绍"></a>1.自我介绍</h4><p>姓名学校专业 获奖竞赛 项目简单介绍</p>
+<h4 id="2-项目介绍"><a href="#2-项目介绍" class="headerlink" title="2.项目介绍"></a>2.项目介绍</h4><p>说明项目结构，项目模块，和具体功能，面试官结合简历开始发问</p>
+<p>我的项目有三个模块：登录验证会话保持、游戏积分榜、数据传递</p>
+<p>登录加密 md5(md5(password+固定salt) + 随机salt)，第一次在客户端加密防止密码明文传输，第一次服务器加密防止数据库被盗反查用户信息。</p>
+<p>session会话保持，保存在tomcat或者redis</p>
+<p>积分榜排名使用，zset，问为什么不使用mysql的order by，答了排名经常变更，放redis比较快，也有利于缓解mysql压力😅</p>
+<p>数据传输 http + websocket + redis发布订阅</p>
+<h4 id="3-redis基本数据类型"><a href="#3-redis基本数据类型" class="headerlink" title="3.redis基本数据类型"></a>3.redis基本数据类型</h4><p>string list hash set zset  （可以加上hyperloglog geo bitmap）</p>
+<h4 id="4-http1-0、http1-1、websocket"><a href="#4-http1-0、http1-1、websocket" class="headerlink" title="4.http1.0、http1.1、websocket"></a>4.http1.0、http1.1、websocket</h4><p>http1,0每次请求数据都需要一个tcp连接，1.1改用持久性连接，websocket<strong>应用层协议</strong>可以长连接</p>
+<h4 id="5-滑动窗口"><a href="#5-滑动窗口" class="headerlink" title="5.滑动窗口"></a>5.滑动窗口</h4><p>使用滑动窗口进行流量控制，超时重传，冗余ACK</p>
+<h4 id="6-OSI、TCP-x2F-IP模型"><a href="#6-OSI、TCP-x2F-IP模型" class="headerlink" title="6.OSI、TCP&#x2F;IP模型"></a>6.OSI、TCP&#x2F;IP模型</h4><p>表示层、会话层、应用层、传输层、网络层、数据链路层、物理层</p>
+<p>应用层、传输层、网络层、网际互连层</p>
+<h4 id="7-死锁定义、死锁条件、如何解除死锁"><a href="#7-死锁定义、死锁条件、如何解除死锁" class="headerlink" title="7.死锁定义、死锁条件、如何解除死锁"></a>7.死锁定义、死锁条件、如何解除死锁</h4><p>进程&#x2F;线程间同时拥有手中的资源且请求对方的资源</p>
+<p>互斥、占有且请求、不可剥夺、循环等待</p>
+<p>死锁预防-破坏死锁四个条件之一、死锁避免-银行家算法、死锁检测与解除-kill某个进程、线程</p>
+<h4 id="8-currentHashMap如何保证线程安全的"><a href="#8-currentHashMap如何保证线程安全的" class="headerlink" title="8.currentHashMap如何保证线程安全的"></a>8.currentHashMap如何保证线程安全的</h4><p>synchronized加锁、CAS</p>
+<h4 id="9-让你手写一个hashmap你会怎么做"><a href="#9-让你手写一个hashmap你会怎么做" class="headerlink" title="9.让你手写一个hashmap你会怎么做"></a>9.让你手写一个hashmap你会怎么做</h4><p>设计散列函数、设置散列表、散列冲突使用链表、冲突太多改红黑树 （根据jdk的hashmap结构进行了回答）</p>
+<h4 id="10-ArrayList如何实现删除"><a href="#10-ArrayList如何实现删除" class="headerlink" title="10.ArrayList如何实现删除"></a>10.ArrayList如何实现删除</h4><p>定位到要删除的元素，如何将所有元素前移动 (这里觉得有些奇怪，后面原来是回答remove()方法)</p>
+<h4 id="11-B-Tree"><a href="#11-B-Tree" class="headerlink" title="11.B+Tree"></a>11.B+Tree</h4><p>b+tree结构，b+tree如何实现删除一个元素(答得有点模糊)</p>
+<h4 id="12-LinuxIPC"><a href="#12-LinuxIPC" class="headerlink" title="12.LinuxIPC"></a>12.LinuxIPC</h4><p>共享内存、管道(匿名管道、命名管道)、信号量、消息队列</p>
+<h4 id="12-平时怎么学习，遇到苦难怎么解决"><a href="#12-平时怎么学习，遇到苦难怎么解决" class="headerlink" title="12.平时怎么学习，遇到苦难怎么解决"></a>12.平时怎么学习，遇到苦难怎么解决</h4><p>面试官看我简历技术写了挺多，说我技术栈还可以😄</p>
+<p>答 平时喜欢阅读技术博客，遇到好玩的博客会自己动手实现，如自定义Linux折腾过Arch linux(这里感谢@李云峰同学，帮助了我很多)，遇到的难题，一时间我有点想不起来了，比如配置Springboot的时候会遇到版本冲突</p>
+<h4 id="13-反问"><a href="#13-反问" class="headerlink" title="13.反问"></a>13.反问</h4><p>第一次面试，对这次面试怎么评价，“算实习校招学生里面知知识挺多的，掌握的技术还可以，有一定的自我思考能力，多的不方便透露。。。😅”</p>
+<p>问什么时候有时间笔试，之后会单独安排一场1.5h的笔试😥</p>
+<p>许愿~希望能顺利通过笔试</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/28/leetcode/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/13/design-patterns/">
+                        <span class="hidden-mobile">设计模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
