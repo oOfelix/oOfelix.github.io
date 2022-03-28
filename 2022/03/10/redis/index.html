@@ -16,23 +16,23 @@
   <meta name="author" content="Felix">
   <meta name="keywords" content="">
   
-    <meta name="description" content="学习掌握Spring核心Ioc、Aop为后续学习做准备~">
+    <meta name="description" content="redis高级篇，包括基本数据类型底层实现，单机和集群，发布与订阅等">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring">
-<meta property="og:url" content="http://example.com/2021/12/22/spring/index.html">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://example.com/2022/03/10/redis/index.html">
 <meta property="og:site_name" content="Felixの博客屋">
-<meta property="og:description" content="学习掌握Spring核心Ioc、Aop为后续学习做准备~">
+<meta property="og:description" content="redis高级篇，包括基本数据类型底层实现，单机和集群，发布与订阅等">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/post/spring.jpg">
-<meta property="article:published_time" content="2021-12-22T04:40:00.000Z">
-<meta property="article:modified_time" content="2022-03-13T15:50:23.506Z">
+<meta property="og:image" content="http://example.com/img/post/redis.jpg">
+<meta property="article:published_time" content="2022-03-10T09:40:59.000Z">
+<meta property="article:modified_time" content="2022-03-28T18:16:23.418Z">
 <meta property="article:author" content="Felix">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="database">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/post/spring.jpg">
+<meta name="twitter:image" content="http://example.com/img/post/redis.jpg">
   
   
-  <title>Spring - Felixの博客屋</title>
+  <title>redis - Felixの博客屋</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Spring">
+            <span class="h2" id="subtitle" title="redis">
               
             </span>
 
@@ -188,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-22 12:40" pubdate>
-        2021年12月22日 下午
+      <time datetime="2022-03-10 17:40" pubdate>
+        2022年3月10日 下午
       </time>
     </span>
   
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      305 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15 分钟
+      3 分钟
     </span>
   
 
@@ -237,42 +237,15 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Spring</h1>
+            <h1 style="display: none">redis</h1>
             
             <div class="markdown-body">
-              <h1 id="一、Spring架构"><a href="#一、Spring架构" class="headerlink" title="一、Spring架构"></a>一、Spring架构</h1><p><img src="/spring.assets/image-20220313022449214.png" srcset="/img/loading.gif" lazyload alt="image-20220313022449214"></p>
-<p>上图中包含了 Spring 框架的所有模块，这些模块可以满足一切企业级应用开发的需求，在开发过程中可以根据需求有选择性地使用所需要的模块。下面分别对这些模块的作用进行简单介绍。</p>
-<h2 id="1-Data-Access-x2F-Integration（数据访问／集成）"><a href="#1-Data-Access-x2F-Integration（数据访问／集成）" class="headerlink" title="1. Data Access&#x2F;Integration（数据访问／集成）"></a>1. Data Access&#x2F;Integration（数据访问／集成）</h2><p>数据访问／集成层包括 JDBC、ORM、OXM、JMS 和 Transactions 模块，具体介绍如下。</p>
-<ul>
-<li>JDBC 模块：提供了一个 JBDC 的样例模板，使用这些模板能消除传统冗长的 JDBC 编码还有必须的事务控制，而且能享受到 Spring 管理事务的好处。</li>
-<li>ORM 模块：提供与流行的“对象-关系”映射框架无缝集成的 API，包括 JPA、JDO、Hibernate 和 MyBatis 等。而且还可以使用 Spring 事务管理，无需额外控制事务。</li>
-<li>OXM 模块：提供了一个支持 Object &#x2F;XML 映射的抽象层实现，如 JAXB、Castor、XMLBeans、JiBX 和 XStream。将 Java 对象映射成 XML 数据，或者将XML 数据映射成 Java 对象。</li>
-<li>JMS 模块：指 Java 消息服务，提供一套 “消息生产者、消息消费者”模板用于更加简单的使用 JMS，JMS 用于用于在两个应用程序之间，或分布式系统中发送消息，进行异步通信。</li>
-<li>Transactions 事务模块：支持编程和声明式事务管理。</li>
-</ul>
-<h2 id="2-Web-模块"><a href="#2-Web-模块" class="headerlink" title="2. Web 模块"></a>2. Web 模块</h2><p>Spring 的 Web 层包括 Web、Servlet、WebSocket 和 Portlet 组件，具体介绍如下。</p>
-<ul>
-<li>Web 模块：提供了基本的 Web 开发集成特性，例如多文件上传功能、使用的 Servlet 监听器的 IOC 容器初始化以及 Web 应用上下文。</li>
-<li>Servlet 模块：提供了一个 Spring MVC Web 框架实现。Spring MVC 框架提供了基于注解的请求资源注入、更简单的数据绑定、数据验证等及一套非常易用的 JSP 标签，完全无缝与 Spring 其他技术协作。</li>
-<li>WebSocket 模块：提供了简单的接口，用户只要实现响应的接口就可以快速的搭建 WebSocket Server，从而实现双向通讯。</li>
-<li>Portlet 模块：提供了在 Portlet 环境中使用 MVC 实现，类似 Web-Servlet 模块的功能。</li>
-</ul>
-<h2 id="3-AOP、Aspects、Instrumentation-和-Messaging"><a href="#3-AOP、Aspects、Instrumentation-和-Messaging" class="headerlink" title="3. AOP、Aspects、Instrumentation 和 Messaging"></a>3. AOP、Aspects、Instrumentation 和 Messaging</h2><p>在 Core Container 之上是 AOP、Aspects 等模块，具体介绍如下：</p>
-<ul>
-<li>AOP 模块：提供了面向切面编程实现，提供比如日志记录、权限控制、性能统计等通用功能和业务逻辑分离的技术，并且能动态的把这些功能添加到需要的代码中，这样各司其职，降低业务逻辑和通用功能的耦合。</li>
-<li>Aspects 模块：提供与 AspectJ 的集成，是一个功能强大且成熟的面向切面编程（AOP）框架。</li>
-<li>Instrumentation 模块：提供了类工具的支持和类加载器的实现，可以在特定的应用服务器中使用。</li>
-<li>messaging 模块：Spring 4.0 以后新增了消息（Spring-messaging）模块，该模块提供了对消息传递体系结构和协议的支持。</li>
-</ul>
-<h2 id="4-Core-Container（Spring-的核心容器）"><a href="#4-Core-Container（Spring-的核心容器）" class="headerlink" title="4. Core Container（Spring 的核心容器）"></a>4. Core Container（Spring 的核心容器）</h2><p>Spring 的核心容器是其他模块建立的基础，由 Beans 模块、Core 核心模块、Context 上下文模块和 SpEL 表达式语言模块组成，没有这些核心容器，也不可能有 AOP、Web 等上层的功能。具体介绍如下。</p>
-<ul>
-<li>Beans 模块：提供了框架的基础部分，包括控制反转和依赖注入。</li>
-<li>Core 核心模块：封装了 Spring 框架的底层部分，包括资源访问、类型转换及一些常用工具类。</li>
-<li>Context 上下文模块：建立在 Core 和 Beans 模块的基础之上，集成 Beans 模块功能并添加资源绑定、数据验证、国际化、Java EE 支持、容器生命周期、事件传播等。ApplicationContext 接口是上下文模块的焦点。</li>
-<li>SpEL 模块：提供了强大的表达式语言支持，支持访问和修改属性值，方法调用，支持访问及修改数组、容器和索引器，命名变量，支持算数和逻辑运算，支持从 Spring 容器获取 Bean，它也支持列表投影、选择和一般的列表聚合等。</li>
-</ul>
-<h2 id="5-Test-模块"><a href="#5-Test-模块" class="headerlink" title="5. Test 模块"></a>5. Test 模块</h2><p>Test 模块：Spring 支持 Junit 和 TestNG 测试框架，而且还额外提供了一些基于 Spring 的测试功能，比如在测试 Web 框架时，模拟 Http 请求的功能。</p>
-
+              <h1 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h1><h2 id="数据结构与对象"><a href="#数据结构与对象" class="headerlink" title="数据结构与对象"></a>数据结构与对象</h2><h3 id="1、简单动态字符串SDS"><a href="#1、简单动态字符串SDS" class="headerlink" title="1、简单动态字符串SDS"></a>1、简单动态字符串SDS</h3><h3 id="2、链表LinkedList"><a href="#2、链表LinkedList" class="headerlink" title="2、链表LinkedList"></a>2、链表LinkedList</h3><h3 id="3、跳跃表SkipList"><a href="#3、跳跃表SkipList" class="headerlink" title="3、跳跃表SkipList"></a>3、跳跃表SkipList</h3><h3 id="4、整数集合IntSet"><a href="#4、整数集合IntSet" class="headerlink" title="4、整数集合IntSet"></a>4、整数集合IntSet</h3><h3 id="5、压缩列表ZipList"><a href="#5、压缩列表ZipList" class="headerlink" title="5、压缩列表ZipList"></a>5、压缩列表ZipList</h3><hr>
+<h1 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h1><h2 id="单机数据库"><a href="#单机数据库" class="headerlink" title="单机数据库"></a><strong>单机数据库</strong></h2><h3 id="1、数据库"><a href="#1、数据库" class="headerlink" title="1、数据库"></a>1、数据库</h3><h3 id="2、RDB"><a href="#2、RDB" class="headerlink" title="2、RDB"></a>2、RDB</h3><h3 id="3、AOF"><a href="#3、AOF" class="headerlink" title="3、AOF"></a>3、AOF</h3><h3 id="4、事件"><a href="#4、事件" class="headerlink" title="4、事件"></a>4、事件</h3><h3 id="5、客户端"><a href="#5、客户端" class="headerlink" title="5、客户端"></a>5、客户端</h3><h3 id="6、服务器"><a href="#6、服务器" class="headerlink" title="6、服务器"></a>6、服务器</h3><hr>
+<h1 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h1><h2 id="多机数据库"><a href="#多机数据库" class="headerlink" title="多机数据库"></a>多机数据库</h2><h3 id="1、主从复制"><a href="#1、主从复制" class="headerlink" title="1、主从复制"></a>1、主从复制</h3><h3 id="2、哨兵"><a href="#2、哨兵" class="headerlink" title="2、哨兵"></a>2、哨兵</h3><h3 id="3、集群"><a href="#3、集群" class="headerlink" title="3、集群"></a>3、集群</h3><hr>
+<h1 id="第四部分"><a href="#第四部分" class="headerlink" title="第四部分"></a>第四部分</h1><h2 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h2><h3 id="1、发布与订阅"><a href="#1、发布与订阅" class="headerlink" title="1、发布与订阅"></a>1、发布与订阅</h3><h4 id="2、事务"><a href="#2、事务" class="headerlink" title="2、事务"></a>2、事务</h4><h4 id="3、Lua脚本"><a href="#3、Lua脚本" class="headerlink" title="3、Lua脚本"></a>3、Lua脚本</h4><hr>
+<h1 id="第五部分"><a href="#第五部分" class="headerlink" title="第五部分"></a>第五部分</h1><h2 id="企业级解决方案"><a href="#企业级解决方案" class="headerlink" title="企业级解决方案"></a>企业级解决方案</h2><h3 id="1、缓存预热"><a href="#1、缓存预热" class="headerlink" title="1、缓存预热"></a>1、缓存预热</h3><h3 id="2、缓存血崩"><a href="#2、缓存血崩" class="headerlink" title="2、缓存血崩"></a>2、缓存血崩</h3><h3 id="3、缓存击穿"><a href="#3、缓存击穿" class="headerlink" title="3、缓存击穿"></a>3、缓存击穿</h3><h3 id="4、缓存穿透"><a href="#4、缓存穿透" class="headerlink" title="4、缓存穿透"></a>4、缓存穿透</h3><hr>
+<h1 id="第六部分"><a href="#第六部分" class="headerlink" title="第六部分"></a>第六部分</h1><h2 id="redis命令"><a href="#redis命令" class="headerlink" title="redis命令"></a>redis命令</h2><h3 id="1、string"><a href="#1、string" class="headerlink" title="1、string"></a>1、string</h3><h3 id="2、list"><a href="#2、list" class="headerlink" title="2、list"></a>2、list</h3><h3 id="3、hash"><a href="#3、hash" class="headerlink" title="3、hash"></a>3、hash</h3><h3 id="4、set"><a href="#4、set" class="headerlink" title="4、set"></a>4、set</h3><h3 id="5、zset"><a href="#5、zset" class="headerlink" title="5、zset"></a>5、zset</h3><h3 id="6、bitmap"><a href="#6、bitmap" class="headerlink" title="6、bitmap"></a>6、bitmap</h3><h3 id="7、geo"><a href="#7、geo" class="headerlink" title="7、geo"></a>7、geo</h3><h3 id="8、hyperlonglong"><a href="#8、hyperlonglong" class="headerlink" title="8、hyperlonglong"></a>8、hyperlonglong</h3><h3 id="9、key"><a href="#9、key" class="headerlink" title="9、key"></a>9、key</h3><h3 id="10、发布订阅"><a href="#10、发布订阅" class="headerlink" title="10、发布订阅"></a>10、发布订阅</h3><h3 id="11、事务"><a href="#11、事务" class="headerlink" title="11、事务"></a>11、事务</h3><h3 id="12、脚本"><a href="#12、脚本" class="headerlink" title="12、脚本"></a>12、脚本</h3><h3 id="13、redis连接"><a href="#13、redis连接" class="headerlink" title="13、redis连接"></a>13、redis连接</h3><h3 id="14、服务器"><a href="#14、服务器" class="headerlink" title="14、服务器"></a>14、服务器</h3>
             </div>
             <hr>
             <div>
@@ -282,7 +255,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                      <a class="hover-with-bg" href="/tags/database/">database</a>
                     
                   </div>
                 
@@ -299,15 +272,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/10/redis/">
+                      <a href="/2022/03/11/mysql1/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">redis</span>
+                        <span class="hidden-mobile">Mysql基础</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/12/22/spring/">
+                        <span class="hidden-mobile">Spring</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
