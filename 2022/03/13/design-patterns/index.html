@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/post/design.jpg">
 <meta property="article:published_time" content="2022-03-13T08:05:50.000Z">
-<meta property="article:modified_time" content="2022-03-28T18:48:36.685Z">
+<meta property="article:modified_time" content="2022-04-18T08:04:40.231Z">
 <meta property="article:author" content="Felix">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      20k 字
+      21k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      168 分钟
+      174 分钟
     </span>
   
 
@@ -240,7 +240,7 @@
             <h1 style="display: none">设计模式</h1>
             
             <div class="markdown-body">
-              <h1 id="一、设计模式概述"><a href="#一、设计模式概述" class="headerlink" title="一、设计模式概述"></a>一、设计模式概述</h1><h2 id="1、设计模式的六大原则"><a href="#1、设计模式的六大原则" class="headerlink" title="1、设计模式的六大原则"></a>1、设计模式的六大原则</h2><blockquote>
+              <h1 id="设计模式概述"><a href="#设计模式概述" class="headerlink" title="设计模式概述"></a>设计模式概述</h1><h2 id="1、设计模式的六大原则"><a href="#1、设计模式的六大原则" class="headerlink" title="1、设计模式的六大原则"></a>1、设计模式的六大原则</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="http://www.uml.org.cn/sjms/201211023.asp">设计模式六大原则 (uml.org.cn)</a></p>
 </blockquote>
 <h3 id="1、单一职责原则"><a href="#1、单一职责原则" class="headerlink" title="1、单一职责原则"></a>1、单一职责原则</h3><blockquote>
@@ -306,12 +306,11 @@
 <li>备忘录模式（Memento Pattern）</li>
 <li>观察者模式（Observer Pattern）</li>
 <li>状态模式（State Pattern）</li>
-<li>空对象模式（Null Object Pattern）</li>
 <li>策略模式（Strategy Pattern）</li>
 <li>模板模式（Template Pattern）</li>
 <li>访问者模式（Visitor Pattern）</li>
 </ul>
-<h1 id="二、创造型模式"><a href="#二、创造型模式" class="headerlink" title="二、创造型模式"></a>二、创造型模式</h1><figure class="highlight 1c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;Talking is cheap,show me your code&quot;</span><br>本文尽量以代码的形式来展示说明各种设计模式的设计理念<br></code></pre></td></tr></table></figure>
+<h1 id="一、创造型模式"><a href="#一、创造型模式" class="headerlink" title="一、创造型模式"></a>一、创造型模式</h1><figure class="highlight 1c"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;Talking is cheap,show me your code&quot;</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -348,38 +347,76 @@
 
 <p>再举一个例子</p>
 <p>比如下图中的鼠标工厂，专业生产鼠标，给参数 0，生产戴尔鼠标，给参数 1，生产惠普鼠标。</p>
-<p><img src="/design-patterns.assets/image-20220313213356304.png" srcset="/img/loading.gif" lazyload alt="image-20220313213356304"></p>
-<h2 id="2、工厂方法模式"><a href="#2、工厂方法模式" class="headerlink" title="2、工厂方法模式"></a>2、工厂方法模式</h2><p>工厂方法模式(Factory Method Pattern)，也叫虚拟构造器(Virtual Constructor)模式或者多态工厂(Polymorphic Factory)模式，它属于类创建型模式。在工厂方法模式中，工厂父类负责定义创建产品对象的公共接口，而工厂子类则负责生成具体的产品对象，这样做的目的是将产品类的实例化操作延迟到工厂子类中完成，即通过工厂子类来确定究竟应该实例化哪一个具体产品类。</p>
-<h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul>
-<li>用户只需要知道具体工厂的名称就可得到所要的产品，无须知道产品的具体创建过程。</li>
-<li>灵活性增强，对于新产品的创建，只需多写一个相应的工厂类。</li>
-<li>典型的解耦框架。高层模块只需要知道产品的抽象类，无须关心其他实现类，满足迪米特法则、依赖倒置原则和里氏替换原则。</li>
-</ul>
-<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>类的个数容易过多，增加复杂度</li>
-<li>增加了系统的抽象性和理解难度</li>
-<li>抽象产品只能生产一种产品，此弊端可使用抽象工厂模式解决</li>
-</ul>
-<p>工厂方法模式由抽象工厂、具体工厂、抽象产品和具体产品等4个要素构成。本节来分析其基本结构和实现方法。</p>
-<h4 id="模式的结构-1"><a href="#模式的结构-1" class="headerlink" title="模式的结构"></a>模式的结构</h4><p>工厂方法模式的主要角色如下。</p>
+<p><img src="/design-patterns.assets/image-20220313213356304.png" srcset="/img/loading.gif" lazyload alt="简单工厂模式"></p>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><h4 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h4><p><strong>工厂方法模式</strong>是一种创建型设计模式， 其在父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型。</p>
+<p><img src="/design-patterns.assets/factory-method-zh.png" srcset="/img/loading.gif" lazyload alt="工厂方法模式"></p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>假设你正在开发一款物流管理应用。 最初版本只能处理卡车运输， 因此大部分代码都在位于名为 <code>卡车</code>的类中。</p>
+<p>一段时间后， 这款应用变得极受欢迎。 你每天都能收到十几次来自海运公司的请求， 希望应用能够支持海上物流功能。</p>
+<p><img src="/design-patterns.assets/problem1-zh.png" srcset="/img/loading.gif" lazyload alt="在程序中新增一个运输类会遇到问题"></p>
+<p>如果代码其余部分与现有类已经存在耦合关系， 那么向程序中添加新类其实并没有那么容易。</p>
+<p>这可是个好消息。 但是代码问题该如何处理呢？ 目前， 大部分代码都与 <code>卡车</code>类相关。 在程序中添加 <code>轮船</code>类需要修改全部代码。 更糟糕的是， 如果你以后需要在程序中支持另外一种运输方式， 很可能需要再次对这些代码进行大幅修改。</p>
+<p>最后， 你将不得不编写繁复的代码， 根据不同的运输对象类， 在应用中进行不同的处理。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>工厂方法模式建议使用特殊的<em>工厂</em>方法代替对于对象构造函数的直接调用 （即使用 <code>new</code>运算符）。 不用担心， 对象仍将通过 <code>new</code>运算符创建， 只是该运算符改在工厂方法中调用罢了。 工厂方法返回的对象通常被称作 “产品”。</p>
+<p><img src="/design-patterns.assets/solution1.png" srcset="/img/loading.gif" lazyload alt="创建者类结构"></p>
+<p>子类可以修改工厂方法返回的对象类型。</p>
+<p>乍看之下， 这种更改可能毫无意义： 我们只是改变了程序中调用构造函数的位置而已。 但是， 仔细想一下， 现在你可以在子类中重写工厂方法， 从而改变其创建产品的类型。</p>
+<p>但有一点需要注意:仅当这些产品具有共同的基类或者接口时， 子类才能返回不同类型的产品， 同时基类中的工厂方法还应将其返回类型声明为这一共有接口。</p>
+<p><img src="/design-patterns.assets/solution2-zh.png" srcset="/img/loading.gif" lazyload alt="产品对象层次结构"></p>
+<p>所有产品都必须使用同一接口。</p>
+<p>举例来说，  <code>卡车</code>Truck和 <code>轮船</code>Ship类都必须实现 <code>运输</code>Transport接口， 该接口声明了一个名为 <code>deliver</code>交付的方法。 每个类都将以不同的方式实现该方法： 卡车走陆路交付货物， 轮船走海路交付货物。  <code>陆路运输</code>Road­Logistics类中的工厂方法返回卡车对象， 而 <code>海路运输</code>Sea­Logistics类则返回轮船对象。</p>
+<p><img src="/design-patterns.assets/solution3-zh.png" srcset="/img/loading.gif" lazyload alt="使用工厂方法模式后的代码结构"></p>
+<p>只要产品类实现一个共同的接口， 你就可以将其对象传递给客户代码， 而无需提供额外数据。</p>
+<p>调用工厂方法的代码 （通常被称为<em>客户端</em>代码） 无需了解不同子类返回实际对象之间的差别。 客户端将所有产品视为抽象的 <code>运输</code> 。 客户端知道所有运输对象都提供 <code>交付</code>方法， 但是并不关心其具体实现方式。</p>
+<h3 id="工厂方法模式结构"><a href="#工厂方法模式结构" class="headerlink" title="工厂方法模式结构"></a>工厂方法模式结构</h3><p><img src="/design-patterns.assets/structure.png" srcset="/img/loading.gif" lazyload alt="工厂方法模式结构"></p>
 <ol>
-<li>抽象工厂（Abstract Factory）：提供了创建产品的接口，调用者通过它访问具体工厂的工厂方法 newProduct() 来创建产品。</li>
-<li>具体工厂（ConcreteFactory）：主要是实现抽象工厂中的抽象方法，完成具体产品的创建。</li>
-<li>抽象产品（Product）：定义了产品的规范，描述了产品的主要特性和功能。</li>
-<li>具体产品（ConcreteProduct）：实现了抽象产品角色所定义的接口，由具体工厂来创建，它同具体工厂之间一一对应。</li>
+<li><p><strong>产品</strong> （Product） 将会对接口进行声明。 对于所有由创建者及其子类构建的对象， 这些接口都是通用的。</p>
+</li>
+<li><p><strong>具体产品</strong> （Concrete Products） 是产品接口的不同实现。</p>
+</li>
+<li><p><strong>创建者</strong> （Creator） 类声明返回产品对象的工厂方法。 该方法的返回对象类型必须与产品接口相匹配。</p>
+<p>你可以将工厂方法声明为抽象方法， 强制要求每个子类以不同方式实现该方法。 或者， 你也可以在基础工厂方法中返回默认产品类型。</p>
+<p>注意， 尽管它的名字是创建者， 但它最主要的职责并<strong>不是</strong>创建产品。 一般来说， 创建者类包含一些与产品相关的核心业务逻辑。 工厂方法将这些逻辑处理从具体产品类中分离出来。 打个比方， 大型软件开发公司拥有程序员培训部门。 但是， 这些公司的主要工作还是编写代码， 而非生产程序员。</p>
+</li>
+<li><p><strong>具体创建者</strong> （Concrete Creators） 将会重写基础工厂方法， 使其返回不同类型的产品。</p>
+<p>注意， 并不一定每次调用工厂方法都会<strong>创建</strong>新的实例。 工厂方法也可以返回缓存、 对象池或其他来源的已有对象。</p>
+</li>
 </ol>
-<p><img src="/design-patterns.assets/image-20220313164530117.png" srcset="/img/loading.gif" lazyload alt="image-20220313164530117"></p>
-<h4 id="举例-1"><a href="#举例-1" class="headerlink" title="举例"></a>举例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//苹果手机</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Iphone</span> &#123;<br>    <span class="hljs-comment">//获取尺寸</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">getSize</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-comment">// iphoneX</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneX</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Iphone</span> &#123;<br>   	Private String size;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Iphone</span><span class="hljs-params">(String size)</span>&#123;<br>		<span class="hljs-built_in">this</span>.size = size;<br>    &#125;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSize</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.size;<br>    &#125;;<br>&#125;<br><br><span class="hljs-comment">// iphoneXs</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneX</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Iphone</span> &#123;<br>   	Private String size;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Iphone</span><span class="hljs-params">(String size)</span>&#123;<br>		<span class="hljs-built_in">this</span>.size = size;<br>    &#125;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSize</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.size;<br>    &#125;;<br>&#125;<br><br><span class="hljs-comment">// iphoneXR</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneX</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Iphone</span> &#123;<br>   	Private String size;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Iphone</span><span class="hljs-params">(String size)</span>&#123;<br>		<span class="hljs-built_in">this</span>.size = size;<br>    &#125;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSize</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.size;<br>    &#125;;<br>&#125;<br><span class="hljs-comment">// 注意：这些iphone具体机型对用户来说是透明的，用户需要从具体的工厂方法中获取Iphone</span><br></code></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//苹果手机工厂</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">IphoneFactory</span> &#123;<br>    <span class="hljs-comment">//制造手机</span><br>     Iphone <span class="hljs-title function_">createIphone</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-comment">// 生产iphoneX</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneXFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">IPhoneFactory</span>&#123;<br>    <span class="hljs-keyword">public</span> Iphone <span class="hljs-title function_">createIphone</span><span class="hljs-params">()</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IphoneX</span>(<span class="hljs-string">&quot;iPhoneX屏幕:3.5英寸&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 生产iphoneXs</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneXsFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">IPhoneFactory</span>&#123;<br>    <span class="hljs-keyword">public</span> Iphone <span class="hljs-title function_">createIphone</span><span class="hljs-params">()</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IphoneX</span>(<span class="hljs-string">&quot;iPhoneXs屏幕:4.5英寸&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 生产iphoneXR</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IphoneXRFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">IPhoneFactory</span>&#123;<br>    <span class="hljs-keyword">public</span> Iphone <span class="hljs-title function_">createIphone</span><span class="hljs-params">()</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IphoneX</span>(<span class="hljs-string">&quot;iPhoneXR屏幕:5.5英寸&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 客户需要IPhoneX</span><br><span class="hljs-type">IphoneFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IphoneXFactory</span>();<br><span class="hljs-type">Iphone</span> <span class="hljs-variable">iphonex</span> <span class="hljs-operator">=</span> factory.createIphone();<br></code></pre></td></tr></table></figure>
-
 <p>再举一个例子</p>
 <p>工厂模式也就是鼠标工厂是个父类，有生产鼠标这个接口。戴尔鼠标工厂，惠普鼠标工厂继承它，可以分别生产戴尔鼠标，惠普鼠标。生产哪种鼠标不再由参数决定，而是创建鼠标工厂时，由戴尔鼠标工厂创建。</p>
 <p><img src="/design-patterns.assets/image-20220313213632790.png" srcset="/img/loading.gif" lazyload alt="image-20220313213632790"></p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h3 id="意图-1"><a href="#意图-1" class="headerlink" title="意图"></a>意图</h3><p><strong>抽象工厂模式</strong>是一种创建型设计模式， 它能创建一系列相关的对象， 而无需指定其具体类。</p>
+<p><img src="/design-patterns.assets/abstract-factory-zh.png" srcset="/img/loading.gif" lazyload alt="抽象工厂模式"></p>
+<h3 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h3><p>假设你正在开发一款家具商店模拟器。 你的代码中包括一些类， 用于表示：</p>
+<ol>
+<li>一系列相关产品， 例如 <code>椅子</code>Chair 、  <code>沙发</code>Sofa和 <code>咖啡桌</code>Coffee­Table 。</li>
+<li>系列产品的不同变体。 例如， 你可以使用 <code>现代</code>Modern 、  <code>维多利亚</code>Victorian 、  <code>装饰风艺术</code>Art­Deco等风格生成 <code>椅子</code> 、  <code>沙发</code>和 <code>咖啡桌</code> 。</li>
+</ol>
+<p><img src="/design-patterns.assets/problem-zh.png" srcset="/img/loading.gif" lazyload alt="生成不同风格的系列家具。"></p>
+<p>系列产品及其不同变体。</p>
+<p>你需要设法单独生成每件家具对象， 这样才能确保其风格一致。 如果顾客收到的家具风格不一样， 他们可不会开心。</p>
+<p><img src="/design-patterns.assets/abstract-factory-comic-1-zh.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>现代风格的沙发和维多利亚风格的椅子不搭。</p>
+<p>此外， 你也不希望在添加新产品或新风格时修改已有代码。 家具供应商对于产品目录的更新非常频繁， 你不会想在每次更新时都去修改核心代码的。</p>
+<h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><p>首先， 抽象工厂模式建议为系列中的每件产品明确声明接口 （例如椅子、 沙发或咖啡桌）。 然后， 确保所有产品变体都继承这些接口。 例如， 所有风格的椅子都实现 <code>椅子</code>接口； 所有风格的咖啡桌都实现 <code>咖啡桌</code>接口， 以此类推。</p>
+<p><img src="/design-patterns.assets/solution1.png" srcset="/img/loading.gif" lazyload alt="椅子类的层次结构"></p>
+<p>同一对象的所有变体都必须放置在同一个类层次结构之中。</p>
+<p>接下来， 我们需要声明<em>抽象工厂</em>——包含系列中所有产品构造方法的接口。 例如 <code>create­Chair</code>创建椅子 、  <code>create­Sofa</code>创建沙发和 <code>create­Coffee­Table</code>创建咖啡桌 。 这些方法必须返回<strong>抽象</strong>产品类型， 即我们之前抽取的那些接口：  <code>椅子</code> ，  <code>沙发</code>和 <code>咖啡桌</code>等等。</p>
+<p><img src="/design-patterns.assets/solution2.png" srcset="/img/loading.gif" lazyload alt="工厂类的层次结构"></p>
+<p>每个具体工厂类都对应一个特定的产品变体。</p>
+<p>那么该如何处理产品变体呢？ 对于系列产品的每个变体， 我们都将基于 <code>抽象工厂</code>接口创建不同的工厂类。 每个工厂类都只能返回特定类别的产品， 例如，  <code>现代家具工厂</code>Modern­Furniture­Factory只能创建 <code>现代椅子</code>Modern­Chair 、  <code>现代沙发</code>Modern­Sofa和 <code>现代咖啡桌</code>Modern­Coffee­Table对象。</p>
+<p>客户端代码可以通过相应的抽象接口调用工厂和产品类。 你无需修改实际客户端代码， 就能更改传递给客户端的工厂类， 也能更改客户端代码接收的产品变体。</p>
+<p><img src="/design-patterns.assets/abstract-factory-comic-2-zh.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>客户端无需了解其所调用工厂的具体类信息。</p>
+<p>假设客户端想要工厂创建一把椅子。 客户端无需了解工厂类， 也不用管工厂类创建出的椅子类型。 无论是现代风格， 还是维多利亚风格的椅子， 对于客户端来说没有分别， 它只需调用抽象 <code>椅子</code>接口就可以了。 这样一来， 客户端只需知道椅子以某种方式实现了 <code>sit­On</code>坐下方法就足够了。 此外， 无论工厂返回的是何种椅子变体， 它都会和由同一工厂对象创建的沙发或咖啡桌风格一致。</p>
+<p>最后一点说明： 如果客户端仅接触抽象接口， 那么谁来创建实际的工厂对象呢？ 一般情况下， 应用程序会在初始化阶段创建具体工厂对象。 而在此之前， 应用程序必须根据配置文件或环境设定选择工厂类别。</p>
+<h3 id="抽象工厂模式结构"><a href="#抽象工厂模式结构" class="headerlink" title="抽象工厂模式结构"></a>抽象工厂模式结构</h3><p><img src="/design-patterns.assets/structure.png" srcset="/img/loading.gif" lazyload alt="抽象工厂设计模式"></p>
+<ol>
+<li><strong>抽象产品</strong> （Abstract Product） 为构成系列产品的一组不同但相关的产品声明接口。</li>
+<li><strong>具体产品</strong> （Concrete Product） 是抽象产品的多种不同类型实现。 所有变体 （维多利亚&#x2F;现代） 都必须实现相应的抽象产品 （椅子&#x2F;沙发）。</li>
+<li><strong>抽象工厂</strong> （Abstract Factory） 接口声明了一组创建各种抽象产品的方法。</li>
+<li><strong>具体工厂</strong> （Concrete Factory） 实现抽象工厂的构建方法。 每个具体工厂都对应特定产品变体， 且仅创建此种产品变体。</li>
+<li>尽管具体工厂会对具体产品进行初始化， 其构建方法签名必须返回相应的<em>抽象</em>产品。 这样， 使用工厂类的客户端代码就不会与工厂创建的特定产品变体耦合。 <strong>客户端</strong> （Client） 只需通过抽象接口调用工厂和产品对象， 就能与任何具体工厂&#x2F;产品变体交互。</li>
+</ol>
 <h2 id="3、抽象工厂模式"><a href="#3、抽象工厂模式" class="headerlink" title="3、抽象工厂模式"></a>3、抽象工厂模式</h2><p>抽象工厂（AbstractFactory）模式的定义：是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构。</p>
 <p>抽象工厂模式是工厂方法模式的升级版本，工厂方法模式只生产一个等级的产品，而抽象工厂模式可生产多个等级的产品。</p>
 <p>使用抽象工厂模式一般要满足以下条件。</p>
@@ -393,7 +430,7 @@
 <li>抽象工厂增强了程序的可扩展性，当增加一个新的产品族时，不需要修改原代码，满足开闭原则。</li>
 </ul>
 <h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><p>当产品族中需要增加一个新的产品时，所有的工厂类都需要进行修改。增加了系统的抽象性和理解难度。</p>
-<h4 id="模式的结构-2"><a href="#模式的结构-2" class="headerlink" title="模式的结构"></a>模式的结构</h4><p>抽象工厂模式的主要角色如下。</p>
+<h4 id="模式的结构-1"><a href="#模式的结构-1" class="headerlink" title="模式的结构"></a>模式的结构</h4><p>抽象工厂模式的主要角色如下。</p>
 <ol>
 <li>抽象工厂（Abstract Factory）：提供了创建产品的接口，它包含多个创建产品的方法 newProduct()，可以创建多个不同等级的产品。</li>
 <li>具体工厂（Concrete Factory）：主要是实现抽象工厂中的多个抽象方法，完成具体产品的创建。</li>
@@ -401,7 +438,7 @@
 <li>具体产品（ConcreteProduct）：实现了抽象产品角色所定义的接口，由具体工厂来创建，它同具体工厂之间是多对一的关系。</li>
 </ol>
 <p><img src="/design-patterns.assets/image-20220313171441806.png" srcset="/img/loading.gif" lazyload alt="image-20220313171441806"></p>
-<h4 id="举例-2"><a href="#举例-2" class="headerlink" title="举例"></a>举例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 水果</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Fruit</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 苹果</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">apple</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Fruit</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 香蕉</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">banana</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Fruit</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 动物</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animal</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 牛</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">cow</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 马</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">horse</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="举例-1"><a href="#举例-1" class="headerlink" title="举例"></a>举例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 水果</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Fruit</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 苹果</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">apple</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Fruit</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 香蕉</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">banana</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Fruit</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 动物</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animal</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 牛</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">cow</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span> &#123;<br>&#125;<br><br><span class="hljs-comment">// 马</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">horse</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 农厂</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Factory</span> &#123;<br>    <span class="hljs-comment">// 生产牛</span><br>    Animal createAnimal;<br>    <span class="hljs-comment">// 生产苹果</span><br>    Fruit <span class="hljs-title function_">createFruit</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-comment">// 北京农厂</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BeijingFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Factory</span>&#123;<br>    <span class="hljs-comment">// 生产牛</span><br>    Animal <span class="hljs-title function_">createAnimal</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cow</span>();<br>    &#125;;<br>    <span class="hljs-comment">// 生产苹果</span><br>    Fruit <span class="hljs-title function_">createFruit</span><span class="hljs-params">()</span>&#123;<br>    	<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Apple</span>();<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 西安农厂</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">XianFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Factory</span>&#123;<br>    <span class="hljs-comment">// 生产马</span><br>    Animal <span class="hljs-title function_">createAnimal</span><span class="hljs-params">()</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Horse</span>();<br>    &#125;;<br>    <span class="hljs-comment">// 生产香蕉</span><br>    Fruit <span class="hljs-title function_">createFruit</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Banana</span>();<br>    &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -427,8 +464,8 @@
 <li>在并发测试中，单例模式不利于代码调试。在调试过程中，如果单例中的代码没有执行完，也不能模拟生成一个新的对象。</li>
 <li>单例模式的功能代码通常写在一个类中，如果功能设计不合理，则很容易违背单一职责原则。</li>
 </ul>
-<h4 id="模式的结构-3"><a href="#模式的结构-3" class="headerlink" title="模式的结构"></a>模式的结构</h4><p><img src="/design-patterns.assets/image-20220313222001326.png" srcset="/img/loading.gif" lazyload alt="image-20220313222001326"></p>
-<h4 id="举例-3"><a href="#举例-3" class="headerlink" title="举例"></a>举例</h4><p><strong>懒汉式加载：</strong></p>
+<h4 id="模式的结构-2"><a href="#模式的结构-2" class="headerlink" title="模式的结构"></a>模式的结构</h4><p><img src="/design-patterns.assets/image-20220313222001326.png" srcset="/img/loading.gif" lazyload alt="image-20220313222001326"></p>
+<h4 id="举例-2"><a href="#举例-2" class="headerlink" title="举例"></a>举例</h4><p><strong>懒汉式加载：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LazySingleton</span> &#123;<br>    <span class="hljs-comment">//保证 instance 在所有线程中同步</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">LazySingleton</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;    <br>    <span class="hljs-comment">//private 避免类在外部被实例化</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">LazySingleton</span><span class="hljs-params">()</span> &#123;&#125;    <br>    <span class="hljs-comment">//getInstance 方法前加同步</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> LazySingleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">null</span>) &#123;<br>            instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LazySingleton</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>一种更好的写法：</p>
@@ -438,16 +475,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-type">Singleton</span> <span class="hljs-variable">instance</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Singleton</span>();    <br>    <span class="hljs-keyword">private</span> <span class="hljs-title function_">LazySingleton</span><span class="hljs-params">()</span> &#123;&#125;    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> LazySingleton <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> instance;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="5、原型模式"><a href="#5、原型模式" class="headerlink" title="5、原型模式"></a>5、原型模式</h2><p>原型（Prototype）模式的定义如下：用一个已经创建的实例作为原型，通过复制该原型对象来创建一个和原型相同或相似的新对象。在这里，原型实例指定了要创建的对象的种类。用这种方式创建对象非常高效，根本无须知道对象创建的细节。</p>
-<h4 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h4><ul>
+<h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul>
 <li>Java自带的原型模式基于内存二进制流的复制，在性能上比直接 new 一个对象更加优良。</li>
 <li>可以使用深克隆方式保存对象的状态，使用原型模式将对象复制一份，并将其状态保存起来，简化了创建对象的过程，以便在需要的时候使用（例如恢复到历史某一状态），可辅助实现撤销操作。</li>
 </ul>
-<h4 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ul>
 <li>需要为每一个类都配置一个 clone 方法</li>
 <li>clone 方法位于类的内部，当对已有类进行改造的时候，需要修改代码，违背了开闭原则。</li>
 <li>当实现深克隆时，需要编写较为复杂的代码，而且当对象之间存在多重嵌套引用时，为了实现深克隆，每一层对象对应的类都必须支持深克隆，实现起来会比较麻烦。因此，深克隆、浅克隆需要运用得当。</li>
 </ul>
-<h4 id="模式的结构-4"><a href="#模式的结构-4" class="headerlink" title="模式的结构"></a>模式的结构</h4><p>由于 Java 提供了对象的 clone() 方法，所以用 Java 实现原型模式很简单。</p>
+<h4 id="模式的结构-3"><a href="#模式的结构-3" class="headerlink" title="模式的结构"></a>模式的结构</h4><p>由于 Java 提供了对象的 clone() 方法，所以用 Java 实现原型模式很简单。</p>
 <p>原型模式包含以下主要角色。</p>
 <ol>
 <li>抽象原型类：规定了具体原型对象必须实现的接口。</li>
@@ -475,7 +512,7 @@
 <p><img src="/design-patterns.assets/problem2.png" srcset="/img/loading.gif" lazyload alt="可伸缩的构造函数"></p>
 <p>拥有大量输入参数的构造函数也有缺陷： 这些参数也不是每次都要全部用上的。</p>
 <p>通常情况下， 绝大部分的参数都没有使用， 这使得<a target="_blank" rel="noopener" href="https://refactoringguru.cn/smells/long-parameter-list">对于构造函数的调用十分不简洁</a>。 例如， 只有很少的房子有游泳池， 因此与游泳池相关的参数十之八九是毫无用处的。</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>生成器模式建议将对象构造代码从产品类中抽取出来， 并将其放在一个名为<em>生成器</em>的独立对象中。</p>
+<h4 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h4><p>生成器模式建议将对象构造代码从产品类中抽取出来， 并将其放在一个名为<em>生成器</em>的独立对象中。</p>
 <p><img src="/design-patterns.assets/solution1.png" srcset="/img/loading.gif" lazyload alt="应用生成器模式"></p>
 <p>生成器模式让你能够分步骤创建复杂对象。 生成器不允许其他对象访问正在创建中的产品。</p>
 <p>该模式会将对象构造过程划分为一组步骤， 比如 <code>build­Walls</code>创建墙壁和 <code>build­Door</code>创建房门创建房门等。 每次创建对象时， 你都需要通过生成器对象执行一系列步骤。 重点在于你无需调用所有步骤， 而只需调用创建特定对象配置所需的那些步骤即可。</p>
@@ -497,7 +534,7 @@
 <li><strong>主管</strong> （Director） 类定义调用构造步骤的顺序， 这样你就可以创建和复用特定的产品配置。</li>
 <li><strong>客户端</strong> （Client） 必须将某个生成器对象与主管类关联。 一般情况下， 你只需通过主管类构造函数的参数进行一次性关联即可。 此后主管类就能使用生成器对象完成后续所有的构造任务。 但在客户端将生成器对象传递给主管类制造方法时还有另一种方式。 在这种情况下， 你在使用主管类生产产品时每次都可以使用不同的生成器。</li>
 </ol>
-<h4 id="举例-4"><a href="#举例-4" class="headerlink" title="举例"></a>举例</h4><p>下面关于<strong>生成器</strong>模式的例子演示了你可以如何复用相同的对象构造代码来生成不同类型的产品——例如汽车 （Car）——及其相应的使用手册 （Manual）。</p>
+<h4 id="举例-3"><a href="#举例-3" class="headerlink" title="举例"></a>举例</h4><p>下面关于<strong>生成器</strong>模式的例子演示了你可以如何复用相同的对象构造代码来生成不同类型的产品——例如汽车 （Car）——及其相应的使用手册 （Manual）。</p>
 <p><img src="/design-patterns.assets/example-zh.png" srcset="/img/loading.gif" lazyload alt="生成器模式结构示例"></p>
 <p>分步骤制造汽车并制作对应型号用户使用手册的示例</p>
 <p>汽车是一个复杂对象， 有数百种不同的制造方法。 我们没有在 <code>汽车</code>类中塞入一个巨型构造函数， 而是将汽车组装代码抽取到单独的汽车生成器类中。 该类中有一组方法可用来配置汽车的各种部件。</p>
@@ -528,12 +565,12 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Demo运行类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 找主管</span><br>        <span class="hljs-type">Director</span> <span class="hljs-variable">director</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Director</span>();<br>        <br>        <span class="hljs-comment">// 主管与汽车生成器配对</span><br>        <span class="hljs-type">CarBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CarBuilder</span>();<br>        <span class="hljs-comment">// 主管只负责指挥，给定参数，不参与打螺丝</span><br>        director.constructSportsCar(builder);<br>	    <span class="hljs-comment">// 打螺丝的苦活交给汽车生成器</span><br>        <span class="hljs-type">Car</span> <span class="hljs-variable">car</span> <span class="hljs-operator">=</span> builder.getResult();<br>        System.out.println(<span class="hljs-string">&quot;Car built:\n&quot;</span> + car.getCarType());<br><br>	   <span class="hljs-comment">// 原理同上，只不过是指挥生产汽车手册</span><br>        <span class="hljs-type">CarManualBuilder</span> <span class="hljs-variable">manualBuilder</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CarManualBuilder</span>();<br>        director.constructSportsCar(manualBuilder);<br>        <span class="hljs-type">Manual</span> <span class="hljs-variable">carManual</span> <span class="hljs-operator">=</span> manualBuilder.getResult();<br>        System.out.println(<span class="hljs-string">&quot;\nCar manual built:\n&quot;</span> + carManual.print());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h1 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h1><h2 id="1、适配器模式"><a href="#1、适配器模式" class="headerlink" title="1、适配器模式"></a>1、适配器模式</h2><h4 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h4><p>实现时使用了构成原则： 适配器实现了其中一个对象的接口， 并对另一个对象进行封装。 所有流行的编程语言都可以实现适配器。</p>
+<h1 id="二、结构型模式"><a href="#二、结构型模式" class="headerlink" title="二、结构型模式"></a>二、结构型模式</h1><h2 id="1、适配器模式"><a href="#1、适配器模式" class="headerlink" title="1、适配器模式"></a>1、适配器模式</h2><h4 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h4><p>实现时使用了构成原则： 适配器实现了其中一个对象的接口， 并对另一个对象进行封装。 所有流行的编程语言都可以实现适配器。</p>
 <p><img src="/design-patterns.assets/image-20220327171355202.png" srcset="/img/loading.gif" lazyload alt="image-20220327171355202"></p>
 <h4 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h4><p>这一实现使用了继承机制： 适配器同时继承两个对象的接口。 请注意， 这种方式仅能在支持多重继承的编程语言中实现， 例如 C++。    </p>
 <p><img src="/design-patterns.assets/image-20220327171534256.png" srcset="/img/loading.gif" lazyload alt="image-20220327171534256"></p>
 <p><img src="/design-patterns.assets/image-20220327171453208.png" srcset="/img/loading.gif" lazyload alt="image-20220327171453208"></p>
-
+<h1 id="三、行为型模式"><a href="#三、行为型模式" class="headerlink" title="三、行为型模式"></a>三、行为型模式</h1>
             </div>
             <hr>
             <div>
@@ -562,29 +599,6 @@
                   
                 </p>
               
-              
-                <div class="post-prevnext">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/03/15/leetcode/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/03/13/java-log/">
-                        <span class="hidden-mobile">Java日志系统</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 

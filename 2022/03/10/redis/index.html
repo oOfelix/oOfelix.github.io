@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/post/redis.jpg">
 <meta property="article:published_time" content="2022-03-10T09:40:59.000Z">
-<meta property="article:modified_time" content="2022-03-31T14:13:53.780Z">
+<meta property="article:modified_time" content="2022-04-18T08:11:20.406Z">
 <meta property="article:author" content="Felix">
 <meta property="article:tag" content="database">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      4.6k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21 分钟
+      39 分钟
     </span>
   
 
@@ -240,8 +240,104 @@
             <h1 style="display: none">redis</h1>
             
             <div class="markdown-body">
-              <h1 id="第一部分-redis命令"><a href="#第一部分-redis命令" class="headerlink" title="第一部分 redis命令"></a>第一部分 <strong>redis命令</strong></h1><h2 id="1、string"><a href="#1、string" class="headerlink" title="1、string"></a>1、string</h2><h2 id="2、list"><a href="#2、list" class="headerlink" title="2、list"></a>2、list</h2><h2 id="3、hash"><a href="#3、hash" class="headerlink" title="3、hash"></a>3、hash</h2><h2 id="4、set"><a href="#4、set" class="headerlink" title="4、set"></a>4、set</h2><h2 id="5、zset"><a href="#5、zset" class="headerlink" title="5、zset"></a>5、zset</h2><h2 id="6、geo"><a href="#6、geo" class="headerlink" title="6、geo"></a>6、geo</h2><h2 id="7、hyperlonglong"><a href="#7、hyperlonglong" class="headerlink" title="7、hyperlonglong"></a>7、hyperlonglong</h2><h2 id="8、key"><a href="#8、key" class="headerlink" title="8、key"></a>8、key</h2><h2 id="9、redis连接"><a href="#9、redis连接" class="headerlink" title="9、redis连接"></a>9、redis连接</h2><h2 id="10、服务器"><a href="#10、服务器" class="headerlink" title="10、服务器"></a>10、服务器</h2><h1 id="第二部分-数据结构与对象"><a href="#第二部分-数据结构与对象" class="headerlink" title="第二部分 数据结构与对象"></a>第二部分 <strong>数据结构与对象</strong></h1><h2 id="1、简单动态字符串SDS"><a href="#1、简单动态字符串SDS" class="headerlink" title="1、简单动态字符串SDS"></a>1、简单动态字符串SDS</h2><h2 id="2、链表LinkedList"><a href="#2、链表LinkedList" class="headerlink" title="2、链表LinkedList"></a>2、链表LinkedList</h2><h2 id="3、跳跃表SkipList"><a href="#3、跳跃表SkipList" class="headerlink" title="3、跳跃表SkipList"></a>3、跳跃表SkipList</h2><h2 id="4、整数集合IntSet"><a href="#4、整数集合IntSet" class="headerlink" title="4、整数集合IntSet"></a>4、整数集合IntSet</h2><h2 id="5、压缩列表ZipList"><a href="#5、压缩列表ZipList" class="headerlink" title="5、压缩列表ZipList"></a>5、压缩列表ZipList</h2><hr>
-<h1 id="第三部分-单机数据库"><a href="#第三部分-单机数据库" class="headerlink" title="第三部分 单机数据库"></a>第三部分 <strong>单机数据库</strong></h1><h2 id="1、数据库"><a href="#1、数据库" class="headerlink" title="1、数据库"></a>1、数据库</h2><h2 id="2、RDB"><a href="#2、RDB" class="headerlink" title="2、RDB"></a>2、RDB</h2><h2 id="3、AOF"><a href="#3、AOF" class="headerlink" title="3、AOF"></a>3、AOF</h2><h2 id="4、事件"><a href="#4、事件" class="headerlink" title="4、事件"></a>4、事件</h2><h2 id="5、客户端"><a href="#5、客户端" class="headerlink" title="5、客户端"></a>5、客户端</h2><h2 id="6、服务器"><a href="#6、服务器" class="headerlink" title="6、服务器"></a>6、服务器</h2><hr>
+              <h1 id="第一部分-常用命令"><a href="#第一部分-常用命令" class="headerlink" title="第一部分 常用命令"></a>第一部分 <strong>常用命令</strong></h1><h1 id="第二部分-数据结构与对象"><a href="#第二部分-数据结构与对象" class="headerlink" title="第二部分 数据结构与对象"></a>第二部分 <strong>数据结构与对象</strong></h1><h2 id="1、简单动态字符串SDS"><a href="#1、简单动态字符串SDS" class="headerlink" title="1、简单动态字符串SDS"></a>1、简单动态字符串SDS</h2><p><img src="/redis.assets/image-20220416231648172.png" srcset="/img/loading.gif" lazyload alt="SDS"></p>
+<ul>
+<li>Redis只会使用C字符串作为字面量，在大多数情况下，Redis使用SDS作为字符串表示</li>
+<li>常数复杂度获取字符串长度</li>
+<li>杜绝缓冲区溢出</li>
+<li>减少修改字符串长度时所需要的内存分配次数 <strong>预分配</strong> <strong>惰性释放</strong></li>
+<li>二进制安全</li>
+<li>兼容C字符串函数</li>
+</ul>
+<blockquote>
+<p>预分配：当修改后，sds的len小于1MB，则预分配len大小的空间，free&#x3D;len；如果修改后len大于1MB，则预分配1MB的空间，free &#x3D; 1MB。</p>
+<p>惰性释放：减短字符串长度后，不会立即释放free空间，如何释放有系统判断。</p>
+</blockquote>
+<h2 id="2、链表LinkedList"><a href="#2、链表LinkedList" class="headerlink" title="2、链表LinkedList"></a>2、链表LinkedList</h2><p><img src="/redis.assets/image-20220416232731309.png" srcset="/img/loading.gif" lazyload alt="链表"></p>
+<ul>
+<li>链表被广泛用于实现Redis的各种功能，比如列表键、发布订阅、慢查询、监视器等。</li>
+<li>每个链表节点由一个listNode结构来表示，双端链表。</li>
+<li>每个链表使用一个list结构表示，有表头，表尾节点指针，以及链表长度等信息。</li>
+<li>指针类型，可以保存不同类型的值。</li>
+</ul>
+<h2 id="3、字典Dict"><a href="#3、字典Dict" class="headerlink" title="3、字典Dict"></a>3、字典Dict</h2><p><img src="/redis.assets/image-20220416233223699.png" srcset="/img/loading.gif" lazyload alt="hash"></p>
+<ul>
+<li>Redis的字典使用哈希表作为底层实现，每个字典带有两个哈希表，一个平时使用，另一个仅在进行rehash时使用。</li>
+<li>哈希表使用链地址结构来解决键冲突，被分配到同一个索引上的多个键值对会连接成一个单向链表。</li>
+<li>对哈希表进行扩展或者收缩操作时，进行的是渐进式rehash。</li>
+</ul>
+<blockquote>
+<p>负载因子：ht[0].used &#x2F; ht[0].size</p>
+<p>扩容：服务器没有执行 <strong>BGSAVA</strong> 或者 <strong>BGREWRITEAOF</strong> 命令，并且哈希表的负载因子大于等于  <strong>1</strong>；服务器正在执行 <strong>BGSAVA</strong> 或者 <strong>BGREWRITEAOF</strong> 命令，并且负载因子大于等于 <strong>5</strong></p>
+<p>收缩：负载因子小于 <strong>0.1</strong> 。</p>
+</blockquote>
+<h2 id="4、整数集合IntSet"><a href="#4、整数集合IntSet" class="headerlink" title="4、整数集合IntSet"></a>4、整数集合IntSet</h2><p><img src="/redis.assets/image-20220416235213740.png" srcset="/img/loading.gif" lazyload alt="intset"></p>
+<ul>
+<li>整数集合的底层实现为数组，这个数组以有序、无重复的方式保存集合元素，在有需要时，程序会根据新添加元素的类型，改变数组的类型。</li>
+<li>升级操作为整数集合带来了操作上的灵活性，并且尽可能的节约了内存。</li>
+<li>整数集合只支持升级操作，不支持降级操作。</li>
+</ul>
+<h2 id="5、跳跃表SkipList"><a href="#5、跳跃表SkipList" class="headerlink" title="5、跳跃表SkipList"></a>5、跳跃表SkipList</h2><p><img src="/redis.assets/image-20220416234344527.png" srcset="/img/loading.gif" lazyload alt="skiplist"></p>
+<ul>
+<li>Redis的跳跃表实现由 <strong>zskiplist</strong> 和 <strong>zskiplistNode</strong> 两个结构组成，其中 <strong>zskiplist</strong> 用于保存跳跃表信息(表头节点，表尾节点，长度)，<strong>zskiplistNode</strong> 用于保存跳跃表节点(层，前向指针，分值和成员对象)。</li>
+<li>跳跃表的层高是1-32之间的随机数。</li>
+<li>可以有相同的分值，但是成员对象必须唯一。</li>
+<li>按照分值从小到大排序，分值相同时，节点按照成员对象的大小进行排序。</li>
+</ul>
+<h2 id="6、压缩列表ZipList"><a href="#6、压缩列表ZipList" class="headerlink" title="6、压缩列表ZipList"></a>6、压缩列表ZipList</h2><p><img src="/redis.assets/image-20220416235901337.png" srcset="/img/loading.gif" lazyload alt="ziplist"></p>
+<p><img src="/redis.assets/image-20220416235942956.png" srcset="/img/loading.gif" lazyload alt="entry"></p>
+<ul>
+<li>压缩列表是一种为了节约内存而开发的顺序型数据结构。</li>
+<li>压缩列表可以包含多个节点，每个节点可以保存一个字节数组或者整数值。</li>
+<li>添加新节点到压缩列表，或者从压缩列表中删除节点，可能会引发连锁更新操作，出现机率不高。</li>
+</ul>
+<h2 id="7、对象结构"><a href="#7、对象结构" class="headerlink" title="7、对象结构"></a>7、对象结构</h2><p><img src="/redis.assets/image-20220417000646880.png" srcset="/img/loading.gif" lazyload alt="redisObject"></p>
+<p>Redis对象的三个重要属性为 类型，编码和指针，其中基本类型有五种：</p>
+<p><img src="/redis.assets/image-20220417000856148.png" srcset="/img/loading.gif" lazyload alt="redisObject基本类型"></p>
+<p><strong>redisObject</strong> 的底层数据结构，使用OBJECT ENCODING “xxx” 可以输出底层结构名称</p>
+<p><img src="/redis.assets/image-20220417001100403.png" srcset="/img/loading.gif" lazyload alt="redisObject 底层结构"></p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>int编码：字符串对象保存的值是整数值并且整数值可以使用long类型来表示</p>
+<p>embstr编码：字符串长度小于 44 字节，分配只需一次</p>
+<p>raw编码：字符串长度大于 44 字节，需要两次分配，修改embstr编码类型字符串会转换为raw编码字符串。</p>
+<h3 id="列表编码"><a href="#列表编码" class="headerlink" title="列表编码"></a>列表编码</h3><p>列表对象的编码可以是ziplist和linkedlist。</p>
+<p>编码转换：列表对象元素字符串长度小于64 且 元素个数小于512使用ziplist，否则使用 linkedlist。</p>
+<h3 id="哈希对象"><a href="#哈希对象" class="headerlink" title="哈希对象"></a>哈希对象</h3><p>哈希对象的编码可以是ziplist和hashtable。</p>
+<p>编码转换：哈希对象元素字符串长度小于64 且 元素个数小于512使用 ziplist，否则使用 hashtable。</p>
+<h3 id="集合对象"><a href="#集合对象" class="headerlink" title="集合对象"></a>集合对象</h3><p>集合对象的编码可以是intset和hashtable。</p>
+<p>编码转换：集合对象元素全部属于整数值且元素个数小于512使用 intset，否则使用 hashtable。</p>
+<h3 id="有序集合对象"><a href="#有序集合对象" class="headerlink" title="有序集合对象"></a>有序集合对象</h3><p>有序集合对象编码可以是ziplist或者skiplist，使用skiplist时还会使用hashtable结构，目的是O(1)时间查询分数值。</p>
+<p><img src="/redis.assets/image-20220417005639902.png" srcset="/img/loading.gif" lazyload alt="zset底层结构"></p>
+<p>编码转换：有序集合保存的所有元素成员的长度都小于64字节，且元素少于128个。</p>
+<ul>
+<li>Redis数据库中的每个键值对的键和值都是一个对象</li>
+<li>Redis共有字符串，列表，哈希，集合和有序集合五种基本类型的对象，每种类型的对象至少都有两种或者以上的编码方式，不同的编码方式可以在不同的使用场景上优化对象的使用效率。</li>
+<li>服务器在执行某些命令之前，会先检查给定键的类型能否执行指定的命令，而检查一个见的类型就是检查键的值对象的类型。</li>
+<li>Redis的对象系统带有引用计数实现的内存回收机制，当一个对象不再被引用时，该对象所占用的内存就会被自动释放。</li>
+<li>Redis会共享0-9999的字符串对象。</li>
+<li>对象会记录自己的最后一次被访问的时间，这个时间可以用于计算对象的空转时间。</li>
+</ul>
+<hr>
+<h1 id="第三部分-单机数据库"><a href="#第三部分-单机数据库" class="headerlink" title="第三部分 单机数据库"></a>第三部分 <strong>单机数据库</strong></h1><h2 id="1、数据库"><a href="#1、数据库" class="headerlink" title="1、数据库"></a>1、数据库</h2><h4 id="数据库结构"><a href="#数据库结构" class="headerlink" title="数据库结构"></a>数据库结构</h4><p><img src="/redis.assets/image-20220417010738210.png" srcset="/img/loading.gif" lazyload alt="服务器数据库结构(默认大小为16)"></p>
+<h4 id="键空间"><a href="#键空间" class="headerlink" title="键空间"></a>键空间</h4><p><img src="/redis.assets/image-20220417011505446.png" srcset="/img/loading.gif" lazyload alt="数据库键空间(字典结构的简化形式)"></p>
+<h4 id="过期时间"><a href="#过期时间" class="headerlink" title="过期时间"></a>过期时间</h4><p><img src="/redis.assets/image-20220417011214309.png" srcset="/img/loading.gif" lazyload alt="过期时间"></p>
+<blockquote>
+<p>EXPIRE <key> <ttl> 单位为秒</p>
+<p>PEXPIRE <key> <ttl> 单位为毫秒</p>
+<p>EXPIREAT <key> <timestamp> 单位为秒时间戳</p>
+<p>PEXPIREAT <key> <timestamp> 单位为毫秒时间戳</p>
+<p>PERSIST 命令可以移除过期时间</p>
+<p>TTL 返回剩余生存时间，单位为秒</p>
+<p>PTTL 返回剩余生存时间，单位为毫秒</p>
+</blockquote>
+<h4 id="删除策略"><a href="#删除策略" class="headerlink" title="删除策略"></a>删除策略</h4><ul>
+<li>定时删除：每个键设置定时器，时间到就删，优点是节约内存，缺点是CPU大</li>
+<li>惰性删除：读取时根据时间挫判断，如果未过期就返回数据，否则删除数据，优点是节约CPU性能，缺点是内存压力大</li>
+<li>定期删除：周期性轮询redis库中的时效性数据，采用<strong>随机抽取的策略</strong>，利用过期数据占比的方式控制删除频度</li>
+<li>Redis服务器采用的是定期删除搭配惰性删除的方式</li>
+</ul>
+<h4 id="逐出算法"><a href="#逐出算法" class="headerlink" title="逐出算法"></a>逐出算法</h4><p>当新数据进入redis时，如果内存不足会使用逐出算法删除数据</p>
+<p><img src="/redis.assets/20200608142953.png" srcset="/img/loading.gif" lazyload alt="逐出算法"></p>
+<h2 id="2、RDB"><a href="#2、RDB" class="headerlink" title="2、RDB"></a>2、RDB</h2><h2 id="3、AOF"><a href="#3、AOF" class="headerlink" title="3、AOF"></a>3、AOF</h2><h2 id="4、事件"><a href="#4、事件" class="headerlink" title="4、事件"></a>4、事件</h2><h2 id="5、客户端"><a href="#5、客户端" class="headerlink" title="5、客户端"></a>5、客户端</h2><h2 id="6、服务器"><a href="#6、服务器" class="headerlink" title="6、服务器"></a>6、服务器</h2><hr>
 <h1 id="第四部分-多机数据库"><a href="#第四部分-多机数据库" class="headerlink" title="第四部分 多机数据库"></a>第四部分 <strong>多机数据库</strong></h1><h2 id="1、主从复制"><a href="#1、主从复制" class="headerlink" title="1、主从复制"></a>1、主从复制</h2><h2 id="2、哨兵"><a href="#2、哨兵" class="headerlink" title="2、哨兵"></a>2、哨兵</h2><h2 id="3、集群"><a href="#3、集群" class="headerlink" title="3、集群"></a>3、集群</h2><hr>
 <h1 id="第五部分-功能模块"><a href="#第五部分-功能模块" class="headerlink" title="第五部分 功能模块"></a>第五部分 <strong>功能模块</strong></h1><h2 id="1、发布与订阅"><a href="#1、发布与订阅" class="headerlink" title="1、发布与订阅"></a>1、发布与订阅</h2><h3 id="①subscribe-channel-…"><a href="#①subscribe-channel-…" class="headerlink" title="①subscribe [channel …]"></a>①subscribe [channel …]</h3><h3 id="②unsubscribe-channel-…"><a href="#②unsubscribe-channel-…" class="headerlink" title="②unsubscribe [channel …]"></a>②unsubscribe [channel …]</h3><h3 id="③psubscribe-pattern"><a href="#③psubscribe-pattern" class="headerlink" title="③psubscribe [pattern]"></a>③psubscribe [pattern]</h3><h3 id="④punsubscribe-pattern"><a href="#④punsubscribe-pattern" class="headerlink" title="④punsubscribe [pattern]"></a>④punsubscribe [pattern]</h3><h3 id="⑤pubsub"><a href="#⑤pubsub" class="headerlink" title="⑤pubsub"></a>⑤pubsub</h3><h3 id="⑥publish"><a href="#⑥publish" class="headerlink" title="⑥publish"></a>⑥publish</h3><h2 id="2、事务"><a href="#2、事务" class="headerlink" title="2、事务"></a>2、事务</h2><h3 id="①muti"><a href="#①muti" class="headerlink" title="①muti"></a>①muti</h3><h3 id="②exec"><a href="#②exec" class="headerlink" title="②exec"></a>②exec</h3><h3 id="③watch"><a href="#③watch" class="headerlink" title="③watch"></a>③watch</h3><h2 id="3、Lua脚本"><a href="#3、Lua脚本" class="headerlink" title="3、Lua脚本"></a>3、Lua脚本</h2><h2 id="4、monitor监视器"><a href="#4、monitor监视器" class="headerlink" title="4、monitor监视器"></a>4、monitor监视器</h2><h2 id="5、sort-排序"><a href="#5、sort-排序" class="headerlink" title="5、sort 排序"></a>5、sort 排序</h2><h2 id="6、慢查询日志"><a href="#6、慢查询日志" class="headerlink" title="6、慢查询日志"></a>6、慢查询日志</h2><h2 id="7、二进制位数组"><a href="#7、二进制位数组" class="headerlink" title="7、二进制位数组"></a>7、二进制位数组</h2><h3 id="1、bitset"><a href="#1、bitset" class="headerlink" title="1、bitset"></a>1、bitset</h3><h3 id="2、bitget"><a href="#2、bitget" class="headerlink" title="2、bitget"></a>2、bitget</h3><h3 id="3、bitcount"><a href="#3、bitcount" class="headerlink" title="3、bitcount"></a>3、bitcount</h3><h3 id="4、bitop-and-or-not-xor"><a href="#4、bitop-and-or-not-xor" class="headerlink" title="4、bitop [and] [or] [not] [xor]"></a>4、bitop [and] [or] [not] [xor]</h3><hr>
 <h1 id="第六部分-企业级解决方案"><a href="#第六部分-企业级解决方案" class="headerlink" title="第六部分 企业级解决方案"></a>第六部分 <strong>企业级解决方案</strong></h1><h2 id="1、缓存预热"><a href="#1、缓存预热" class="headerlink" title="1、缓存预热"></a>1、缓存预热</h2><h2 id="2、缓存血崩"><a href="#2、缓存血崩" class="headerlink" title="2、缓存血崩"></a>2、缓存血崩</h2><h2 id="3、缓存击穿"><a href="#3、缓存击穿" class="headerlink" title="3、缓存击穿"></a>3、缓存击穿</h2><h2 id="4、缓存穿透"><a href="#4、缓存穿透" class="headerlink" title="4、缓存穿透"></a>4、缓存穿透</h2><hr>
@@ -291,21 +387,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/11/mysql1/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Mysql基础</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2021/12/22/spring/">
-                        <span class="hidden-mobile">Spring</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>

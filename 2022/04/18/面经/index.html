@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Felix">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="手撕代码、计网、操作系统数据库...不是问题！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试攻略">
+<meta property="og:url" content="http://example.com/2022/04/18/%E9%9D%A2%E7%BB%8F/index.html">
+<meta property="og:site_name" content="Felixの博客屋">
+<meta property="og:description" content="手撕代码、计网、操作系统数据库...不是问题！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/post/interview.jpg">
+<meta property="article:published_time" content="2022-04-18T02:07:06.533Z">
+<meta property="article:modified_time" content="2022-04-18T08:03:29.709Z">
+<meta property="article:author" content="Felix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/post/interview.jpg">
+  
+  
+  <title>面试攻略 - Felixの博客屋</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"RyY2xh8pRlOd0h8PK7HgQYJF-gzGzoHsz","app_key":"87cGpcqYtCgxSbDaonwBEjdC","server_url":"https://ryy2xh8p.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Felix</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/banner/banner_post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="面试攻略">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-18 10:07" pubdate>
+        2022年4月18日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      48 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">面试攻略</h1>
+            
+            <div class="markdown-body">
+              <h2 id="一、架构代码问题"><a href="#一、架构代码问题" class="headerlink" title="一、架构代码问题"></a>一、架构代码问题</h2><p><strong>实现hashmap</strong></p>
+<blockquote>
+<p>简单的模拟，无负载因子，无扩容，无红黑树，无收缩。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHashMap</span>&lt;K,V&gt; &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> capacity;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Node&lt;K,V&gt;[] table;<br><br>    MyHashMap(<span class="hljs-type">int</span> capacity)&#123;<br>        <span class="hljs-built_in">this</span>.capacity = capacity;<br>        <span class="hljs-built_in">this</span>.table = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>[capacity];<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&lt;K,V&gt;&#123;<br>        K key;<br>        V value;<br>        Node&lt;K,V&gt; next;<br>        Node(K key, V value)&#123;<br>            <span class="hljs-built_in">this</span>.key = key;<br>            <span class="hljs-built_in">this</span>.value = value;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hash</span><span class="hljs-params">(K key)</span>&#123;<br>        <span class="hljs-keyword">return</span> key.hashCode() % (capacity-<span class="hljs-number">1</span>);<br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(K key, V value)</span>&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">loc</span> <span class="hljs-operator">=</span> hash(key);<br>        Node&lt;K,V&gt; node = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(key, value);<br>        <span class="hljs-keyword">if</span> (table[loc] != <span class="hljs-literal">null</span>) &#123;<br>            Node&lt;K,V&gt; head = table[loc];<br>            <span class="hljs-keyword">while</span>(head != <span class="hljs-literal">null</span>)&#123;<br>                <span class="hljs-keyword">if</span>(head.key.equals(key))&#123;<br>                    head.value = value;<br>                    <span class="hljs-keyword">return</span>;<br>                &#125;<br>                head = head.next;<br>            &#125;<br>            node.next = table[loc];<br>            table[loc] = node;<br>        &#125;<br>        table[loc] = node;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> V <span class="hljs-title function_">get</span><span class="hljs-params">(K key)</span>&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">loc</span> <span class="hljs-operator">=</span> hash(key);<br>        <span class="hljs-keyword">if</span>(table[loc] == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        Node&lt;K,V&gt; head = table[loc];<br>        <span class="hljs-keyword">while</span>(head != <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">if</span>(head.key.equals(key))<br>                <span class="hljs-keyword">return</span> head.value;<br>            head = head.next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        MyHashMap&lt;Integer,Integer&gt; map =  <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyHashMap</span>&lt;&gt;(<span class="hljs-number">10</span>);<br>        map.put(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>);<br>        map.put(<span class="hljs-number">100</span>, <span class="hljs-number">110</span>);<br>        System.out.println(map.get(<span class="hljs-number">100</span>));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>实现LRU</strong></p>
+<blockquote>
+<p>双链表+HashMap</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&#123;<br>    <span class="hljs-type">int</span> key,val;<br>    Node prev,next;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Node</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> val)</span>&#123;<br>        <span class="hljs-built_in">this</span>.key = key;<br>        <span class="hljs-built_in">this</span>.val = val;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LRUCache</span> &#123;<br>    <span class="hljs-keyword">private</span> Map&lt;Integer,Node&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">private</span> Node head, tail;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">capacity</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">LRUCache</span><span class="hljs-params">(<span class="hljs-type">int</span> capacity)</span> &#123;<br>        <span class="hljs-built_in">this</span>.capacity = capacity;<br>        head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>);<br>        tail = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>);<br>        head.next = tail;<br>        tail.prev = head;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-keyword">if</span>(map.get(key) != <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> map.get(key);<br>            node.prev.next = node.next;<br>            node.next.prev = node.prev;<br>            move(node);<br>            <span class="hljs-keyword">return</span> node.val;<br>        &#125;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">set</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value)</span> &#123;<br>        <span class="hljs-keyword">if</span>(get(key) &gt; -<span class="hljs-number">1</span>)&#123;<br>            map.get(key).val = value;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">if</span>(map.size() == capacity)&#123;<br>                <span class="hljs-type">int</span> <span class="hljs-variable">rk</span> <span class="hljs-operator">=</span> tail.prev.key;<br>                tail.prev.prev.next = tail;<br>                tail.prev = tail.prev.prev;<br>                map.remove(rk);<br>            &#125;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(key,value);<br>            map.put(key,node);<br>            move(node);<br>        &#125;<br>            <br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">move</span><span class="hljs-params">(Node node)</span> &#123;<br>        node.next = head.next;<br>        head.next.prev = node;<br>        head.next = node;<br>        node.prev = head;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="二、网络问题"><a href="#二、网络问题" class="headerlink" title="二、网络问题"></a>二、网络问题</h2><h3 id="知识架构"><a href="#知识架构" class="headerlink" title="知识架构"></a><strong>知识架构</strong></h3><blockquote>
+<p>软件开发类学生，重要关注点在于网络及以上的层次，尤其是<strong>传输层</strong>！</p>
+</blockquote>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418143249901.png" srcset="/img/loading.gif" lazyload alt="物理层"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418143337575.png" srcset="/img/loading.gif" lazyload alt="数据链路层"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418143125621.png" srcset="/img/loading.gif" lazyload alt="网络层"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418143020528.png" srcset="/img/loading.gif" lazyload alt="传输层"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418143203014.png" srcset="/img/loading.gif" lazyload alt="应用层"></p>
+<h3 id="TCP和UDP有什么区别"><a href="#TCP和UDP有什么区别" class="headerlink" title="TCP和UDP有什么区别?"></a><strong>TCP和UDP有什么区别?</strong></h3><p>UDP是用户数据报协议，是一个简单的面向无连接的协议。UDP不提供可靠的服务。在数据数据前不用建立连接故而传输速度很快。UDP主要用户流媒体传输，IP电话等对数据可靠性要求不是很高的场合。传输方式为整个报文段。</p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418135510214.png" srcset="/img/loading.gif" lazyload alt="UDP数据报结构"></p>
+<p>TCP是传输控制协议，提供的是面向连接、可靠的字节流服务。通信双方彼此交换数据前，必须先通过三次握手协议建立连接，之后才能传输数据。TCP提供超时重传，丢弃重复数据，检验数据，流量控制等功能，保证数据能从一端传到另一端。传输方式采用字节流，大小由MSS字段控制(选项字段中)。</p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418135953339.png" srcset="/img/loading.gif" lazyload alt="TCP报文段结构"></p>
+<p><strong>TCP的可靠传输</strong></p>
+<p>序号+确认号+重传(超时，冗余确认)</p>
+<p><strong>TCP的流量控制</strong></p>
+<p>滑动窗口协议</p>
+<ul>
+<li>后退N帧协议(GBN)：接收方只允许顺序接收帧</li>
+<li>选择重传协议(SR)：每一个发送缓冲区都需要一个计算器，接收方允许错序接收帧</li>
+</ul>
+<p><strong>TCP的拥塞控制</strong></p>
+<p>慢开始算法(乘法增大)+拥塞避免算法(加法增大)+快重传(三次冗余ack)+快恢复(折半开始)</p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418141601871.png" srcset="/img/loading.gif" lazyload alt="拥塞控制过程"></p>
+<h3 id="TCP三次握手和四次挥手"><a href="#TCP三次握手和四次挥手" class="headerlink" title="TCP三次握手和四次挥手?"></a><strong>TCP三次握手和四次挥手</strong>?</h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418135059540.png" srcset="/img/loading.gif" lazyload alt="TCP三次握手建立阶段"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418135253642.png" srcset="/img/loading.gif" lazyload alt="TCP四次挥手释放阶段"></p>
+<h3 id="为什么TCP在建立连接时不能每次都选择相同的、固定的初始序号"><a href="#为什么TCP在建立连接时不能每次都选择相同的、固定的初始序号" class="headerlink" title="为什么TCP在建立连接时不能每次都选择相同的、固定的初始序号?"></a><strong>为什么TCP在建立连接时不能每次都选择相同的、固定的初始序号?</strong></h3><p>1)假定主机A和B频繁地建立连接，传送一些TCP报文段后，再释放连接，然后又不断地建立新的连接、传送报文段和释放连接。</p>
+<p>2)假定每次建立连接时，主机A都选择相同的、固定的初始序号，如选择1。</p>
+<p>3)假定主机A发出的某些TCP报文段在网络中会滞留较长时间，以致主机A超时重传这些TCP报文段。</p>
+<p>4)假定有一些在网络中滞留时间较长的TCP报文段最后终于到达主机B,但这时传送该报文段的那个连接早已释放，而在到达主机B时的TCP连接是一条新的TCP连接。</p>
+<p>这样，工作在新的TCP连接的主机B就有可能会接收在旧的连接传送的、已无意义的、过时的TCP报文段(因为这个TCP报文段的序号有可能正好处在当前新连接所用的序号范围之中)，结果产生错误。</p>
+<h3 id="为什么不采用“两次握手”-建立连接呢"><a href="#为什么不采用“两次握手”-建立连接呢" class="headerlink" title="为什么不采用“两次握手” 建立连接呢?"></a><strong>为什么不采用“两次握手” 建立连接呢?</strong></h3><p>这主要是为了防止两次握手情况下已失效的连接请求报文段突然又传送到服务器而产生错误。考虑下面这种情况。客户A向服务器B发出TCP连接请求，第一个连接请求报文在网络的某个结点长时间滞留，A超时后认为报文丢失，于是再重传一次连接请求，B收到后建立连接。数据传输完毕后双方断开连接。而此时，前一个滞留在网络中的连接请求到达服务器B，而B认为A又发来连接请求，此时若使用“三次握手”，则B向A返回确认报文段，由于是一个失效的请求，因此A不予理睬，建立连接失败。若采用的是“两次握手”，则这种情况下B认为传输连接已经建立，并一直等待A传输数据，而A此时并无连接请求，因此不予理睬，这样就造成了B的资源白白浪费。</p>
+<h3 id="为何不采用“三次握手释放连接，且发送最后一次握手报文后要等待2MSL的时间呢"><a href="#为何不采用“三次握手释放连接，且发送最后一次握手报文后要等待2MSL的时间呢" class="headerlink" title="为何不采用“三次握手释放连接，且发送最后一次握手报文后要等待2MSL的时间呢?"></a><strong>为何不采用“三次握手释放连接，且发送最后一次握手报文后要等待2MSL的时间呢?</strong></h3><p>原因有两个:</p>
+<ul>
+<li>保证A发送的最后-一个确认报文段能够到达B。如果A不等待2MSL，若A返回的最后确认报文段丢失，则B不能进入正常关闭状态，而A此时已经关闭，也不可能再重传。</li>
+<li>防止出现“已失效的连接请求报文段”。A在发送最后一个确认报文段后，再经过2MSL可保证本连接持续的时间内所产生的所有报文段从网络中消失。造成错误的情形与不采用“两次握手”建立连接所述的情形相同。注意:服务器结束TCP连接的时间要比客户机早一些，因为客户机最后要等待2MSL后才可进入CLOSED状态。</li>
+</ul>
+<h3 id="浏览器输入URL到得到结果的过程"><a href="#浏览器输入URL到得到结果的过程" class="headerlink" title="浏览器输入URL到得到结果的过程?"></a><strong>浏览器输入URL到得到结果的过程?</strong></h3><p>1、在浏览器地址栏输⼊URL</p>
+<p>2、浏览器查看缓存，如果请求资源在缓存中并且新鲜，跳转到转码步骤。如果资源未缓存，发起新请求。如果已缓存，检验是否⾜够新鲜，⾜够新鲜直接提供给客户端，否则与服务器进⾏验证。</p>
+<p>3、浏览器解析URL获取协议，主机，端⼝，path</p>
+<p>4、浏览器组装⼀个HTTP（GET）请求报⽂</p>
+<p>5、浏览器获取主机 ip 地址，过程如下：</p>
+<p>浏览器缓存 &gt; 本机缓存 &gt; hosts⽂件 &gt; 路由器缓存 &gt; ISP DNS缓存 &gt; DNS递归迭代查询</p>
+<p>6、打开⼀个socket与⽬标IP地址，端⼝建⽴TCP链接，三次握⼿如下：</p>
+<p>客户端发送⼀个TCP的SYN&#x3D;1，Seq&#x3D;X的包到服务器端口</p>
+<p>服务器发回SYN&#x3D;1， ACK&#x3D;X+1， Seq&#x3D;Y的响应包</p>
+<p>客户端发送ACK&#x3D;Y+1， Seq&#x3D;Z</p>
+<p>7、TCP链接建⽴后发送HTTP请求</p>
+<p>8、服务器接受请求并解析，将请求转发到服务程序，如虚拟主机使⽤HTTP Host头部判断请求的服务程序</p>
+<p>9、服务器检查<strong>HTTP请求头是否包含缓存验证信息</strong>，如果验证缓存新鲜，返回304等对应状态码</p>
+<p>10、处理程序读取完整请求并准备HTTP响应，可能需要查询数据库等操作</p>
+<p>11、服务器将响应报⽂通过TCP连接发送回浏览器</p>
+<p>12、浏览器接收HTTP响应，然后根据情况选择关闭TCP连接或者保留重⽤，关闭TCP连接的四次握⼿如下：</p>
+<p>主动⽅发送Fin&#x3D;1， Ack&#x3D;Z， Seq&#x3D; X报⽂</p>
+<p>被动⽅发送ACK&#x3D;X+1， Seq&#x3D;Z报⽂</p>
+<p>被动⽅发送Fin&#x3D;1， ACK&#x3D;X， Seq&#x3D;Y报⽂</p>
+<p>主动⽅发送ACK&#x3D;Y， Seq&#x3D;X报⽂</p>
+<p>13、浏览器检查响应状态吗：是否为1XX，3XX， 4XX， 5XX，这些情况处理与2XX不同</p>
+<p>14、如果资源可缓存，进行缓存</p>
+<p>15、对响应进行解码（例如gzip压缩）</p>
+<p>16、根据资源类型决定如何处理，显示页面</p>
+<p><strong>状态码1xx-5xx</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">分类</th>
+<th align="left">分类描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1**</td>
+<td align="left">信息，服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td align="left">2**</td>
+<td align="left">成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td align="left">3**</td>
+<td align="left">重定向，需要进一步的操作以完成请求<br />302 Found 一般是普通的重定向需求：临时跳转</td>
+</tr>
+<tr>
+<td align="left">4**</td>
+<td align="left">客户端错误，请求包含语法错误或无法完成请求<br />403 Forbidden 服务器理解请求客户端的请求，但是拒绝执行此请求<br />404 Not Found 服务器无法根据客户端的请求找到资源</td>
+</tr>
+<tr>
+<td align="left">5**</td>
+<td align="left">服务器错误，服务器在处理请求的过程中发生了错误<br />500 Internal Server Error 服务器内部错误，无法完成请求<br />502 Bad Gateway 作为网关或者代理工作的服务器尝试执行请求时，从远程服务器接收到了一个无效的响应<br />503 Service Unavailabl 由于超载或系统维护，服务器暂时的无法处理客户端的请求。<br />504 Time-out 充当网关或代理的服务器，未及时从远端服务器获取请求</td>
+</tr>
+</tbody></table>
+<h3 id="HTTPS握手过程"><a href="#HTTPS握手过程" class="headerlink" title="HTTPS握手过程?"></a><strong>HTTPS握手过程?</strong></h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418113846647.png" srcset="/img/loading.gif" lazyload alt="https=http+ssl/tsl"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418113711794.png" srcset="/img/loading.gif" lazyload alt="Https握手"></p>
+<h3 id="HTTP版本发展和主要改进点？"><a href="#HTTP版本发展和主要改进点？" class="headerlink" title="HTTP版本发展和主要改进点？"></a><strong>HTTP版本发展和主要改进点？</strong></h3><ul>
+<li>HTTP 0.9是第一个版本的HTTP协议，已过时。它的组成极其简单，只允许客户端发送GET这一种请求，且不支持请求头。由于没有协议头，造成了HTTP 0.9协议只支持一种内容，即纯文本。不过网页仍然支持用HTML语言格式化，同时无法插入图片。HTTP 0.9具有<strong>典型的无状态性</strong>，每个事务独立进行处理，事务结束时就释放这个连接。由此可见，HTTP协议的无状态特点在其第一个版本0.9中已经成型。一次HTTP 0.9的传输首先要建立一个由客户端到Web服务器的TCP连接，由客户端发起一个请求，然后由Web服务器返回页面内容，然后连接会关闭。如果请求的页面不存在，也不会返回任何错误码。</li>
+<li>HTTP 1.0HTTP协议的第二个版本，第一个在通讯中指定版本号的HTTP协议版本，至今仍被广泛采用。相对于HTTP 0.9 增加了如下主要特性：请求与响应支持头域、响应对象以一个响应状态行开始、<strong>响应对象不只限于超文本</strong>、开始支持客户端通过POST方法向Web服务器提交数据，<strong>支持GET、HEAD、POST方法</strong>、缓存机制，以及身份认证 </li>
+<li>HTTP1.1支持<strong>持久连接</strong>，即TCP连接默认不关闭，可以被多个请求复用</li>
+<li>HTTP&#x2F;2 则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为”帧”（frame）：头信息帧和数据帧。</li>
+</ul>
+<h3 id="DNS解析的两种方式"><a href="#DNS解析的两种方式" class="headerlink" title="DNS解析的两种方式?"></a><strong>DNS解析的两种方式?</strong></h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418145028996.png" srcset="/img/loading.gif" lazyload alt="DNS查询的两种方式"></p>
+<h2 id="三、操作系统问题"><a href="#三、操作系统问题" class="headerlink" title="三、操作系统问题"></a>三、操作系统问题</h2><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418154751588.png" srcset="/img/loading.gif" lazyload alt="概论"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418154901421.png" srcset="/img/loading.gif" lazyload alt="进程管理"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418155120711.png" srcset="/img/loading.gif" lazyload alt="内存管理"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418155159890.png" srcset="/img/loading.gif" lazyload alt="文件管理"></p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418155321943.png" srcset="/img/loading.gif" lazyload alt="IO管理"></p>
+<h2 id="四、数据库问题"><a href="#四、数据库问题" class="headerlink" title="四、数据库问题"></a>四、数据库问题</h2><p>Mysql基础：<a target="_blank" rel="noopener" href="https://oofelix.github.io/2022/03/11/mysql1/">https://oofelix.github.io/2022/03/11/mysql1/</a> </p>
+<p>Mysql高级：<a target="_blank" rel="noopener" href="https://oofelix.github.io/2022/03/13/mysql2/">https://oofelix.github.io/2022/03/13/mysql2/</a> </p>
+<p>Redis详解：<a target="_blank" rel="noopener" href="https://oofelix.github.io/2022/03/10/redis/">https://oofelix.github.io/2022/03/10/redis/</a> </p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/10/graph/">
+                        <span class="hidden-mobile">图论</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
