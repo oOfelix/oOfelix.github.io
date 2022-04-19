@@ -16,19 +16,19 @@
   <meta name="author" content="Felix">
   <meta name="keywords" content="">
   
-    <meta name="description" content="手撕代码、计网、操作系统数据库...不是问题！">
+    <meta name="description" content="Coding、Net、OS、DB...不是问题！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试攻略">
 <meta property="og:url" content="http://example.com/2022/04/18/%E9%9D%A2%E7%BB%8F/index.html">
 <meta property="og:site_name" content="Felixの博客屋">
-<meta property="og:description" content="手撕代码、计网、操作系统数据库...不是问题！">
+<meta property="og:description" content="Coding、Net、OS、DB...不是问题！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/post/interview.jpg">
+<meta property="og:image" content="http://example.com/img/post/offer.jpg">
 <meta property="article:published_time" content="2022-04-18T02:07:06.533Z">
-<meta property="article:modified_time" content="2022-04-18T08:03:29.709Z">
+<meta property="article:modified_time" content="2022-04-19T16:22:12.395Z">
 <meta property="article:author" content="Felix">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/post/interview.jpg">
+<meta name="twitter:image" content="http://example.com/img/post/offer.jpg">
   
   
   <title>面试攻略 - Felixの博客屋</title>
@@ -198,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.7k 字
+      18k 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      48 分钟
+      152 分钟
     </span>
   
 
@@ -239,19 +239,17 @@
             <h1 style="display: none">面试攻略</h1>
             
             <div class="markdown-body">
-              <h2 id="一、架构代码问题"><a href="#一、架构代码问题" class="headerlink" title="一、架构代码问题"></a>一、架构代码问题</h2><p><strong>实现hashmap</strong></p>
-<blockquote>
+              <h2 id="一、代码篇"><a href="#一、代码篇" class="headerlink" title="一、代码篇"></a>一、代码篇</h2><h3 id="实现hashmap"><a href="#实现hashmap" class="headerlink" title="实现hashmap"></a><strong>实现hashmap</strong></h3><blockquote>
 <p>简单的模拟，无负载因子，无扩容，无红黑树，无收缩。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyHashMap</span>&lt;K,V&gt; &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> capacity;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Node&lt;K,V&gt;[] table;<br><br>    MyHashMap(<span class="hljs-type">int</span> capacity)&#123;<br>        <span class="hljs-built_in">this</span>.capacity = capacity;<br>        <span class="hljs-built_in">this</span>.table = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>[capacity];<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&lt;K,V&gt;&#123;<br>        K key;<br>        V value;<br>        Node&lt;K,V&gt; next;<br>        Node(K key, V value)&#123;<br>            <span class="hljs-built_in">this</span>.key = key;<br>            <span class="hljs-built_in">this</span>.value = value;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hash</span><span class="hljs-params">(K key)</span>&#123;<br>        <span class="hljs-keyword">return</span> key.hashCode() % (capacity-<span class="hljs-number">1</span>);<br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(K key, V value)</span>&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">loc</span> <span class="hljs-operator">=</span> hash(key);<br>        Node&lt;K,V&gt; node = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>&lt;&gt;(key, value);<br>        <span class="hljs-keyword">if</span> (table[loc] != <span class="hljs-literal">null</span>) &#123;<br>            Node&lt;K,V&gt; head = table[loc];<br>            <span class="hljs-keyword">while</span>(head != <span class="hljs-literal">null</span>)&#123;<br>                <span class="hljs-keyword">if</span>(head.key.equals(key))&#123;<br>                    head.value = value;<br>                    <span class="hljs-keyword">return</span>;<br>                &#125;<br>                head = head.next;<br>            &#125;<br>            node.next = table[loc];<br>            table[loc] = node;<br>        &#125;<br>        table[loc] = node;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> V <span class="hljs-title function_">get</span><span class="hljs-params">(K key)</span>&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">loc</span> <span class="hljs-operator">=</span> hash(key);<br>        <span class="hljs-keyword">if</span>(table[loc] == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        Node&lt;K,V&gt; head = table[loc];<br>        <span class="hljs-keyword">while</span>(head != <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">if</span>(head.key.equals(key))<br>                <span class="hljs-keyword">return</span> head.value;<br>            head = head.next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        MyHashMap&lt;Integer,Integer&gt; map =  <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyHashMap</span>&lt;&gt;(<span class="hljs-number">10</span>);<br>        map.put(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>);<br>        map.put(<span class="hljs-number">100</span>, <span class="hljs-number">110</span>);<br>        System.out.println(map.get(<span class="hljs-number">100</span>));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><strong>实现LRU</strong></p>
-<blockquote>
+<h3 id="实现LRU"><a href="#实现LRU" class="headerlink" title="实现LRU"></a><strong>实现LRU</strong></h3><blockquote>
 <p>双链表+HashMap</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&#123;<br>    <span class="hljs-type">int</span> key,val;<br>    Node prev,next;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Node</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> val)</span>&#123;<br>        <span class="hljs-built_in">this</span>.key = key;<br>        <span class="hljs-built_in">this</span>.val = val;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LRUCache</span> &#123;<br>    <span class="hljs-keyword">private</span> Map&lt;Integer,Node&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">private</span> Node head, tail;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">capacity</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">LRUCache</span><span class="hljs-params">(<span class="hljs-type">int</span> capacity)</span> &#123;<br>        <span class="hljs-built_in">this</span>.capacity = capacity;<br>        head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>);<br>        tail = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>);<br>        head.next = tail;<br>        tail.prev = head;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>        <span class="hljs-keyword">if</span>(map.get(key) != <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> map.get(key);<br>            node.prev.next = node.next;<br>            node.next.prev = node.prev;<br>            move(node);<br>            <span class="hljs-keyword">return</span> node.val;<br>        &#125;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">set</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value)</span> &#123;<br>        <span class="hljs-keyword">if</span>(get(key) &gt; -<span class="hljs-number">1</span>)&#123;<br>            map.get(key).val = value;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-keyword">if</span>(map.size() == capacity)&#123;<br>                <span class="hljs-type">int</span> <span class="hljs-variable">rk</span> <span class="hljs-operator">=</span> tail.prev.key;<br>                tail.prev.prev.next = tail;<br>                tail.prev = tail.prev.prev;<br>                map.remove(rk);<br>            &#125;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(key,value);<br>            map.put(key,node);<br>            move(node);<br>        &#125;<br>            <br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">move</span><span class="hljs-params">(Node node)</span> &#123;<br>        node.next = head.next;<br>        head.next.prev = node;<br>        head.next = node;<br>        node.prev = head;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="二、网络问题"><a href="#二、网络问题" class="headerlink" title="二、网络问题"></a>二、网络问题</h2><h3 id="知识架构"><a href="#知识架构" class="headerlink" title="知识架构"></a><strong>知识架构</strong></h3><blockquote>
+<h2 id="二、网络篇"><a href="#二、网络篇" class="headerlink" title="二、网络篇"></a>二、网络篇</h2><h3 id="知识架构"><a href="#知识架构" class="headerlink" title="知识架构"></a><strong>知识架构</strong></h3><blockquote>
 <p>软件开发类学生，重要关注点在于网络及以上的层次，尤其是<strong>传输层</strong>！</p>
 </blockquote>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418143249901.png" srcset="/img/loading.gif" lazyload alt="物理层"></p>
@@ -259,7 +257,56 @@
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418143125621.png" srcset="/img/loading.gif" lazyload alt="网络层"></p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418143020528.png" srcset="/img/loading.gif" lazyload alt="传输层"></p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418143203014.png" srcset="/img/loading.gif" lazyload alt="应用层"></p>
-<h3 id="TCP和UDP有什么区别"><a href="#TCP和UDP有什么区别" class="headerlink" title="TCP和UDP有什么区别?"></a><strong>TCP和UDP有什么区别?</strong></h3><p>UDP是用户数据报协议，是一个简单的面向无连接的协议。UDP不提供可靠的服务。在数据数据前不用建立连接故而传输速度很快。UDP主要用户流媒体传输，IP电话等对数据可靠性要求不是很高的场合。传输方式为整个报文段。</p>
+<h3 id="1-GET-和-POST有什么区别？"><a href="#1-GET-和-POST有什么区别？" class="headerlink" title="1.GET 和 POST有什么区别？"></a><strong>1.GET 和 POST有什么区别？</strong></h3><table>
+<thead>
+<tr>
+<th align="left">区别</th>
+<th align="center">GET</th>
+<th align="center">POST</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">传输方式</td>
+<td align="center">从服务器获取数据</td>
+<td align="center">向服务器提交数据</td>
+</tr>
+<tr>
+<td align="left">数据长度</td>
+<td align="center">当发送数据时，GET 方法向 URL 添加数据；有长度限制</td>
+<td align="center">无限制</td>
+</tr>
+<tr>
+<td align="left">数据类型</td>
+<td align="center">只允许 ASCII 字符</td>
+<td align="center">无限制</td>
+</tr>
+<tr>
+<td align="left">安全性</td>
+<td align="center">较差，所发送的数据是 URL 的一部分，会显示在网页上</td>
+<td align="center">较好 参数不会被保存在浏览器历史或 WEB 服务器日志中</td>
+</tr>
+<tr>
+<td align="left">可见性</td>
+<td align="center">显示在 URL 上</td>
+<td align="center">不显示</td>
+</tr>
+<tr>
+<td align="left">收藏为书签</td>
+<td align="center">可以</td>
+<td align="center">不可以</td>
+</tr>
+<tr>
+<td align="left">历史记录</td>
+<td align="center">可以被保留在历史记录当中</td>
+<td align="center">不可以被保留</td>
+</tr>
+<tr>
+<td align="left">缓存</td>
+<td align="center">能被缓存</td>
+<td align="center">不可以被缓存</td>
+</tr>
+</tbody></table>
+<h3 id="2-TCP和UDP有什么区别"><a href="#2-TCP和UDP有什么区别" class="headerlink" title="2.TCP和UDP有什么区别?"></a>2.<strong>TCP和UDP有什么区别?</strong></h3><p>UDP是用户数据报协议，是一个简单的面向无连接的协议。UDP不提供可靠的服务。在数据数据前不用建立连接故而传输速度很快。UDP主要用户流媒体传输，IP电话等对数据可靠性要求不是很高的场合。传输方式为整个报文段。</p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418135510214.png" srcset="/img/loading.gif" lazyload alt="UDP数据报结构"></p>
 <p>TCP是传输控制协议，提供的是面向连接、可靠的字节流服务。通信双方彼此交换数据前，必须先通过三次握手协议建立连接，之后才能传输数据。TCP提供超时重传，丢弃重复数据，检验数据，流量控制等功能，保证数据能从一端传到另一端。传输方式采用字节流，大小由MSS字段控制(选项字段中)。</p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418135953339.png" srcset="/img/loading.gif" lazyload alt="TCP报文段结构"></p>
@@ -274,43 +321,28 @@
 <p><strong>TCP的拥塞控制</strong></p>
 <p>慢开始算法(乘法增大)+拥塞避免算法(加法增大)+快重传(三次冗余ack)+快恢复(折半开始)</p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418141601871.png" srcset="/img/loading.gif" lazyload alt="拥塞控制过程"></p>
-<h3 id="TCP三次握手和四次挥手"><a href="#TCP三次握手和四次挥手" class="headerlink" title="TCP三次握手和四次挥手?"></a><strong>TCP三次握手和四次挥手</strong>?</h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418135059540.png" srcset="/img/loading.gif" lazyload alt="TCP三次握手建立阶段"></p>
+<h3 id="3-TCP三次握手和四次挥手"><a href="#3-TCP三次握手和四次挥手" class="headerlink" title="3.TCP三次握手和四次挥手?"></a>3.<strong>TCP三次握手和四次挥手</strong>?</h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418135059540.png" srcset="/img/loading.gif" lazyload alt="TCP三次握手建立阶段"></p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418135253642.png" srcset="/img/loading.gif" lazyload alt="TCP四次挥手释放阶段"></p>
-<h3 id="为什么TCP在建立连接时不能每次都选择相同的、固定的初始序号"><a href="#为什么TCP在建立连接时不能每次都选择相同的、固定的初始序号" class="headerlink" title="为什么TCP在建立连接时不能每次都选择相同的、固定的初始序号?"></a><strong>为什么TCP在建立连接时不能每次都选择相同的、固定的初始序号?</strong></h3><p>1)假定主机A和B频繁地建立连接，传送一些TCP报文段后，再释放连接，然后又不断地建立新的连接、传送报文段和释放连接。</p>
+<h3 id="4-为什么TCP不使用固定的初始序号"><a href="#4-为什么TCP不使用固定的初始序号" class="headerlink" title="4.为什么TCP不使用固定的初始序号?"></a><strong>4.为什么TCP不使用固定的初始序号?</strong></h3><p>1)假定主机A和B频繁地建立连接，传送一些TCP报文段后，再释放连接，然后又不断地建立新的连接、传送报文段和释放连接。</p>
 <p>2)假定每次建立连接时，主机A都选择相同的、固定的初始序号，如选择1。</p>
 <p>3)假定主机A发出的某些TCP报文段在网络中会滞留较长时间，以致主机A超时重传这些TCP报文段。</p>
 <p>4)假定有一些在网络中滞留时间较长的TCP报文段最后终于到达主机B,但这时传送该报文段的那个连接早已释放，而在到达主机B时的TCP连接是一条新的TCP连接。</p>
 <p>这样，工作在新的TCP连接的主机B就有可能会接收在旧的连接传送的、已无意义的、过时的TCP报文段(因为这个TCP报文段的序号有可能正好处在当前新连接所用的序号范围之中)，结果产生错误。</p>
-<h3 id="为什么不采用“两次握手”-建立连接呢"><a href="#为什么不采用“两次握手”-建立连接呢" class="headerlink" title="为什么不采用“两次握手” 建立连接呢?"></a><strong>为什么不采用“两次握手” 建立连接呢?</strong></h3><p>这主要是为了防止两次握手情况下已失效的连接请求报文段突然又传送到服务器而产生错误。考虑下面这种情况。客户A向服务器B发出TCP连接请求，第一个连接请求报文在网络的某个结点长时间滞留，A超时后认为报文丢失，于是再重传一次连接请求，B收到后建立连接。数据传输完毕后双方断开连接。而此时，前一个滞留在网络中的连接请求到达服务器B，而B认为A又发来连接请求，此时若使用“三次握手”，则B向A返回确认报文段，由于是一个失效的请求，因此A不予理睬，建立连接失败。若采用的是“两次握手”，则这种情况下B认为传输连接已经建立，并一直等待A传输数据，而A此时并无连接请求，因此不予理睬，这样就造成了B的资源白白浪费。</p>
-<h3 id="为何不采用“三次握手释放连接，且发送最后一次握手报文后要等待2MSL的时间呢"><a href="#为何不采用“三次握手释放连接，且发送最后一次握手报文后要等待2MSL的时间呢" class="headerlink" title="为何不采用“三次握手释放连接，且发送最后一次握手报文后要等待2MSL的时间呢?"></a><strong>为何不采用“三次握手释放连接，且发送最后一次握手报文后要等待2MSL的时间呢?</strong></h3><p>原因有两个:</p>
+<h3 id="5-为什么不两次握手-建立连接呢"><a href="#5-为什么不两次握手-建立连接呢" class="headerlink" title="5.为什么不两次握手 建立连接呢?"></a><strong>5.为什么不两次握手 建立连接呢?</strong></h3><p>这主要是为了防止两次握手情况下已失效的连接请求报文段突然又传送到服务器而产生错误。考虑下面这种情况。客户A向服务器B发出TCP连接请求，第一个连接请求报文在网络的某个结点长时间滞留，A超时后认为报文丢失，于是再重传一次连接请求，B收到后建立连接。数据传输完毕后双方断开连接。而此时，前一个滞留在网络中的连接请求到达服务器B，而B认为A又发来连接请求，此时若使用“三次握手”，则B向A返回确认报文段，由于是一个失效的请求，因此A不予理睬，建立连接失败。若采用的是“两次握手”，则这种情况下B认为传输连接已经建立，并一直等待A传输数据，而A此时并无连接请求，因此不予理睬，这样就造成了B的资源白白浪费。</p>
+<h3 id="6-为何四次握手释放连接，等待2MSL的时间呢"><a href="#6-为何四次握手释放连接，等待2MSL的时间呢" class="headerlink" title="6.为何四次握手释放连接，等待2MSL的时间呢?"></a><strong>6.为何四次握手释放连接，等待2MSL的时间呢?</strong></h3><p>原因有两个:</p>
 <ul>
 <li>保证A发送的最后-一个确认报文段能够到达B。如果A不等待2MSL，若A返回的最后确认报文段丢失，则B不能进入正常关闭状态，而A此时已经关闭，也不可能再重传。</li>
 <li>防止出现“已失效的连接请求报文段”。A在发送最后一个确认报文段后，再经过2MSL可保证本连接持续的时间内所产生的所有报文段从网络中消失。造成错误的情形与不采用“两次握手”建立连接所述的情形相同。注意:服务器结束TCP连接的时间要比客户机早一些，因为客户机最后要等待2MSL后才可进入CLOSED状态。</li>
 </ul>
-<h3 id="浏览器输入URL到得到结果的过程"><a href="#浏览器输入URL到得到结果的过程" class="headerlink" title="浏览器输入URL到得到结果的过程?"></a><strong>浏览器输入URL到得到结果的过程?</strong></h3><p>1、在浏览器地址栏输⼊URL</p>
-<p>2、浏览器查看缓存，如果请求资源在缓存中并且新鲜，跳转到转码步骤。如果资源未缓存，发起新请求。如果已缓存，检验是否⾜够新鲜，⾜够新鲜直接提供给客户端，否则与服务器进⾏验证。</p>
-<p>3、浏览器解析URL获取协议，主机，端⼝，path</p>
-<p>4、浏览器组装⼀个HTTP（GET）请求报⽂</p>
-<p>5、浏览器获取主机 ip 地址，过程如下：</p>
-<p>浏览器缓存 &gt; 本机缓存 &gt; hosts⽂件 &gt; 路由器缓存 &gt; ISP DNS缓存 &gt; DNS递归迭代查询</p>
-<p>6、打开⼀个socket与⽬标IP地址，端⼝建⽴TCP链接，三次握⼿如下：</p>
-<p>客户端发送⼀个TCP的SYN&#x3D;1，Seq&#x3D;X的包到服务器端口</p>
-<p>服务器发回SYN&#x3D;1， ACK&#x3D;X+1， Seq&#x3D;Y的响应包</p>
-<p>客户端发送ACK&#x3D;Y+1， Seq&#x3D;Z</p>
-<p>7、TCP链接建⽴后发送HTTP请求</p>
-<p>8、服务器接受请求并解析，将请求转发到服务程序，如虚拟主机使⽤HTTP Host头部判断请求的服务程序</p>
-<p>9、服务器检查<strong>HTTP请求头是否包含缓存验证信息</strong>，如果验证缓存新鲜，返回304等对应状态码</p>
-<p>10、处理程序读取完整请求并准备HTTP响应，可能需要查询数据库等操作</p>
-<p>11、服务器将响应报⽂通过TCP连接发送回浏览器</p>
-<p>12、浏览器接收HTTP响应，然后根据情况选择关闭TCP连接或者保留重⽤，关闭TCP连接的四次握⼿如下：</p>
-<p>主动⽅发送Fin&#x3D;1， Ack&#x3D;Z， Seq&#x3D; X报⽂</p>
-<p>被动⽅发送ACK&#x3D;X+1， Seq&#x3D;Z报⽂</p>
-<p>被动⽅发送Fin&#x3D;1， ACK&#x3D;X， Seq&#x3D;Y报⽂</p>
-<p>主动⽅发送ACK&#x3D;Y， Seq&#x3D;X报⽂</p>
-<p>13、浏览器检查响应状态吗：是否为1XX，3XX， 4XX， 5XX，这些情况处理与2XX不同</p>
-<p>14、如果资源可缓存，进行缓存</p>
-<p>15、对响应进行解码（例如gzip压缩）</p>
-<p>16、根据资源类型决定如何处理，显示页面</p>
+<h3 id="7-浏览器输入URL到得到结果的过程"><a href="#7-浏览器输入URL到得到结果的过程" class="headerlink" title="7.浏览器输入URL到得到结果的过程?"></a><strong>7.浏览器输入URL到得到结果的过程?</strong></h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418205337659.png" srcset="/img/loading.gif" lazyload alt="浏览器URL访问网页"></p>
+<ul>
+<li><strong>解析网址</strong>,生成 HTTP 请求信息</li>
+<li><strong>查IP</strong>，浏览器缓存 &gt; 本机缓存 &gt; hosts⽂件 &gt; 路由器缓存 &gt; ISP DNS缓存 &gt; DNS递归迭代查询</li>
+<li><strong>发送请求</strong>，得到了 IP 以后，向服务器<strong>发送 TCP 连接</strong>，TCP 连接经过三次握手。</li>
+<li><strong>服务器处理</strong>，接受 TCP 报文后，对<strong>连接进行处理</strong>，对 HTTP 协议解析</li>
+<li><strong>服务器返回响应</strong></li>
+<li><strong>展示</strong>浏览器接受响应，显示页面，渲染页面</li>
+</ul>
 <p><strong>状态码1xx-5xx</strong></p>
 <table>
 <thead>
@@ -320,43 +352,498 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">1**</td>
+<td align="left">1xx</td>
 <td align="left">信息，服务器收到请求，需要请求者继续执行操作</td>
 </tr>
 <tr>
-<td align="left">2**</td>
+<td align="left">2xx</td>
 <td align="left">成功，操作被成功接收并处理</td>
 </tr>
 <tr>
-<td align="left">3**</td>
+<td align="left">3xx</td>
 <td align="left">重定向，需要进一步的操作以完成请求<br />302 Found 一般是普通的重定向需求：临时跳转</td>
 </tr>
 <tr>
-<td align="left">4**</td>
+<td align="left">4xx</td>
 <td align="left">客户端错误，请求包含语法错误或无法完成请求<br />403 Forbidden 服务器理解请求客户端的请求，但是拒绝执行此请求<br />404 Not Found 服务器无法根据客户端的请求找到资源</td>
 </tr>
 <tr>
-<td align="left">5**</td>
+<td align="left">5xx</td>
 <td align="left">服务器错误，服务器在处理请求的过程中发生了错误<br />500 Internal Server Error 服务器内部错误，无法完成请求<br />502 Bad Gateway 作为网关或者代理工作的服务器尝试执行请求时，从远程服务器接收到了一个无效的响应<br />503 Service Unavailabl 由于超载或系统维护，服务器暂时的无法处理客户端的请求。<br />504 Time-out 充当网关或代理的服务器，未及时从远端服务器获取请求</td>
 </tr>
 </tbody></table>
-<h3 id="HTTPS握手过程"><a href="#HTTPS握手过程" class="headerlink" title="HTTPS握手过程?"></a><strong>HTTPS握手过程?</strong></h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418113846647.png" srcset="/img/loading.gif" lazyload alt="https=http+ssl/tsl"></p>
+<h3 id="8-HTTPS握手过程"><a href="#8-HTTPS握手过程" class="headerlink" title="8.HTTPS握手过程?"></a><strong>8.HTTPS握手过程?</strong></h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418113846647.png" srcset="/img/loading.gif" lazyload alt="https=http+ssl/tsl"></p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418113711794.png" srcset="/img/loading.gif" lazyload alt="Https握手"></p>
-<h3 id="HTTP版本发展和主要改进点？"><a href="#HTTP版本发展和主要改进点？" class="headerlink" title="HTTP版本发展和主要改进点？"></a><strong>HTTP版本发展和主要改进点？</strong></h3><ul>
-<li>HTTP 0.9是第一个版本的HTTP协议，已过时。它的组成极其简单，只允许客户端发送GET这一种请求，且不支持请求头。由于没有协议头，造成了HTTP 0.9协议只支持一种内容，即纯文本。不过网页仍然支持用HTML语言格式化，同时无法插入图片。HTTP 0.9具有<strong>典型的无状态性</strong>，每个事务独立进行处理，事务结束时就释放这个连接。由此可见，HTTP协议的无状态特点在其第一个版本0.9中已经成型。一次HTTP 0.9的传输首先要建立一个由客户端到Web服务器的TCP连接，由客户端发起一个请求，然后由Web服务器返回页面内容，然后连接会关闭。如果请求的页面不存在，也不会返回任何错误码。</li>
-<li>HTTP 1.0HTTP协议的第二个版本，第一个在通讯中指定版本号的HTTP协议版本，至今仍被广泛采用。相对于HTTP 0.9 增加了如下主要特性：请求与响应支持头域、响应对象以一个响应状态行开始、<strong>响应对象不只限于超文本</strong>、开始支持客户端通过POST方法向Web服务器提交数据，<strong>支持GET、HEAD、POST方法</strong>、缓存机制，以及身份认证 </li>
-<li>HTTP1.1支持<strong>持久连接</strong>，即TCP连接默认不关闭，可以被多个请求复用</li>
-<li>HTTP&#x2F;2 则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为”帧”（frame）：头信息帧和数据帧。</li>
+<h3 id="9-HTTP版本发展？"><a href="#9-HTTP版本发展？" class="headerlink" title="9.HTTP版本发展？"></a><strong>9.HTTP版本发展？</strong></h3><h4 id="HTTP1-1-和-HTTP1-0-的区别有哪些？"><a href="#HTTP1-1-和-HTTP1-0-的区别有哪些？" class="headerlink" title="HTTP1.1 和 HTTP1.0 的区别有哪些？"></a>HTTP1.1 和 HTTP1.0 的区别有哪些？</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418204555087.png" srcset="/img/loading.gif" lazyload alt="http1.1"></p>
+<ul>
+<li><strong>长链接</strong>：早期 HTTP1.0 的每一次请求都伴随着一次三次握手的过程，并且是<strong>串行的请求</strong>，增加了不必要的性能开销，HTTP1.1 <strong>新增了长链接</strong>的通讯方式，减少了性能损耗</li>
+<li><strong>管道</strong>：HTTP1.0 只有串行发送，没有管道，HTTP1.1 增加了<strong>管道</strong>的概念，使得在同一个 TCP 链接当中可以同时发出多个请求</li>
+<li><strong>断点续传</strong>：HTTP1.0 <strong>不支持断点续传</strong>，HTTP1.1 新增了 <strong>range</strong> 字段，用来指定数据字节位置，开启了断点续传的时代</li>
+<li><strong>Host头处理</strong>：HTTP1.0 任务主机只有一个节点，所以并<strong>没有传 HOST</strong>，HTTP1.1 时代，虚拟机技术越来越发达，一台机器上也有可能有很多节点，故<strong>增加了 HOST 信息</strong></li>
+<li><strong>缓存处理</strong>：在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则<strong>引入了更多的缓存控制策略</strong>例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略。</li>
+<li><strong>错误状态响应码</strong>：在HTTP1.1中<strong>新增了24个错误状态响应码</strong>，如410（Gone）表示服务器上的某个资源被永久性的删除等。</li>
 </ul>
-<h3 id="DNS解析的两种方式"><a href="#DNS解析的两种方式" class="headerlink" title="DNS解析的两种方式?"></a><strong>DNS解析的两种方式?</strong></h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418145028996.png" srcset="/img/loading.gif" lazyload alt="DNS查询的两种方式"></p>
-<h2 id="三、操作系统问题"><a href="#三、操作系统问题" class="headerlink" title="三、操作系统问题"></a>三、操作系统问题</h2><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418154751588.png" srcset="/img/loading.gif" lazyload alt="概论"></p>
+<h4 id="HTTP2-和-HTTP1-1-的区别是什么？"><a href="#HTTP2-和-HTTP1-1-的区别是什么？" class="headerlink" title="HTTP2 和 HTTP1.1 的区别是什么？"></a>HTTP2 和 HTTP1.1 的区别是什么？</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418204637544.png" srcset="/img/loading.gif" lazyload alt="http2"></p>
+<ul>
+<li><strong>头部压缩</strong>：在 HTTP2 当中，如果你发出了<strong>多个请求</strong>，并且它们的<strong>头部(header)是相同的</strong>，那么 HTTP2 协议会帮你<strong>消除同样的部分</strong>。(其实就是在客户端和服务端维护一张索引表来实现)</li>
+<li><strong>二进制格式</strong>：HTTP1.1 采用<strong>明文</strong>的形式，HTTP&#x2F;2 全⾯采⽤了<strong>⼆进制格式</strong>，头信息和数据体都是⼆进制</li>
+<li><strong>数据流</strong>：HTTP&#x2F;2 的数据包不是按顺序发送的，同⼀个连接⾥⾯连续的数据包，可能属于不同的回应。(对数据包做了标记，标志其属于哪一个请求，其中规定客户端发出的数据流编号为奇数，服务器发出的数据流编号为偶数。<strong>客户端还可以指定数据流的优先级</strong>，优先级⾼的请求，服务器就先响应该请求)</li>
+<li><strong>IO多路复用</strong>：如:在⼀个连接中，服务器收到了客户端 A 和 B 的两个请求，但是发现在处理 A 的过程中⾮常耗时，索性就先回应 A 已经处理好的部分，再接着回应 B 请求，最后再回应 A 请求剩下的部分。HTTP&#x2F;2 可以<strong>在⼀个连接中并发多个请求或回应</strong>。</li>
+<li><strong>服务器推送</strong>：服务器可以主动向客户端发送请求</li>
+</ul>
+<h4 id="HTTP3-和-HTTP2-的区别是什么？"><a href="#HTTP3-和-HTTP2-的区别是什么？" class="headerlink" title="HTTP3 和 HTTP2 的区别是什么？"></a>HTTP3 和 HTTP2 的区别是什么？</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418204746930.png" srcset="/img/loading.gif" lazyload alt="http3"></p>
+<ul>
+<li><strong>协议不同</strong>：HTTP2 是基于 <strong>TCP</strong> 协议实现的，HTTP3 是基于 <strong>UDP</strong> 协议实现的</li>
+<li><strong>QUIC</strong>：<strong>HTTP3 新增了 QUIC 协议</strong>来实现可靠性的传输</li>
+<li><strong>握手次数</strong>：HTTP2 是基于 HTTPS 实现的，建立连接需要先进行 TCP 3次握手，然后再进行 TLS 3次握手，<strong>总共6次握手</strong>，HTTP3 只需要 QUIC 的<strong>3次握手</strong></li>
+</ul>
+<h3 id="10-DNS解析的两种方式"><a href="#10-DNS解析的两种方式" class="headerlink" title="10.DNS解析的两种方式?"></a><strong>10.DNS解析的两种方式?</strong></h3><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418145028996.png" srcset="/img/loading.gif" lazyload alt="DNS查询的两种方式"></p>
+<h3 id="11-XSS和-CSRF攻击"><a href="#11-XSS和-CSRF攻击" class="headerlink" title="11.XSS和 CSRF攻击?"></a><strong>11.XSS和 CSRF攻击?</strong></h3><p><strong>XSS</strong>：跨站脚本攻击（Cross Site Scripting)，为了不和层叠样式表 CSS 混淆，故将跨站脚本攻击缩写为 XSS)。恶意攻击者往 Web 页面里插入恶意 Script 代码，当用户浏览该页之时，嵌入其中 Web 里面的 Script 代码会被执行，从而达到恶意攻击用户的目的。SQL注入也是同理。</p>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">在网页 input 或者 textarea 中输入<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"><span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;xss&#x27;</span>)</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>或者其他脚本。<br></code></pre></td></tr></table></figure>
+
+<p><strong>CSRF</strong>：CSRF 的全称是“跨站请求伪造”，而 XSS 的全称是“跨站脚本”。看起来有点相似，它们都是属于跨站攻击——不攻击服务器端而攻击正常访问网站的用户，但它们的攻击类型是不同维度上的分 类。CSRF 顾名思义，是伪造请求，冒充用户在站内的正常操作。我们知道，绝大多数网站是通过 cookie 等方式辨识用户身份（包括使用服务器端 Session 的网站，因为 Session ID 也是大多保存在 cookie 里面的），再予以授权的。所以要伪造用户的正常操作，最好的方法是通过 XSS 或链接欺骗等途径，让用户在本机（即拥有身份 cookie 的浏览器端）发起用户所不知道的请求。</p>
+<p>例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">银行网站 A，它以 GET 请求来完成银行转账的操作，如：<br>http:<span class="hljs-comment">//www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</span><br>危险网站 B，它里面有一段 HTML 的代码如下:<br>&lt;img src=http:<span class="hljs-comment">//www.mybank.com/Transfer.php?toBankId=11&amp;money=1000&gt;</span><br>首先，你登录了银行网站 A ，然后访问危险网站 B ，噢，这时你会发现你的银行账户少了 <span class="hljs-number">1000</span> 块…<br></code></pre></td></tr></table></figure>
+
+<h2 id="三、操作系统篇"><a href="#三、操作系统篇" class="headerlink" title="三、操作系统篇"></a>三、操作系统篇</h2><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418154751588.png" srcset="/img/loading.gif" lazyload alt="概论"></p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418154901421.png" srcset="/img/loading.gif" lazyload alt="进程管理"></p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418155120711.png" srcset="/img/loading.gif" lazyload alt="内存管理"></p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418155159890.png" srcset="/img/loading.gif" lazyload alt="文件管理"></p>
 <p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418155321943.png" srcset="/img/loading.gif" lazyload alt="IO管理"></p>
-<h2 id="四、数据库问题"><a href="#四、数据库问题" class="headerlink" title="四、数据库问题"></a>四、数据库问题</h2><p>Mysql基础：<a target="_blank" rel="noopener" href="https://oofelix.github.io/2022/03/11/mysql1/">https://oofelix.github.io/2022/03/11/mysql1/</a> </p>
+<h2 id="四、数据库篇"><a href="#四、数据库篇" class="headerlink" title="四、数据库篇"></a>四、数据库篇</h2><p>Mysql基础：<a target="_blank" rel="noopener" href="https://oofelix.github.io/2022/03/11/mysql1/">https://oofelix.github.io/2022/03/11/mysql1/</a> </p>
 <p>Mysql高级：<a target="_blank" rel="noopener" href="https://oofelix.github.io/2022/03/13/mysql2/">https://oofelix.github.io/2022/03/13/mysql2/</a> </p>
 <p>Redis详解：<a target="_blank" rel="noopener" href="https://oofelix.github.io/2022/03/10/redis/">https://oofelix.github.io/2022/03/10/redis/</a> </p>
+<h3 id="MySql篇"><a href="#MySql篇" class="headerlink" title="MySql篇"></a>MySql篇</h3><h4 id="1-说一说三大范式"><a href="#1-说一说三大范式" class="headerlink" title="1.说一说三大范式"></a>1.说一说三大范式</h4><ul>
+<li><strong>「第一范式」</strong>：数据库中的字段具有<strong>「原子性」</strong>，不可再分，并且是单一职责</li>
+<li><strong>「第二范式」</strong>：<strong>「建立在第一范式的基础上」</strong>，第二范式要求数据库表中的每个实例或行必须<strong>「可以被惟一地区分」</strong>。为实现区分通常需要为表加上一个列，以存储各个实例的惟一标识。这个惟一属性列被称为主键</li>
+<li><strong>「第三范式」</strong>：<strong>「建立在第一，第二范式的基础上」</strong>，确保每列都和主键列直接相关，而不是间接相关不存在其他表的非主键信息</li>
+</ul>
+<h4 id="2-MyISAM-与-InnoDB-的区别是什么？"><a href="#2-MyISAM-与-InnoDB-的区别是什么？" class="headerlink" title="2.MyISAM 与 InnoDB 的区别是什么？"></a>2.MyISAM 与 InnoDB 的区别是什么？</h4><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>MylSAM</th>
+<th>InnoDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主外键</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>事务</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>行表锁</td>
+<td>表锁（不适合高并发）</td>
+<td>行锁（适合高并发操作）</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>只缓存索引，不缓存真实数据</td>
+<td>不仅缓存索引，还缓存真实数据。对内存要求较高</td>
+</tr>
+<tr>
+<td>表空间</td>
+<td>小</td>
+<td>大</td>
+</tr>
+<tr>
+<td>关注点</td>
+<td>性能</td>
+<td>事务</td>
+</tr>
+<tr>
+<td>默认安装</td>
+<td>是</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<h4 id="3-为什么推荐使用自增-id-作为主键？"><a href="#3-为什么推荐使用自增-id-作为主键？" class="headerlink" title="3.为什么推荐使用自增 id 作为主键？"></a>3.为什么推荐使用自增 id 作为主键？</h4><ul>
+<li>１.普通索引的 B+ 树上存放的是主键索引的值，如果该值较大，会<strong>「导致普通索引的存储空间较大」</strong></li>
+<li>２.使用自增 id 做主键索引新插入数据只要放在该页的最尾端就可以，直接<strong>「按照顺序插入」</strong>，不用刻意维护</li>
+<li>3.页分裂容易维护，当插入数据的当前页快满时，会发生页分裂的现象，如果主键索引不为自增 id，那么数据就可能从页的中间插入，页的数据会频繁的变动，<strong>「导致页分裂维护成本较高」</strong></li>
+</ul>
+<h4 id="4-一条查询语句是怎么执行的"><a href="#4-一条查询语句是怎么执行的" class="headerlink" title="4.一条查询语句是怎么执行的?"></a>4.一条查询语句是怎么执行的?</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/640" srcset="/img/loading.gif" lazyload alt="SQL语句执行"></p>
+<h4 id="5-使用-Innodb-的情况下，一条更新语句是怎么执行的"><a href="#5-使用-Innodb-的情况下，一条更新语句是怎么执行的" class="headerlink" title="5.使用 Innodb 的情况下，一条更新语句是怎么执行的?"></a>5.使用 Innodb 的情况下，一条更新语句是怎么执行的?</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> xxx <span class="hljs-keyword">set</span> c<span class="hljs-operator">=</span>c<span class="hljs-operator">+</span><span class="hljs-number">1</span> <span class="hljs-keyword">where</span> id<span class="hljs-operator">=</span><span class="hljs-number">2</span>;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>1.执行器先找引擎取 id&#x3D;2 这一行。id 是主键，引擎直接用树搜索找到这一行</p>
+</li>
+<li><ul>
+<li>如果 id&#x3D;2 这一行所在的数据页本来就<strong>「在内存中」</strong>，就<strong>「直接返回」</strong>给执行器</li>
+<li><strong>「不在内存」</strong>中，需要先从磁盘<strong>「读入内存」</strong>，然后再<strong>「返回」</strong></li>
+</ul>
+</li>
+<li><p>2.执行器拿到引擎给的行数据，把这个值加上 1，比如原来是 N，现在就是 N+1，得到新的一行数据，再调用引擎接口<strong>「写入这行新数据」</strong></p>
+</li>
+<li><p>3.引擎将这行新数据更新到内存中，同时将这个更新操作<strong>「记录到 redo log 里面」</strong>，此时 redo log 处于 <strong>「prepare」</strong> 状态。然后告知执行器执行完成了，随时可以提交事务</p>
+</li>
+<li><p>4.执行器<strong>「生成这个操作的 binlog」</strong>，并把 binlog <strong>「写入磁盘」</strong></p>
+</li>
+<li><p>5.执行器调用引擎的<strong>「提交事务」</strong>接口，引擎把刚刚写入的 redo log 改成提交（commit）状态，<strong>「更新完成」</strong></p>
+</li>
+</ul>
+<h4 id="6-Innodb-事务为什么要两阶段提交"><a href="#6-Innodb-事务为什么要两阶段提交" class="headerlink" title="6.Innodb 事务为什么要两阶段提交?"></a>6.Innodb 事务为什么要两阶段提交?</h4><p><strong>「主要目的是保证redolog和binlog数据一致性」</strong></p>
+<ul>
+<li>先写 redolog 后写binlog。假设在 redolog 写完，binlog 还没有写完的时候，MySQL 进程异常重启，这时候 binlog 里面就没有记录这个语句。然后你会发现，如果需要用这个 binlog 来恢复临时库的话，由于这个语句的 <strong>「binlog 丢失」</strong>，这个临时库就会少了这一次更新，恢复出来的这一行 c 的值就是 0，与原库的值不同。</li>
+<li>先写 binlog 后写 redolog。如果在 binlog 写完之后 crash，由于 redolog 还没写，崩溃恢复以后这个事务无效，所以这一行c的值是0。但是 binlog 里面已经记录了“把c从0改成1”这个日志。所以，在之后用 binlog 来恢复的时候就<strong>「多了一个事务出来」</strong>，恢复出来的这一行 c 的值就是 1，与原库的值不同。</li>
+</ul>
+<h4 id="7-什么是索引"><a href="#7-什么是索引" class="headerlink" title="7.什么是索引?"></a>7.什么是索引?</h4><p>相信大家小时候学习汉字的时候都会查字典，想想你查字典的步骤，我们是通过汉字的首字母 a～z 一个一个在字典目录中查找，最终找到该字的页数。想想，如果没有目录会怎么样，最差的结果是你有可能翻到字典的最后一页才找到你想要找的字。索引就<strong>「相当于我们字典中的目录」</strong>，可以极大的提高我们在数据库的查询效率。</p>
+<h4 id="8-索引失效的场景有哪些"><a href="#8-索引失效的场景有哪些" class="headerlink" title="8.索引失效的场景有哪些?"></a>8.索引失效的场景有哪些?</h4><ol>
+<li>最左前缀法则（带头索引不能死，中间索引不能断</li>
+<li>不要在索引上做任何操作（计算、函数、自动&#x2F;手动类型转换），不然会导致索引失效而转向全表扫描</li>
+<li>不能继续使用索引中范围条件（bettween、&lt;、&gt;、in等）</li>
+<li>索引字段上使用（！&#x3D; 或者 &lt; &gt;）判断时，会导致索引失效而转向全表扫描</li>
+<li>索引字段上使用 is null &#x2F; is not null 判断时，会导致索引失效而转向全表扫描。</li>
+<li>索引字段使用like以通配符开头（‘%字符串’）时，会导致索引失效而转向全表扫描，也是最左前缀原则。</li>
+<li>索引字段是字符串，但查询时不加单引号，会导致索引失效而转向全表扫描</li>
+<li>索引字段使用 or 时，会导致索引失效而转向全表扫描</li>
+</ol>
+<h4 id="9-为什么采用-B-树-而不是-B树"><a href="#9-为什么采用-B-树-而不是-B树" class="headerlink" title="9.为什么采用 B+ 树,而不是 B树"></a>9.为什么采用 B+ 树,而不是 B树</h4><p>B+ 树只在叶子结点储存数据，非叶子结点不存具体数据，只存 key，查询更稳定，增大了广度，而一个节点就是磁盘一个内存页，内存页大小固定，那么相比 B 树，B+树这些<strong>「可以存更多的索引结点」</strong>，宽度更大，树高矮，节点小，拉取一次数据的磁盘 IO 次数少，并且 B+ 树只需要去遍历叶子节点就可以实现整棵树的遍历。而且在数据库中基于范围的查询是非常频繁的，效率更高。</p>
+<h4 id="10-WAl-是什么-有什么好处"><a href="#10-WAl-是什么-有什么好处" class="headerlink" title="10.WAl 是什么?有什么好处?"></a>10.WAl 是什么?有什么好处?</h4><p>WAL 就是 Write-Ahead Logging，其实就是<strong>「所有的修改都先被写入到日志中，然后再写磁盘」</strong>，用于保证数据操作的原子性和持久性。</p>
+<h4 id="11-什么是回表"><a href="#11-什么是回表" class="headerlink" title="11.什么是回表?"></a>11.什么是回表?</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418211302609.png" srcset="/img/loading.gif" lazyload alt="回表"></p>
+<p>回表就是先通过数据库索引扫描出该索引树中数据所在的行，取到主键 id，再通过主键 id 取出主键索引数中的数据，即基于非主键索引的查询需要多扫描一棵索引树.</p>
+<h4 id="12-什么是索引下推"><a href="#12-什么是索引下推" class="headerlink" title="12.什么是索引下推?"></a>12.什么是索引下推?</h4><ul>
+<li><strong>索引下推</strong>（index condition pushdown ）简称ICP，在<strong>Mysql5.6</strong>的版本上推出，用于优化查询。</li>
+<li>在不使用ICP的情况下，在使用<strong>非主键索引（又叫普通索引或者二级索引）</strong>进行查询时，存储引擎通过索引检索到数据，然后返回给MySQL服务器，服务器然后判断数据是否符合条件 。</li>
+<li>在使用ICP的情况下，如果存在某些被索引的列的判断条件时，MySQL服务器将这一部分判断条件传递给存储引擎，然后由存储引擎通过判断索引是否符合MySQL服务器传递的条件，只有当索引符合条件时才会将数据检索出来返回给MySQL服务器 。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 建立联合索引（name，age）</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span>  name <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;陈%&#x27;</span> <span class="hljs-keyword">and</span> age<span class="hljs-operator">=</span><span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418211507725.png" srcset="/img/loading.gif" lazyload alt="无索引下推"></p>
+<p>无索引下推，会忽略age这个字段，直接通过name进行查询，在(name,age)这课树上查找到了两个结果，id分别为2,1，然后拿着取到的id值一次次的回表查询，因此这个过程需要<strong>回表两次</strong>。</p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418211539286.png" srcset="/img/loading.gif" lazyload alt="使用索引下推"></p>
+<p>使用索引下推，innoDB不会忽略age这个字段，而是在索引内部就判断了age是否等于20，对于不等于20的记录直接跳过，因此在(name,age)这棵索引树中只匹配到了一个记录，此时拿着这个id去主键索引树中回表查询全部数据，这个过程只需要<strong>回表一次</strong>。</p>
+<p><strong>索引条件下推优化可以减少存储引擎查询基础表的次数，也可以减少MySQL服务器从存储引擎接收数据的次数</strong>。</p>
+<h4 id="13-什么是覆盖索引"><a href="#13-什么是覆盖索引" class="headerlink" title="13.什么是覆盖索引?"></a>13.什么是覆盖索引?</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> id <span class="hljs-keyword">from</span> t <span class="hljs-keyword">where</span> age <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>id 为主键索引，age 为普通索引，age 这个索引树存储的就是主键信息，可以直接返回</p>
+<h4 id="14-什么是最左前缀原则"><a href="#14-什么是最左前缀原则" class="headerlink" title="14.什么是最左前缀原则?"></a>14.什么是最左前缀原则?</h4><p>最左前缀其实说的是，在 where 条件中出现的字段，<strong>「如果只有组合索引中的部分列，则这部分列的触发索引顺序」</strong>，是按照定义索引的时候的顺序从前到后触发，最左面一个列触发不了，之后的所有列索引都无法触发。</p>
+<p>比如<strong>「有一个 (a,b,c) 的组合索引」</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">--「有一个 (a,b,c) 的组合索引」</span><br><span class="hljs-keyword">where</span> a <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> b <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-comment">-- 走索引</span><br><span class="hljs-keyword">where</span> a <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> c <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-comment">-- a走索引，c不走</span><br><span class="hljs-keyword">where</span> b <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> c <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-comment">-- 不走索引</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="15-普通索引和唯一索引该怎么选择"><a href="#15-普通索引和唯一索引该怎么选择" class="headerlink" title="15.普通索引和唯一索引该怎么选择?"></a>15.普通索引和唯一索引该怎么选择?</h4><ul>
+<li><p>查询</p>
+</li>
+<li><ul>
+<li>当普通索引为条件时查询到数据会一直扫描,直到扫完整张表</li>
+<li>当唯一索引为查询条件时,查到该数据会直接返回,不会继续扫表</li>
+</ul>
+</li>
+<li><p>更新</p>
+</li>
+<li><ul>
+<li>普通索引会直接将操作更新到 change buffer 中,然后结束</li>
+<li>唯一索引需要判断数据是否冲突</li>
+</ul>
+</li>
+</ul>
+<p>所以<strong>「唯一索引更加适合查询的场景,普通索引更适合插入的场景」</strong></p>
+<h4 id="16-什么是事务-其特性是什么"><a href="#16-什么是事务-其特性是什么" class="headerlink" title="16.什么是事务?其特性是什么?"></a>16.什么是事务?其特性是什么?</h4><ul>
+<li><strong>「原子性（Atomicity）」</strong>：要么全部执行成功，要么全部不执行。</li>
+<li><strong>「一致性（Consistency）」</strong>：事务前后数据的完整性必须保持一致。</li>
+<li><strong>「隔离性（Isolation）」</strong>：隔离性是当多个事务同事触发时，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。</li>
+<li><strong>「持久性（Durability）」</strong>：事务完成之后的改变是永久的。</li>
+</ul>
+<h4 id="17-事务的隔离级别"><a href="#17-事务的隔离级别" class="headerlink" title="17.事务的隔离级别?"></a>17.事务的隔离级别?</h4><ul>
+<li><strong>「读提交」</strong>:即能够<strong>「读取到那些已经提交」</strong>的数据</li>
+<li><strong>「读未提交」</strong>:即能够<strong>「读取到没有被提交」</strong>的数据</li>
+<li><strong>「可重复读」</strong>:可重复读指的是在一个事务内，最开始读到的数据和事务结束前的<strong>「任意时刻读到的同一批数据都是一致的」</strong></li>
+<li><strong>「可串行化」</strong>:最高事务隔离级别，不管多少事务，都是<strong>「依次按序一个一个执行」</strong></li>
+</ul>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418212639863.png" srcset="/img/loading.gif" lazyload alt="不同隔离级别出现的问题"></p>
+<ul>
+<li><strong>「脏读」</strong>脏读指的是<strong>「读到了其他事务未提交的数据」</strong>，未提交意味着这些数据可能会回滚，也就是可能最终不会存到数据库中，也就是不存在的数据。读到了并一定最终存在的数据，这就是脏读</li>
+<li><strong>「不可重复读」</strong>对比可重复读，不可重复读指的是在同一事务内，<strong>「不同的时刻读到的同一批数据可能是不一样的」</strong>。</li>
+<li><strong>「幻读」</strong>幻读是针对数据插入（INSERT）操作来说的。假设事务A对某些行的内容作了更改，但是还未提交，此时事务B插入了与事务A更改前的记录相同的记录行，并且在事务A提交之前先提交了，而这时，在事务A中查询，会发现<strong>「好像刚刚的更改对于某些数据未起作用」</strong>，但其实是事务B刚插入进来的这就叫幻读</li>
+</ul>
+<h4 id="18-undolog-是做什么的"><a href="#18-undolog-是做什么的" class="headerlink" title="18.undolog 是做什么的?"></a>18.undolog 是做什么的?</h4><p>undolog 是 InnoDB 存储引擎的日志，用于保证数据的原子性，<strong>「保存了事务发生之前的数据的一个版本，也就是说记录的是数据是修改之前的数据，可以用于回滚」</strong>，同时可以提供多版本并发控制下的读（MVCC）。</p>
+<p>主要作用：<strong>事务回滚</strong>，<strong>实现多版本控制(MVCC)</strong></p>
+<h4 id="19-binlog-是做什么的"><a href="#19-binlog-是做什么的" class="headerlink" title="19.binlog 是做什么的?"></a>19.binlog 是做什么的?</h4><p>binlog 是归档日志，属于 Server 层的日志，是一个二进制格式的文件，用于<strong>「记录用户对数据库更新的SQL语句信息」</strong>。</p>
+<p>主要作用：<strong>主从复制</strong>，<strong>数据恢复</strong></p>
+<h4 id="20-relaylog-是做什么的"><a href="#20-relaylog-是做什么的" class="headerlink" title="20.relaylog 是做什么的?"></a>20.relaylog 是做什么的?</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418212904162.png" srcset="/img/loading.gif" lazyload alt="主从复制"></p>
+<p>master 主节点的 binlog 传到 slave 从节点后，被写入 relay log 里，从节点的 slave sql 线程从 relaylog 里读取日志然后应用到 slave 从节点本地。从服务器 I&#x2F;O 线程将主服务器的二进制日志读取过来记录到从服务器本地文件，然后 SQL 线程会读取 relay-log 日志的内容并应用到从服务器，从而<strong>「使从服务器和主服务器的数据保持一致」</strong>。</p>
+<h4 id="21-redolog-是做什么的"><a href="#21-redolog-是做什么的" class="headerlink" title="21.redolog 是做什么的?"></a>21.redolog 是做什么的?</h4><p>redolog 是 <strong>「InnoDB 存储引擎所特有的一种日志」</strong>，用于记录事务操作的变化，记录的是数据修改之后的值，不管事务是否提交都会记录下来。</p>
+<p>可以做<strong>「数据恢复并且提供 crash-safe 能力」</strong></p>
+<p>当有增删改相关的操作时，会先记录到 Innodb 中，并修改缓存页中的数据，<strong>「等到 mysql 闲下来的时候才会真正的将 redolog 中的数据写入到磁盘当中」</strong>。</p>
+<h4 id="22-redolog-是怎么记录日志的"><a href="#22-redolog-是怎么记录日志的" class="headerlink" title="22.redolog 是怎么记录日志的?"></a>22.redolog 是怎么记录日志的?</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418213027402.png" srcset="/img/loading.gif" lazyload alt="redolog"></p>
+<p>InnoDB 的 redo log 是固定大小的，比如可以配置为一组4个文件，每个文件的大小是1GB，那么总共就可以记录4GB的操作。<strong>「从头开始写，写到末尾就又回到开头循环写」</strong>。</p>
+<p>所以，如果数据写满了但是还没有来得及将数据真正的刷入磁盘当中，那么就会发生<strong>「内存抖动」</strong>现象，从肉眼的角度来观察会发现 mysql 会宕机一会儿，此时就是正在刷盘了。</p>
+<h4 id="23-redolog-和-binlog-的区别是什么"><a href="#23-redolog-和-binlog-的区别是什么" class="headerlink" title="23.redolog 和 binlog 的区别是什么?"></a>23.redolog 和 binlog 的区别是什么?</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418213058505.png" srcset="/img/loading.gif" lazyload alt="redolog和binlog的区别"></p>
+<ul>
+<li>1.<strong>「redolog」</strong> 是 <strong>「Innodb」</strong> 独有的日志，而 <strong>「binlog」</strong> 是 <strong>「server」</strong> 层的，所有的存储引擎都有使用到</li>
+<li>2.<strong>「redolog」</strong> 记录了<strong>「具体的数值」</strong>，对某个页做了什么修改，<strong>「binlog」</strong> 记录的<strong>「操作内容」</strong></li>
+<li>3.<strong>「binlog」</strong> 大小达到上限或者 flush log <strong>「会生成一个新的文件」</strong>，而 <strong>「redolog」</strong> 有固定大小<strong>「只能循环利用」</strong></li>
+<li>4.<strong>「binlog 日志没有 crash-safe 的能力」</strong>，只能用于归档。而 redo log 有 crash-safe 能力。</li>
+</ul>
+<h4 id="24-说一说-mvcc-吧，有什么作用"><a href="#24-说一说-mvcc-吧，有什么作用" class="headerlink" title="24.说一说 mvcc 吧，有什么作用?"></a>24.说一说 mvcc 吧，有什么作用?</h4><p>MVCC:多版本并发控制，是现代数据库(包括 MySQL、Oracle、PostgreSQL 等)引擎实现中常用的处理读写冲突的手段，目的在于<strong>「提高数据库高并发场景下的吞吐性能」</strong>。</p>
+<p>在 MVCC 协议下，每个读操作会看到一个一致性的快照，<strong>「这个快照是基于整个库的」</strong>，并且可以实现非阻塞的读，用于<strong>「支持读提交和可重复读隔离级别的实现」</strong>。</p>
+<p>MVCC 允许数据具有多个版本，这个版本可以是时间戳或者是全局递增的事务 ID，在同一个时间点，不同的事务看到的数据是不同的，这个修改的数据是<strong>「记录在 undolog 中」</strong>的。</p>
+<p><strong>undolog</strong> + <strong>readview</strong> + <strong>隐藏字段</strong>（隐藏主键 row_id、事务ID trx_id、<strong>回滚指针</strong> roll_pointer）</p>
+<p><code>m_ids</code>：活跃事务id列表，当前系统中所有活跃的（也就是没提交的）事务的事务id列表。</p>
+<p><code>min_trx_id</code>：m_ids 中最小的事务id。</p>
+<p><code>max_trx_id</code>：生成 ReadView 时，系统应该分配给下一个事务的id（注意不是 m_ids 中最大的事务id），也就是m_ids 中的最大事务id + 1 。</p>
+<p><code>creator_trx_id</code>：生成该 ReadView 的事务的事务id。</p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418214749452.png" srcset="/img/loading.gif" lazyload alt="数据可见性"></p>
+<p><strong>(RC)在读已提交隔离级别下，每次快照度都生成一次ReadView</strong></p>
+<p><strong>(RR)在可重复读隔离级别下，只在第一次读数据的时候生成一次ReadView，之后都使用这个ReadView</strong></p>
+<h4 id="25-一条-Sql-语句查询一直慢会是什么原因"><a href="#25-一条-Sql-语句查询一直慢会是什么原因" class="headerlink" title="25.一条 Sql 语句查询一直慢会是什么原因?"></a>25.一条 Sql 语句查询一直慢会是什么原因?</h4><ul>
+<li><strong>「没有用到索引」</strong> 比如函数导致的索引失效，或者本身就没有加索引</li>
+<li><strong>「表数据量太大」</strong> 考虑分库分表吧</li>
+<li><strong>「优化器选错了索引」</strong>「考虑使用」force index 强制走索引</li>
+</ul>
+<h4 id="26-一条-Sql-语句查询偶尔慢会是什么原因"><a href="#26-一条-Sql-语句查询偶尔慢会是什么原因" class="headerlink" title="26.一条 Sql 语句查询偶尔慢会是什么原因?"></a>26.一条 Sql 语句查询偶尔慢会是什么原因?</h4><ul>
+<li><strong>「数据库在刷新脏页」</strong> 比如 <strong>「redolog 写满了」</strong>，<strong>「内存不够用了」</strong>释放内存如果是脏页也需要刷，mysql <strong>「正常空闲状态刷脏页」</strong></li>
+<li><strong>「没有拿到锁」</strong></li>
+</ul>
+<h4 id="27-Mysql-主从之间是怎么同步数据的"><a href="#27-Mysql-主从之间是怎么同步数据的" class="headerlink" title="27.Mysql 主从之间是怎么同步数据的?"></a>27.Mysql 主从之间是怎么同步数据的?</h4><ul>
+<li>master 主库将此次更新的事件类型<strong>「写入到主库的 binlog 文件」</strong>中</li>
+<li>master <strong>「创建 log dump 线程通知 slave」</strong> 需要更新数据</li>
+<li><strong>「slave」</strong> 向 master 节点发送请求，<strong>「将该 binlog 文件内容存到本地的 relaylog 中」</strong></li>
+<li><strong>「slave 开启 sql 线程」</strong>读取 relaylog 中的内容，<strong>「将其中的内容在本地重新执行一遍」</strong>，完成主从数据同步</li>
+</ul>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418215339566.png" srcset="/img/loading.gif" lazyload alt="Mysql主从复制"></p>
+<p><strong>「同步策略」</strong>：</p>
+<ul>
+<li><strong>「全同步复制」</strong>：主库强制同步日志到从库，等全部从库执行完才返回客户端，性能差</li>
+<li><strong>「半同步复制」</strong>：主库收到至少一个从库确认就认为操作成功，从库写入日志成功返回ack确认</li>
+</ul>
+<h4 id="28-删除表数据后表的大小却没有变动-这是为什么"><a href="#28-删除表数据后表的大小却没有变动-这是为什么" class="headerlink" title="28.删除表数据后表的大小却没有变动,这是为什么?"></a>28.删除表数据后表的大小却没有变动,这是为什么?</h4><p>在使用 delete 删除数据时，其实对应的数据行并不是真正的删除，是<strong>「逻辑删除」</strong>，InnoDB 仅仅是将其<strong>「标记成可复用的状态」</strong>，所以表空间不会变小</p>
+<h4 id="29-Mysql-中有哪些锁"><a href="#29-Mysql-中有哪些锁" class="headerlink" title="29.Mysql 中有哪些锁?"></a>29.Mysql 中有哪些锁?</h4><p>以下并不全，主要理解下锁的意义即可</p>
+<ul>
+<li>基于锁的属性分类：共享锁、排他锁</li>
+<li>基于锁的粒度分类：表锁、行锁、记录锁、间隙锁、临键锁</li>
+<li>基于锁的状态分类：意向共享锁、意向排它锁、死锁</li>
+</ul>
+<h4 id="30-buffer-pool-是做什么的"><a href="#30-buffer-pool-是做什么的" class="headerlink" title="30.buffer pool 是做什么的?"></a>30.buffer pool 是做什么的?</h4><p>buffer pool 是一块内存区域，为了<strong>「提高数据库的性能」</strong>，当数据库操作数据的时候，把硬盘上的数据加载到 buffer pool，不直接和硬盘打交道，操作的是 buffer pool 里面的数据，数据库的增删改查都是在 buffer pool 上进行，buffer pool 里面缓存的数据内容也是一个个数据页</p>
+<h4 id="31-说说你的-Sql-调优思路吧"><a href="#31-说说你的-Sql-调优思路吧" class="headerlink" title="31.说说你的 Sql 调优思路吧"></a>31.说说你的 Sql 调优思路吧</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220418215544432.png" srcset="/img/loading.gif" lazyload alt="sql调优"></p>
+<ul>
+<li><strong>「表结构优化」</strong></li>
+<li><ul>
+<li>拆分字段</li>
+<li>字段类型的选择</li>
+<li>字段类型大小的限制</li>
+<li>合理的增加冗余字段</li>
+<li>新建字段一定要有默认值</li>
+</ul>
+</li>
+<li><strong>「索引方面」</strong></li>
+<li><ul>
+<li>索引字段的选择</li>
+<li>利用好mysql支持的索引下推，覆盖索引等功能</li>
+<li>唯一索引和普通索引的选择</li>
+</ul>
+</li>
+<li><strong>「查询语句方面」</strong></li>
+<li><ul>
+<li>避免索引失效</li>
+<li>合理的书写where条件字段顺序</li>
+<li>小表驱动大表</li>
+<li>可以使用force index()防止优化器选错索引</li>
+</ul>
+</li>
+<li><strong>「分库分表」</strong></li>
+</ul>
+<h4 id="32-EXPLAIN-x2F-DESC使用过吗，需要哪些关注点"><a href="#32-EXPLAIN-x2F-DESC使用过吗，需要哪些关注点" class="headerlink" title="32.EXPLAIN&#x2F;DESC使用过吗，需要哪些关注点"></a>32.EXPLAIN&#x2F;DESC使用过吗，需要哪些关注点</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220419224855673.png" srcset="/img/loading.gif" lazyload alt="DESC/EXPLAIN"></p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>执行编号，标识select所属的行。如果在语句中没子查询或关联查询，只有唯一的select，每行都将显示1。否则，内层的select语句一般会顺序编号，对应于其在原始语句中的位置</td>
+</tr>
+<tr>
+<td>select_type</td>
+<td>显示本行是简单或复杂select。如果查询有任何复杂的子查询，则最外层标记为PRIMARY（DERIVED、UNION、UNION RESUlT）</td>
+</tr>
+<tr>
+<td>table</td>
+<td>访问引用哪个表（引用某个查询，如“derived3”）</td>
+</tr>
+<tr>
+<td>type</td>
+<td>数据访问&#x2F;读取操作类型（ALL、index、range、ref、eq_ref、const&#x2F;system、NULL）</td>
+</tr>
+<tr>
+<td>possible_keys</td>
+<td>揭示哪一些索引可能有利于高效的查找</td>
+</tr>
+<tr>
+<td>key</td>
+<td>显示mysql决定采用哪个索引来优化查询</td>
+</tr>
+<tr>
+<td>key_len</td>
+<td>显示mysql在索引里使用的字节数</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>显示了之前的表在key列记录的索引中查找值所用的列或常量</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>为了找到所需的行而需要读取的行数，估算值，不精确。通过把所有rows列值相乘，可粗略估算整个查询会检查的行数</td>
+</tr>
+<tr>
+<td>Extra</td>
+<td>额外信息，如using index、filesort等</td>
+</tr>
+</tbody></table>
+<h3 id="Redis篇"><a href="#Redis篇" class="headerlink" title="Redis篇"></a>Redis篇</h3><h4 id="1-什么是-redis？它能做什么？"><a href="#1-什么是-redis？它能做什么？" class="headerlink" title="1.什么是 redis？它能做什么？"></a>1.什么是 redis？它能做什么？</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220419211718555.png" srcset="/img/loading.gif" lazyload alt="用法"></p>
+<p>redis: redis 即 Remote Dictionary Server，用中文翻译过来可以理解为<strong>远程数据服务</strong>或远程字典服务。其是使用 C 语言的编写的key-value<strong>存储系统</strong></p>
+<p>应用场景:缓存，数据库，消息队列，分布式锁，点赞列表，排行榜等等</p>
+<h4 id="2-redis-有哪九种数据类型？有哪些应用场景？"><a href="#2-redis-有哪九种数据类型？有哪些应用场景？" class="headerlink" title="2.redis 有哪九种数据类型？有哪些应用场景？"></a>2.redis 有哪九种数据类型？有哪些应用场景？</h4><p>五种基本数据类型:</p>
+<ul>
+<li><strong>string</strong>:字符串类型，常被用来存储计数器，粉丝数等，简单的分布式锁也会用到该类型</li>
+<li><strong>hashmap</strong>:key - value 形式的，value 是一个map</li>
+<li><strong>list</strong>:基本的数据类型，列表。在 Redis 中可以把 list 用作栈、队列、阻塞队列。</li>
+<li><strong>set</strong>:集合，不能有重复元素，可以做点赞，收藏等</li>
+<li><strong>zset</strong>:有序集合，不能有重复元素，有序集合中的每个元素都需要指定一个分数，根据分数对元素进行升序排序。可以做排行榜</li>
+</ul>
+<p>四种特殊数据类型:</p>
+<ul>
+<li><strong>geospatial</strong>: Redis 在 3.2 推出 Geo 类型，该功能<strong>可以推算出地理位置信息，两地之间的距离</strong>。</li>
+<li><strong>hyperloglog</strong>:基数：数学上集合的元素个数，是不能重复的。这个数据结构<strong>常用于统计网站的 UV</strong>。</li>
+<li><strong>bitmap</strong>: bitmap 就是通过最小的单位 bit 来进行0或者1的设置，表示某个元素对应的值或者状态。一个 bit 的值，或者是0，或者是1；也就是说一个 bit 能存储的最多信息是2。bitmap <strong>常用于统计用户信息比如活跃粉丝和不活跃粉丝、登录和未登录、是否打卡等</strong>。</li>
+<li><strong>Stream</strong>：是 Redis 5.0 版本引入的一种新数据类型，同时它也是 Redis 中最为复杂的数据结构，消息队列。</li>
+</ul>
+<h4 id="3-redis为什么这么快？"><a href="#3-redis为什么这么快？" class="headerlink" title="3.redis为什么这么快？"></a>3.redis为什么这么快？</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220419212114885.png" srcset="/img/loading.gif" lazyload alt="redis为什么这么快"></p>
+<p>官方数据 redis 可以做到每秒近10w的并发，这么快的原因主要总结为以下几点：</p>
+<ul>
+<li>完全<strong>基于内存</strong>操作</li>
+<li>使用单线程模型来处理客户端的请求，避免了上下文的切换</li>
+<li><strong>IO 多路复用</strong>机制(epoll)</li>
+<li>自身使用 C 语言编写，有很多优化机制，比如动态字符串 sds</li>
+</ul>
+<h4 id="4-听说-redis-6-0之后又使用了多线程，不会有线程安全的问题吗？"><a href="#4-听说-redis-6-0之后又使用了多线程，不会有线程安全的问题吗？" class="headerlink" title="4.听说 redis 6.0之后又使用了多线程，不会有线程安全的问题吗？"></a>4.听说 redis 6.0之后又使用了多线程，不会有线程安全的问题吗？</h4><p><strong>不会</strong></p>
+<p>其实 redis <strong>还是使用单线程模型来处理客户端的请求</strong>，只是使用多线程来处理数据的读写和协议解析，执行命令还是使用单线程，所以是不会有线程安全的问题。</p>
+<p>之所以加入了多线程因为 redis 的性能瓶颈在于网络IO而非CPU，使用多线程能提升IO读写的效率，从而整体提高redis的性能。</p>
+<h4 id="5-redis-的持久化机制有哪些？优缺点说说"><a href="#5-redis-的持久化机制有哪些？优缺点说说" class="headerlink" title="5.redis 的持久化机制有哪些？优缺点说说"></a>5.redis 的持久化机制有哪些？优缺点说说</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220419215125119.png" srcset="/img/loading.gif" lazyload alt="AOF的appendfsync选项"></p>
+<p><strong>AOF</strong>：redis 每次执行一个命令时,都会把这个「命令原本的语句记录到一个.aof 的文件当中,然后通过<strong>fsync策略</strong>,将命令执行后的数据持久化到磁盘中」(不包括读命令)</p>
+<ul>
+<li><p><strong>AOF 的「优点」</strong>:</p>
+</li>
+<li><ul>
+<li>1.AOF可以「更好的保护数据不丢失」，一般AOF会以每隔1秒，通过后台的一个线程去执行一次fsync操作，如果redis进程挂掉，<strong>最多丢失1秒的数据</strong></li>
+<li>2.AOF是将命令直接追加在文件末尾的,<strong>「写入性能非常高」</strong></li>
+<li>3.AOF日志文件的命令通过非常可读的方式进行记录，这个非常「<strong>适合做灾难性的误删除紧急恢复」</strong>，如果某人不小心用 flushall 命令清空了所有数据，只要这个时候还没有执行 rewrite，那么就可以将日志文件中的 flushall 删除，进行恢复</li>
+</ul>
+</li>
+<li><p><strong>AOF 的「缺点」</strong>:</p>
+</li>
+<li><ul>
+<li>1.对于同一份数据源来说,一般情况下<strong>AOF 文件比 RDB 数据快照要大</strong></li>
+<li>2.由于 .aof 的<strong>每次命令都会写入</strong>,那么相对于 RDB 来说「需要消耗的性能也就更多」，当然也会有 <strong>aof 重写</strong>将 aof 文件优化。</li>
+<li>3.<strong>「数据恢复比较慢」</strong>，不适合做冷备。</li>
+</ul>
+</li>
+</ul>
+<p><strong>RDB</strong>：把<strong>某个时间点 redis 内存</strong>中的数据以二进制的形式存储的一个.rdb为后缀的文件当中,也就是「<strong>周期性的备份redis中的整个数据</strong>」,这是redis<strong>默认</strong>的持久化方式,也就是我们说的快照(snapshot)，是采用 fork 子进程的方式来写时同步的。</p>
+<ul>
+<li><p>RDB的优点:</p>
+</li>
+<li><ul>
+<li>1.它是将某一时间点redis内的所有数据保存下来,所以当我们做「大型的数据恢复时,RDB的恢复速度会很快」</li>
+<li>2.由于RDB的FROK子进程这种机制,队友给客户端提供读写服务的影响会非常小</li>
+</ul>
+</li>
+<li><p>RDB的缺点:</p>
+</li>
+<li><ul>
+<li>举个例子假设我们定时5分钟备份一次,在10:00的时候 redis 备份了数据,但是如果在10:04的时候服务挂了,那么我们就会丢失在10:00到10:04的整个数据</li>
+<li>1:「有可能会产生长时间的数据丢失」</li>
+<li>2:可能会有长时间停顿:我们前面讲了,fork 子进程这个过程是和 redis 的数据量有很大关系的,<strong>如果「数据量很大,那么很有可能会使redis暂停几秒」</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="6-Redis的过期键的删除策略有哪些？"><a href="#6-Redis的过期键的删除策略有哪些？" class="headerlink" title="6. Redis的过期键的删除策略有哪些？"></a>6. Redis的过期键的删除策略有哪些？</h4><ul>
+<li><strong>定时过期</strong>：<strong>每个设置过期时间的key都需要创建一个定时器，到过期时间就会立即清除</strong>。该策略可以立即清除过期的数据，对内存很友好；但是会占用大量的CPU资源去处理过期的数据，从而影响缓存的响应时间和吞吐量。</li>
+<li><strong>惰性过期</strong>：只有当<strong>访问一个key时，才会判断该key是否已过期</strong>，过期则清除。该策略可以最大化地节省CPU资源，却对内存非常不友好。极端情况可能出现大量的过期key没有再次被访问，从而不会被清除，占用大量内存。</li>
+<li><strong>定期过期</strong>：<strong>每隔一定的时间，会扫描一定数量的数据库的expires字典中一定数量的key，并清除其中已过期的key</strong>。该策略是前两者的一个折中方案。通过调整定时扫描的时间间隔和每次扫描的限定耗时，可以在不同情况下使得CPU和内存资源达到最优的平衡效果。</li>
+</ul>
+<h4 id="7-Redis的内存满了怎么办？"><a href="#7-Redis的内存满了怎么办？" class="headerlink" title="7. Redis的内存满了怎么办？"></a>7. Redis的内存满了怎么办？</h4><ul>
+<li>noeviction：直接返回错误，不淘汰任何已经存在的redis键</li>
+<li>volatile-random：随机删除有过期时间的redis键</li>
+<li>volatile-ttl：删除快过期的redis键</li>
+<li>volatile-lfu：根据lfu算法从有过期时间的键删除</li>
+<li>volatile-lru：有过期时间的使用lru算法进行淘汰</li>
+<li>allkeys-random：随机删除redis键</li>
+<li>allkeys-lru：所有的键使用lru算法进行淘汰</li>
+<li>allkeys-lfu：根据lfu算法从所有键删除</li>
+</ul>
+<h4 id="8-Redis-的热-key-问题怎么解决？"><a href="#8-Redis-的热-key-问题怎么解决？" class="headerlink" title="8.Redis 的热 key 问题怎么解决？"></a>8.Redis 的热 key 问题怎么解决？</h4><p>热 key  就是说，在某一时刻，有非常多的请求访问某个 key，流量过大，导致该 redi 服务器宕机</p>
+<p>解决方案:</p>
+<ul>
+<li>可以将结果缓存到本地内存中</li>
+<li>将热 key 分散到不同的服务器中</li>
+<li>设置永不过期</li>
+</ul>
+<h4 id="9-缓存击穿、缓存穿透、缓存雪崩是什么？怎么解决呢？"><a href="#9-缓存击穿、缓存穿透、缓存雪崩是什么？怎么解决呢？" class="headerlink" title="9.缓存击穿、缓存穿透、缓存雪崩是什么？怎么解决呢？"></a>9.缓存击穿、缓存穿透、缓存雪崩是什么？怎么解决呢？</h4><p><strong>缓存穿透</strong>：缓存穿透是指用户请求的数据<strong>在缓存中不存在并且在数据库中也不存在</strong>，导致用户每次请求该数据都要去数据库中查询一遍，然后返回空。</p>
+<p>解决方案:</p>
+<ul>
+<li>布隆过滤器</li>
+<li>返回空对象</li>
+</ul>
+<p><strong>缓存击穿</strong>：缓存击穿，是指一个 key 非常热点，在不停的扛着大并发，大并发集中对这一个点进行访问，当这个 key 在<strong>失效的瞬间，持续的大并发就穿破缓存</strong>，直接请求数据库，就像在一个屏障上凿开了一个洞。</p>
+<p>解决方案:</p>
+<ul>
+<li>互斥锁</li>
+<li>永不过期</li>
+</ul>
+<p><strong>缓存雪崩</strong>：缓存雪崩是指缓存中<strong>不同的数据大批量到过期时间</strong>，而查询数据量巨大，请求直接落到数据库上导致宕机。</p>
+<p>解决方案:</p>
+<ul>
+<li>均匀过期</li>
+<li>加互斥锁</li>
+<li>缓存永不过期</li>
+<li>双层缓存策略</li>
+</ul>
+<h4 id="10-Redis-有哪些部署方式？"><a href="#10-Redis-有哪些部署方式？" class="headerlink" title="10.Redis 有哪些部署方式？"></a>10.Redis 有哪些部署方式？</h4><ul>
+<li>单机模式:这也是最基本的部署方式,只需要一台机器,负责读写,一般只用于开发人员自己测试</li>
+<li>哨兵模式:哨兵模式是一种特殊的模式，首先Redis提供了哨兵的命令，哨兵是一个独立的进程，作为进程，它会独立运行。其原理是哨兵通过发送命令，等待Redis服务器响应，从而监控运行的多个Redis实例。它具备<strong>自动故障转移、集群监控、消息通知</strong>等功能。</li>
+<li>cluster集群模式:在redis3.0版本中支持了cluster集群部署的方式，这种集群部署的方式能<strong>自动将数据进行分片</strong>，每个master上放一部分数据，提供了内置的高可用服务，即使某个master挂了，服务还可以正常地提供。</li>
+<li>主从复制:在主从复制这种集群部署模式中，我们会将数据库分为两类，第一种称为主数据库(master)，另一种称为从数据库(slave)。主数据库会负责我们整个系统中的读写操作，从数据库会负责我们整个数据库中的读操作。其中在职场开发中的真实情况是，我们会让主数据库只负责写操作，让从数据库只负责读操作，就是为了<strong>读写分离</strong>，减轻服务器的压力。</li>
+</ul>
+<h4 id="11-哨兵有哪些作用？"><a href="#11-哨兵有哪些作用？" class="headerlink" title="11.哨兵有哪些作用？"></a>11.哨兵有哪些作用？</h4><ul>
+<li>监控整个主数据库和从数据库，观察它们是否正常运行</li>
+<li>当主数据库发生异常时，自动的将从数据库升级为主数据库，继续保证整个服务的稳定</li>
+</ul>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220419220201907.png" srcset="/img/loading.gif" lazyload alt="故障转移"></p>
+<p><strong>获取主服务器信息</strong>：哨兵默认会以十秒一次的频率，通过命令连接向被监视的主服务器发送INFO命令，并通过分析INFO命令的回复来获取主服务器的当前信息。</p>
+<p><strong>获取从服务器信息</strong>：哨兵默认会以十秒一次的频率，通过命令连接向从服务器发送INFO命令，并通过分析INFO命令的回复来获取从服务器的当前信息。</p>
+<p><strong>向主从服务器发送信息</strong>：哨兵会以每两秒一次的频率，通过命令连接向所有被监视的主服务器和从服务器发送命令，发布自己的信息。</p>
+<p><strong>检测主观下线：</strong>默认情况下，哨兵会以每秒一次的频率向所有与它建立了命令连接的实例发送PING命令来判断实例是否在下，</p>
+<h4 id="12-哨兵选举过程是怎么样的？"><a href="#12-哨兵选举过程是怎么样的？" class="headerlink" title="12.哨兵选举过程是怎么样的？"></a>12.哨兵选举过程是怎么样的？</h4><ul>
+<li>发现master挂了的哨兵，向每个哨兵发送命令，让对方选举自己成为领头哨兵(先到先得)</li>
+<li>其他哨兵如果没有选举过他人，就会将这一票投给第一个发现该master挂了的哨兵</li>
+<li>第一个发现该master挂了的哨兵如果发现由超过一半哨兵投给自己，并且其数量也超过了设定的quoram参数，那么该哨兵就成了领头哨兵</li>
+<li>选出领头哨兵后，就开始了故障修复，会从选出一个从数据库作为新的master，并通知所有的从服务器新选举出的master</li>
+</ul>
+<h4 id="13-cluster集群模式是怎么存放数据的？"><a href="#13-cluster集群模式是怎么存放数据的？" class="headerlink" title="13.cluster集群模式是怎么存放数据的？"></a>13.cluster集群模式是怎么存放数据的？</h4><p>一个cluster集群中总共有16384个节点，集群会<strong>将这16384个节点平均分配给每个节点</strong>，当然，我这里的节点指的是每个主节点，就如同下图：</p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220419213303272.png" srcset="/img/loading.gif" lazyload alt="Cluster槽"></p>
+<h4 id="14-cluster的故障恢复是怎么做的？"><a href="#14-cluster的故障恢复是怎么做的？" class="headerlink" title="14.cluster的故障恢复是怎么做的？"></a>14.cluster的故障恢复是怎么做的？</h4><p>判断故障的逻辑其实与哨兵模式有点类似，在集群中，每个节点都会<strong>定期的向其他节点发送ping命令</strong>，通过有没有收到回复来判断其他节点是否已经下线。</p>
+<p>如果<strong>长时间没有回复，那么发起ping命令的节点就会认为目标节点疑似下线</strong>，也可以和哨兵一样称作主观下线，当然也需要集群中一定数量的节点都认为该节点下线才可以，我们来说说具体过程：</p>
+<p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220419213339008.png" srcset="/img/loading.gif" lazyload alt="Cluster故障恢复"></p>
+<ul>
+<li>当A节点发现目标节点疑似下线，就会向集群中的其他节点散播消息，其他节点就会向目标节点发送命令，判断目标节点是否下线</li>
+<li>如果集群中半数以上的节点都认为目标节点下线，就会对目标节点标记为下线，从而告诉其他节点，让目标节点在整个集群中都下线</li>
+</ul>
+<h4 id="15-主从同步原理是怎样的？"><a href="#15-主从同步原理是怎样的？" class="headerlink" title="15.主从同步原理是怎样的？"></a>15.主从同步原理是怎样的？</h4><p><img src="/%E9%9D%A2%E7%BB%8F.assets/image-20220419214607955.png" srcset="/img/loading.gif" lazyload alt="主从复制"></p>
+<ul>
+<li>当一个从数据库启动时，它会向<strong>主数据库发送一个PSYNC命令</strong>，master收到后，在后台保存快照，也就是我们说的RDB持久化，当然保存快照是需要消耗时间的，并且redis是单线程的，在保存快照期间redis收到的命令会缓存起来</li>
+<li>快照完成后会<strong>将RDB文件发送给slave节点</strong>，并使用<strong>部分重同步</strong>，将RDB复制期间的命令发送给从服务器，从而保证主从数据库的一致性。</li>
+<li>从数据库接受到快照以及缓存的命令后会将这部分数据<strong>写入到硬盘上的临时文件当中</strong>，写入完成后会用这份文件去替换掉RDB快照文件，当然，这个操作是不会阻塞的，可以继续接收命令执行，具体原因其实就是fork了一个子进程，用子进程去完成了这些功能。</li>
+</ul>
+<p>因为不会阻塞，所以，这部分初始化完成后，当主数据库执行了改变数据的命令后，会异步的给slave，这也就是我们说的复制同步阶段，这个阶段会贯穿在整个中从同步的过程中，直到主从同步结束后，复制同步才会终止。</p>
 
             </div>
             <hr>
@@ -376,6 +863,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/04/18/JVM/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JVM</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
